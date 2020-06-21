@@ -1,0 +1,43 @@
+import { FiGitlab, FiGithub, FiFolder, FiAtSign, FiBook, FiCamera, FiDollarSign, FiEye, FiEyeOff, FiGift, FiGlobe, FiHeadphones, FiHeart, FiInfo, FiMail, FiMeh, FiMic, FiMicOff, FiMoon, FiMusic, FiPieChart, FiPower, FiSettings, FiShare, FiSmile, FiSun, FiSunrise, FiSunset, FiThumbsDown, FiThumbsUp, FiTruck, FiUser, FiWatch, FiYoutube, FiZoomIn, FiZoomOut } from 'react-icons/fi';
+import { TilesSymbols } from '~/types';
+
+const ICONS_MAP = {
+  [TilesSymbols.Github]: FiGithub,
+  [TilesSymbols.Gitlab]: FiGitlab,
+  [TilesSymbols.Folder]: FiFolder,
+  [TilesSymbols.AtSign]: FiAtSign,
+  [TilesSymbols.Book]: FiBook,
+  [TilesSymbols.Camera]: FiCamera,
+  [TilesSymbols.Dollar]: FiDollarSign,
+  [TilesSymbols.Eye]: FiEye,
+  [TilesSymbols.EyeOff]: FiEyeOff,
+  [TilesSymbols.Gift]: FiGift,
+  [TilesSymbols.Globe]: FiGlobe,
+  [TilesSymbols.Headphones]: FiHeadphones,
+  [TilesSymbols.Heart]: FiHeart,
+  [TilesSymbols.Info]: FiInfo,
+  [TilesSymbols.Mail]: FiMail,
+  [TilesSymbols.Meh]: FiMeh,
+  [TilesSymbols.Mic]: FiMic,
+  [TilesSymbols.MicOff]: FiMicOff,
+  [TilesSymbols.Moon]: FiMoon,
+  [TilesSymbols.Music]: FiMusic,
+  [TilesSymbols.PieChart]: FiPieChart,
+  [TilesSymbols.Power]: FiPower,
+  [TilesSymbols.Settings]: FiSettings,
+  [TilesSymbols.Share]: FiShare,
+  [TilesSymbols.Smile]: FiSmile,
+  [TilesSymbols.Sun]: FiSun,
+  [TilesSymbols.Sunrise]: FiSunrise,
+  [TilesSymbols.Sunset]: FiSunset,
+  [TilesSymbols.ThumbsDown]: FiThumbsDown,
+  [TilesSymbols.ThumbsUp]: FiThumbsUp,
+  [TilesSymbols.Truck]: FiTruck,
+  [TilesSymbols.User]: FiUser,
+  [TilesSymbols.Watch]: FiWatch,
+  [TilesSymbols.YouTube]: FiYoutube,
+  [TilesSymbols.ZoomIn]: FiZoomIn,
+  [TilesSymbols.ZoomOut]: FiZoomOut,
+};
+
+export { ICONS_MAP };

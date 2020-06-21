@@ -1,0 +1,31 @@
+.container {
+  height: 80px;
+  width: 50px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  pointer-events: auto;
+  cursor: pointer;
+  word-break: break-all;
+  transition: border-color 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.is_selected {
+  border-color: black;
+  cursor: default;
+}
+
+.is_blocked {
+  cursor: default;
+}
+
+.layer_badge {
+  position: absolute;
+  font-size: 10px;
+  top: 0;
+  left: 0;
+  color: #a0a0a0;
+}
