@@ -21,5 +21,4 @@ yarn test
 yarn build
 ```
 
-## Wanna see how it works ?
-[netlify link](https://nifty-wescoff-22b6ca.netlify.app/)
+## Wanna see how it works ? Here is [netlify link](https://nifty-wescoff-22b6ca.netlify.app/)
