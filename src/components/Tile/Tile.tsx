@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo } from 'react';
+import React, { FC, useCallback, useMemo, memo } from 'react';
 import { useDispatch } from 'react-redux';
 import * as styles from './styles.scss';
 import { selectTile } from '~/redux/selected-tiles/actions';
@@ -11,7 +11,7 @@ interface Props {
   tile: Tile;
 }
 
-const Tile: FC<Props> = ({
+const Tile: FC<Props> = memo(({
   tile,
 }) => {
   const dispatch = useDispatch();
@@ -51,6 +51,8 @@ const Tile: FC<Props> = ({
     };
   }, [tile]);
 
+  console.log('render');
+
   return (
     <div
       style={tileStyles}
@@ -68,6 +70,6 @@ const Tile: FC<Props> = ({
       {React.createElement(renderIcon(icon), { size: '30px', color: '#30292f' })}
     </div>
   );
-};
+});
 
 export { Tile };
