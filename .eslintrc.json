@@ -39,6 +39,7 @@
       "error",
       "always"
     ],
+    "no-trailing-spaces": "warn",
     "react/prop-types": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off"
   }

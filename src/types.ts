@@ -1,31 +1,31 @@
-export type BoardState = Readonly<Board>;
+export type BoardState = Board;
 
-export type State = Readonly<{
+export interface State {
   board: BoardState;
   selected_tiles: SelectedTilesState;
   processing: ProcessingState;
-}>
+}
 
-export type ProcessingState = Readonly<boolean>;
+export type ProcessingState = boolean;
 
-export type SelectedTilesState = Readonly<{
+export interface SelectedTilesState {
   stack: Tile[];
-}>
+}
 
 export type SelectedTilesHandler<T = undefined> = (
   state: SelectedTilesState,
   payload: T extends (...args: any[]) => infer R ? R : any,
-) => SelectedTilesState
+) => void
 
 export type BoardHandler<T = undefined> = (
   state: BoardState,
   payload: T extends (...args: any[]) => infer R ? R : any,
-) => BoardState
+) => void
 
 export type ProcessingHandler<T = undefined> = (
   state: ProcessingState,
   payload: T extends (...args: any[]) => infer R ? R : any,
-) => ProcessingState
+) => void
 
 export interface TileCoordinates {
   layer: number;

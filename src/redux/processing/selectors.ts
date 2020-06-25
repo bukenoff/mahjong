@@ -4,4 +4,6 @@ const selectProcessing = (state: State): State['processing'] => {
   return state.processing;
 };
 
-export { selectProcessing };
+export {
+  selectProcessing,
+};

@@ -6,7 +6,7 @@ const updateTile = (
 ) => ({
   type: BoardActions.UPDATE_TILE,
   coordinates,
-  update, 
+  update,
 });
 
 const removeTile = (coordinates: Tile['coordinates']) => ({

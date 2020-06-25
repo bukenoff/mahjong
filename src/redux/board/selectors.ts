@@ -13,5 +13,7 @@ const selectTileFromBoard = (
   return state.board[layer][row][col];
 };
 
-
-export { selectBoard, selectTileFromBoard };
+export {
+  selectBoard,
+  selectTileFromBoard,
+};

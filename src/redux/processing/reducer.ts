@@ -7,9 +7,9 @@ const initialState: ProcessingState = false;
 const toggleProcessingHandler: ProcessingHandler<typeof toggleProcessing> = (
   state,
   { value },
-) => (
-  value
-);
+) => {
+  state = value;
+};
 
 export const HANDLERS = {
   [ProcessingActions.TOGGLE_PROCESSING]: toggleProcessingHandler,

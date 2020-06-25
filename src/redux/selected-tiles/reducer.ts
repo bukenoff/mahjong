@@ -9,15 +9,15 @@ const initialState: SelectedTilesState = {
 const addTileToStackHandler: SelectedTilesHandler<typeof addTileToStack> = (
   state,
   { tile },
-) => ({
-  stack: [...state.stack, tile],
-});
+) => {
+  state.stack.push(tile);
+};
 
 const removeTilesFromStackHandler: SelectedTilesHandler = (
   state,
-) => ({
-  stack: [],
-});
+) => {
+  state.stack = [];
+};
 
 export const HANDLERS = {
   [SelectedTilesActions.ADD_TILE_TO_STACK]: addTileToStackHandler,
