@@ -103,7 +103,8 @@ export enum SelectedTilesActions {
 
 export enum BoardActions {
   UPDATE_TILE = 'UPDATE_TILE',
-  REMOVE_TILE = 'REMOVE_TILE',
+  UPDATE_TWO_TILES = 'UPDATE_TWO_TILES',
+  REMOVE_TWO_TILES = 'REMOVE_TWO_TILES',
 }
 
 export enum ProcessingActions {
@@ -113,3 +114,5 @@ export enum ProcessingActions {
 export type TileUpdate = Partial<
   Pick<Tile, 'is_selected' | 'is_blocked'>
 >;
+
+export type TileCoordinatesPair = [Tile['coordinates'], Tile['coordinates']];

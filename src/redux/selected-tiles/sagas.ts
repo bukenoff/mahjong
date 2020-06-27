@@ -1,8 +1,8 @@
 import { put, takeEvery, select, call } from 'redux-saga/effects';
-import { SelectedTilesActions, Tile, TileUpdate } from '~/types';
+import { SelectedTilesActions, Tile, TileUpdate, TileCoordinatesPair } from '~/types';
 import { selectTile, addTileToStack, removeTilesFromStack } from './actions';
 import { selectStack } from './selectors';
-import { updateTile, removeTile } from '../board/actions';
+import { updateTile, removeTwoTiles, updateTwoTiles } from '../board/actions';
 import { delay } from 'redux-saga';
 import { toggleProcessing } from '../processing/actions';
 import { selectProcessing } from '../processing/selectors';
@@ -13,8 +13,15 @@ function* unselectTiles(first_tile: Tile, second_tile: Tile) {
     is_selected: false,
   };
 
-  yield put(updateTile(first_tile.coordinates, update));
-  yield put(updateTile(second_tile.coordinates, update));
+  const two_tiles_coordinates: TileCoordinatesPair = [
+    first_tile.coordinates,
+    second_tile.coordinates,
+  ];
+
+  yield put(updateTwoTiles(
+    two_tiles_coordinates,
+    update,
+  ));
 }
 
 function* resolveTiles(first_tile: Tile, second_tile: Tile) {
@@ -40,8 +47,12 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
     }
   }
 
-  yield put(removeTile(first_tile.coordinates));
-  yield put(removeTile(second_tile.coordinates));
+  const two_tiles_coordinates: TileCoordinatesPair = [
+    first_tile.coordinates,
+    second_tile.coordinates,
+  ];
+
+  yield put(removeTwoTiles(two_tiles_coordinates));
 }
 
 function* selectTileSaga({ tile }: ReturnType<typeof selectTile>) {

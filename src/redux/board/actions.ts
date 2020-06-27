@@ -1,4 +1,4 @@
-import { BoardActions, Tile, TileUpdate } from '~/types';
+import { BoardActions, Tile, TileUpdate, TileCoordinatesPair } from '~/types';
 
 const updateTile = (
   coordinates: Tile['coordinates'],
@@ -9,9 +9,30 @@ const updateTile = (
   update,
 });
 
-const removeTile = (coordinates: Tile['coordinates']) => ({
-  type: BoardActions.REMOVE_TILE,
+
+// Since dispatching multiple actions
+// sequentially is considered bad
+// I created actions to update and delete two tiles at a time
+// hopefully this will lead to less rerenders and better performance
+// but who knows ¯\_(ツ)_/¯
+const updateTwoTiles = (
+  coordinates: TileCoordinatesPair,
+  update: TileUpdate,
+) => ({
+  type: BoardActions.UPDATE_TWO_TILES,
+  coordinates,
+  update,
+});
+
+const removeTwoTiles = (
+  coordinates: TileCoordinatesPair,
+) => ({
+  type: BoardActions.REMOVE_TWO_TILES,
   coordinates,
 });
 
-export { updateTile, removeTile };
+export {
+  updateTile,
+  updateTwoTiles,
+  removeTwoTiles,
+};
