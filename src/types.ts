@@ -116,3 +116,15 @@ export type TileUpdate = Partial<
 >;
 
 export type TileCoordinatesPair = [Tile['coordinates'], Tile['coordinates']];
+
+export interface RowScheme {
+  [index: number]: boolean;
+}
+
+export interface LayerScheme {
+  [index: number]: boolean;
+}
+
+export interface BoardScheme {
+  layer_scheme: LayerScheme;
+}

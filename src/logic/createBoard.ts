@@ -1,7 +1,7 @@
 import { LAYERS_ROWS_SCHEMES } from '~/constants/rows';
 import { LAYERS_COUNT, SPECIAL_TILES, SPECIAL_TILES_UNBLOCKS, SPECIAL_TILES_STYLES } from '~/constants/tiles';
 import { uuid } from 'uuidv4';
-import { Row, Board, Layer, TilesSymbols, TileCoordinates } from '~/types';
+import { Row, Board, Layer, TilesSymbols, TileCoordinates, RowScheme, LayerScheme } from '~/types';
 import { shuffleArray, isEmptyObject } from '~/utils';
 
 const getBlockedStatus = (
@@ -98,11 +98,11 @@ const getUnblocks = (
   open_tiles_indexes: number[],
 ): TileCoordinates[] => {
   if (open_tiles_indexes.indexOf(col) === 0) {
-    return [{ layer, row, col: col + 1 }];  
+    return [{ layer, row, col: col + 1 }];
   }
 
   if (open_tiles_indexes.indexOf(col) === 1) {
-    return [{ layer, row, col: col - 1 }];  
+    return [{ layer, row, col: col - 1 }];
   }
 
   return [
@@ -120,7 +120,7 @@ const getUnblocks = (
 };
 
 const createRow = (
-  row_scheme,
+  row_scheme: RowScheme,
   row_index: number,
   layer_index: number,
   tile_symbols,
@@ -163,7 +163,11 @@ const createRow = (
   return row;
 };
 
-const createLayer = (layer_scheme, layer_index: number, tile_symbols): Layer => {
+const createLayer = (
+  layer_scheme: LayerScheme,
+  layer_index: number,
+  tile_symbols,
+): Layer => {
   const rows = {};
 
   Object.values(layer_scheme).forEach((v, i) => {
@@ -206,7 +210,7 @@ const createBoard = (): Board => {
 };
 
 export {
-  createBoard, 
+  createBoard,
   createRandomlyOrderedTileSymbols,
   getUnblocks,
   isTileSpecial,
