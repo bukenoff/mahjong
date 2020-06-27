@@ -1,15 +1,13 @@
-import React, { FC, useMemo } from 'react';
-import * as styles from './styles.scss';
+import React, { FC, useMemo, memo } from 'react';
 import Row from '../Row';
+import { Layer } from '~/types';
 
 interface Props {
-  layer: any;
-  index: number;
+  layer: Layer;
 }
 
 const Layer: FC<Props> = ({
   layer,
-  index,
 }) => {
   const rowList = useMemo(() => {
     return Object.keys(layer);
@@ -22,7 +20,6 @@ const Layer: FC<Props> = ({
           <Row
             key={`${r}${i}`}
             row={layer[r]}
-            row_index={i}
           />
         ))
       }

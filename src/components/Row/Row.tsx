@@ -1,15 +1,13 @@
-import React, { FC, useMemo } from 'react';
-import * as styles from './styles.scss';
+import React, { FC, useMemo, memo } from 'react';
 import Tile from '../Tile';
+import { Row } from '~/types';
 
 interface Props {
-  row: any;
-  row_index: number;
+  row: Row;
 }
 
 const Row: FC<Props> = ({
   row,
-  row_index,
 }) => {
   const tileList = useMemo(() => {
     return Object.keys(row);

@@ -18,7 +18,6 @@ const Board: FC = () => {
           <Layer
             key={l}
             layer={board[l]}
-            index={i}
           />
         ))
       }
