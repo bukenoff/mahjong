@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["jest"],
+    "types": ["jest", "@testing-library/jest-dom"],
     "target": "es5" ,
     "downlevelIteration": true,
     "lib": ["esnext", "dom"],

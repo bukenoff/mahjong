@@ -63,6 +63,7 @@ const Tile: FC<Props> = memo(({
         })
       }
       onClick={handleTileClick}
+      data-testid="tile"
     >
       <span className={styles.layer_badge}>
         {coordinates.layer}
