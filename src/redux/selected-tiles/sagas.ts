@@ -55,7 +55,7 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
   yield put(removeTwoTiles(two_tiles_coordinates));
 }
 
-function* selectTileSaga({ tile }: ReturnType<typeof selectTile>) {
+function* selectTileSaga({ payload: { tile }}: ReturnType<typeof selectTile>) {
   const processing = yield select(selectProcessing);
 
   if (processing) {

@@ -7,7 +7,7 @@ const initialState: BoardState = createBoard();
 
 const updateTileHandler: BoardHandler<typeof updateTile> = (
   state,
-  { coordinates, update }
+  { payload: { coordinates, update } },
 ) => {
   const { layer, row, col } = coordinates;
 
@@ -19,7 +19,7 @@ const updateTileHandler: BoardHandler<typeof updateTile> = (
 
 const updateTwoTilesHandler: BoardHandler<typeof updateTwoTiles> = (
   state,
-  { coordinates, update },
+  { payload: { coordinates, update } },
 ) => {
   const [first_tile_coordinates, second_tile_coordinates] = coordinates;
 
@@ -48,7 +48,7 @@ const updateTwoTilesHandler: BoardHandler<typeof updateTwoTiles> = (
 
 const removeTwoTilesHandler: BoardHandler<typeof removeTwoTiles> = (
   state,
-  { coordinates },
+  { payload: { coordinates } },
 ) => {
   const [first_tile_coordinates, second_tile_coordinates] = coordinates;
 

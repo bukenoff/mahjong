@@ -6,7 +6,7 @@ const initialState: ProcessingState = false;
 
 const toggleProcessingHandler: ProcessingHandler<typeof toggleProcessing> = (
   state,
-  { value },
+  { payload: { value } },
 ) => (
   state = value
 );

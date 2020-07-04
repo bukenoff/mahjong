@@ -1,23 +1,31 @@
 import { SelectedTilesActions, Tile } from '~/types';
+import { createAction } from '@reduxjs/toolkit';
 
-const addTileToStack = (tile: Tile) => ({
-  type: SelectedTilesActions.ADD_TILE_TO_STACK,
-  tile,
-});
+const addTileToStack = createAction(SelectedTilesActions.ADD_TILE_TO_STACK,
+  (tile: Tile) => ({
+    payload: {
+      tile,
+    },
+  })
+);
 
-const removeTilesFromStack = () => ({
-  type: SelectedTilesActions.REMOVE_TILES_FROM_STACK,
-});
+const removeTilesFromStack = createAction(SelectedTilesActions.REMOVE_TILES_FROM_STACK);
 
-const resolveTile = (tile: Tile) => ({
-  type: SelectedTilesActions.RESOLVE_TILE,
-  tile,
-});
+const resolveTile = createAction(SelectedTilesActions.RESOLVE_TILE,
+  (tile: Tile) => ({
+    payload: {
+      tile,
+    }
+  })
+);
 
-const selectTile = (tile: Tile) => ({
-  type: SelectedTilesActions.SELECT_TILE,
-  tile,
-});
+const selectTile = createAction(SelectedTilesActions.SELECT_TILE,
+  (tile: Tile) => ({
+    payload: {
+      tile,
+    }
+  })
+);
 
 export {
   addTileToStack,
