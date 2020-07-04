@@ -1,7 +1,7 @@
 import { BoardActions, Tile, TileUpdate, TileCoordinatesPair } from '~/types';
 import { createAction } from '@reduxjs/toolkit';
 
-const updateTile = createAction(BoardActions.UPDATE_TILE,  (
+const tileUpdated = createAction(BoardActions.TILE_UPDATED,  (
   coordinates: Tile['coordinates'],
   update: TileUpdate,
 ) => ({
@@ -17,7 +17,7 @@ const updateTile = createAction(BoardActions.UPDATE_TILE,  (
 // I created actions to update and delete two tiles at a time
 // hopefully this will lead to less rerenders and better performance
 // but who knows ¯\_(ツ)_/¯
-const updateTwoTiles = createAction(BoardActions.UPDATE_TWO_TILES, (
+const twoTilesUpdated = createAction(BoardActions.TWO_TILES_UPDATED, (
   coordinates: TileCoordinatesPair,
   update: TileUpdate,
 ) => ({
@@ -27,7 +27,7 @@ const updateTwoTiles = createAction(BoardActions.UPDATE_TWO_TILES, (
   }})
 );
 
-const removeTwoTiles = createAction(BoardActions.REMOVE_TWO_TILES, (
+const twoTilesRemoved = createAction(BoardActions.TWO_TILES_REMOVED, (
   coordinates: TileCoordinatesPair,
 ) => ({
   payload: {
@@ -36,7 +36,7 @@ const removeTwoTiles = createAction(BoardActions.REMOVE_TWO_TILES, (
 );
 
 export {
-  updateTile,
-  updateTwoTiles,
-  removeTwoTiles,
+  tileUpdated,
+  twoTilesUpdated,
+  twoTilesRemoved,
 };

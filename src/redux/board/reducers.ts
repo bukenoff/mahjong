@@ -1,11 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { BoardState, BoardActions, BoardHandler } from '~/types';
 import { createBoard } from '~/logic/createBoard';
-import { updateTile, updateTwoTiles, removeTwoTiles } from './actions';
+import { tileUpdated, twoTilesUpdated, twoTilesRemoved } from './actions';
 
 const initialState: BoardState = createBoard();
 
-const updateTileHandler: BoardHandler<typeof updateTile> = (
+const tileUpdatedHandler: BoardHandler<typeof tileUpdated> = (
   state,
   { payload: { coordinates, update } },
 ) => {
@@ -17,7 +17,7 @@ const updateTileHandler: BoardHandler<typeof updateTile> = (
   };
 };
 
-const updateTwoTilesHandler: BoardHandler<typeof updateTwoTiles> = (
+const twoTilesUpdatedHandler: BoardHandler<typeof twoTilesUpdated> = (
   state,
   { payload: { coordinates, update } },
 ) => {
@@ -46,7 +46,7 @@ const updateTwoTilesHandler: BoardHandler<typeof updateTwoTiles> = (
   };
 };
 
-const removeTwoTilesHandler: BoardHandler<typeof removeTwoTiles> = (
+const twoTilesRemovedHandler: BoardHandler<typeof twoTilesRemoved> = (
   state,
   { payload: { coordinates } },
 ) => {
@@ -69,9 +69,9 @@ const removeTwoTilesHandler: BoardHandler<typeof removeTwoTiles> = (
 };
 
 export const HANDLERS = {
-  [BoardActions.UPDATE_TILE]: updateTileHandler,
-  [BoardActions.UPDATE_TWO_TILES]: updateTwoTilesHandler,
-  [BoardActions.REMOVE_TWO_TILES]: removeTwoTilesHandler,
+  [BoardActions.TILE_UPDATED]: tileUpdatedHandler,
+  [BoardActions.TWO_TILES_UPDATED]: twoTilesUpdatedHandler,
+  [BoardActions.TWO_TILES_REMOVED]: twoTilesRemovedHandler,
 };
 
 export default createReducer(initialState, HANDLERS);

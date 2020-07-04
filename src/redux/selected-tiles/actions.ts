@@ -1,7 +1,7 @@
 import { SelectedTilesActions, Tile } from '~/types';
 import { createAction } from '@reduxjs/toolkit';
 
-const addTileToStack = createAction(SelectedTilesActions.ADD_TILE_TO_STACK,
+const tileAddedToStack = createAction(SelectedTilesActions.TILE_ADDED_TO_STACK,
   (tile: Tile) => ({
     payload: {
       tile,
@@ -9,15 +9,7 @@ const addTileToStack = createAction(SelectedTilesActions.ADD_TILE_TO_STACK,
   })
 );
 
-const removeTilesFromStack = createAction(SelectedTilesActions.REMOVE_TILES_FROM_STACK);
-
-const resolveTile = createAction(SelectedTilesActions.RESOLVE_TILE,
-  (tile: Tile) => ({
-    payload: {
-      tile,
-    }
-  })
-);
+const stackCleared = createAction(SelectedTilesActions.STACK_CLEARED);
 
 const selectTile = createAction(SelectedTilesActions.SELECT_TILE,
   (tile: Tile) => ({
@@ -28,8 +20,7 @@ const selectTile = createAction(SelectedTilesActions.SELECT_TILE,
 );
 
 export {
-  addTileToStack,
-  removeTilesFromStack,
-  resolveTile,
+  tileAddedToStack,
+  stackCleared,
   selectTile,
 };

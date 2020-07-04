@@ -1,10 +1,10 @@
 import { put, takeEvery, select, call } from 'redux-saga/effects';
 import { SelectedTilesActions, Tile, TileUpdate, TileCoordinatesPair } from '~/types';
-import { selectTile, addTileToStack, removeTilesFromStack } from './actions';
+import { selectTile, tileAddedToStack, stackCleared } from './actions';
 import { selectStack } from './selectors';
-import { updateTile, removeTwoTiles, updateTwoTiles } from '../board/actions';
+import { tileUpdated, twoTilesRemoved, twoTilesUpdated } from '../board/actions';
 import { delay } from 'redux-saga';
-import { toggleProcessing } from '../processing/actions';
+import { processingToggled } from '../processing/actions';
 import { selectProcessing } from '../processing/selectors';
 import { selectTileFromBoard } from '../board/selectors';
 
@@ -18,7 +18,7 @@ function* unselectTiles(first_tile: Tile, second_tile: Tile) {
     second_tile.coordinates,
   ];
 
-  yield put(updateTwoTiles(
+  yield put(twoTilesUpdated(
     two_tiles_coordinates,
     update,
   ));
@@ -34,7 +34,7 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
     const tile: ReturnType<typeof selectTileFromBoard> = yield select(selectTileFromBoard, layer, row, col);
 
     if (tile) {
-      yield put(updateTile(coordinates, update));
+      yield put(tileUpdated(coordinates, update));
     }
   }
 
@@ -43,7 +43,7 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
     const tile: ReturnType<typeof selectTileFromBoard> = yield select(selectTileFromBoard, layer, row, col);
 
     if (tile) {
-      yield put(updateTile(coordinates, update));
+      yield put(tileUpdated(coordinates, update));
     }
   }
 
@@ -52,7 +52,7 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
     second_tile.coordinates,
   ];
 
-  yield put(removeTwoTiles(two_tiles_coordinates));
+  yield put(twoTilesRemoved(two_tiles_coordinates));
 }
 
 function* selectTileSaga({ payload: { tile }}: ReturnType<typeof selectTile>) {
@@ -62,12 +62,12 @@ function* selectTileSaga({ payload: { tile }}: ReturnType<typeof selectTile>) {
     return null;
   }
 
-  yield put(toggleProcessing(true));
-  yield put(addTileToStack(tile));
+  yield put(processingToggled(true));
+  yield put(tileAddedToStack(tile));
 
   const stack: ReturnType<typeof selectStack> = yield select(selectStack);
 
-  yield put(updateTile(tile.coordinates, { is_selected: true }));
+  yield put(tileUpdated(tile.coordinates, { is_selected: true }));
 
   if (stack.length === 2) {
     // once we have two tiles selected
@@ -88,10 +88,10 @@ function* selectTileSaga({ payload: { tile }}: ReturnType<typeof selectTile>) {
       yield call(unselectTiles, first_tile, second_tile);
     }
 
-    yield put(removeTilesFromStack());
+    yield put(stackCleared());
   }
 
-  yield put(toggleProcessing(false));
+  yield put(processingToggled(false));
 }
 
 export default function* selectedTileActionsFlow() {

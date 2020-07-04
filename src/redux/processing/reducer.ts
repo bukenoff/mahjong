@@ -1,10 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { ProcessingActions, ProcessingHandler, ProcessingState } from '~/types';
-import { toggleProcessing } from './actions';
+import { processingToggled } from './actions';
 
 const initialState: ProcessingState = false;
 
-const toggleProcessingHandler: ProcessingHandler<typeof toggleProcessing> = (
+const processingToggledHandler: ProcessingHandler<typeof processingToggled> = (
   state,
   { payload: { value } },
 ) => (
@@ -12,7 +12,7 @@ const toggleProcessingHandler: ProcessingHandler<typeof toggleProcessing> = (
 );
 
 export const HANDLERS = {
-  [ProcessingActions.TOGGLE_PROCESSING]: toggleProcessingHandler,
+  [ProcessingActions.PROCESSING_TOGGLED]: processingToggledHandler,
 };
 
 export default createReducer(initialState, HANDLERS);

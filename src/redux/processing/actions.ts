@@ -1,7 +1,7 @@
 import { ProcessingActions } from '~/types';
 import { createAction } from '@reduxjs/toolkit';
 
-const toggleProcessing = createAction(ProcessingActions.TOGGLE_PROCESSING,
+const processingToggled = createAction(ProcessingActions.PROCESSING_TOGGLED,
   (value: boolean) => ({
     payload: {
       value,
@@ -9,4 +9,4 @@ const toggleProcessing = createAction(ProcessingActions.TOGGLE_PROCESSING,
   })
 );
 
-export { toggleProcessing };
+export { processingToggled };
