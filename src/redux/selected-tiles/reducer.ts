@@ -6,22 +6,22 @@ const initialState: SelectedTilesState = {
   stack: [],
 };
 
-const tileAddedToStackHandler: SelectedTilesHandler<typeof tileAddedToStack> = (
+const handleTileAddedToStack: SelectedTilesHandler<typeof tileAddedToStack> = (
   state,
   { payload: { tile } },
 ) => {
   state.stack.push(tile);
 };
 
-const stackClearedHandler: SelectedTilesHandler = (
+const handleStackCleared: SelectedTilesHandler = (
   state,
 ) => {
   state.stack = [];
 };
 
 export const HANDLERS = {
-  [SelectedTilesActions.TILE_ADDED_TO_STACK]: tileAddedToStackHandler,
-  [SelectedTilesActions.STACK_CLEARED]: stackClearedHandler,
+  [SelectedTilesActions.TILE_ADDED_TO_STACK]: handleTileAddedToStack,
+  [SelectedTilesActions.STACK_CLEARED]: handleStackCleared,
 };
 
 export default createReducer(initialState, HANDLERS);

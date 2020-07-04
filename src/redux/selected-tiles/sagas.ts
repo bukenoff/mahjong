@@ -29,16 +29,7 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
     is_blocked: false,
   };
 
-  for (const coordinates of first_tile.unblocks) {
-    const { layer, row, col } = coordinates;
-    const tile: ReturnType<typeof selectTileFromBoard> = yield select(selectTileFromBoard, layer, row, col);
-
-    if (tile) {
-      yield put(tileUpdated(coordinates, update));
-    }
-  }
-
-  for (const coordinates of second_tile.unblocks) {
+  for (const coordinates of [...first_tile.unblocks, ...second_tile.unblocks]) {
     const { layer, row, col } = coordinates;
     const tile: ReturnType<typeof selectTileFromBoard> = yield select(selectTileFromBoard, layer, row, col);
 
@@ -55,7 +46,7 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
   yield put(twoTilesRemoved(two_tiles_coordinates));
 }
 
-function* selectTileSaga({ payload: { tile }}: ReturnType<typeof selectTile>) {
+function* handleSelectTile({ payload: { tile }}: ReturnType<typeof selectTile>) {
   const processing = yield select(selectProcessing);
 
   if (processing) {
@@ -95,5 +86,5 @@ function* selectTileSaga({ payload: { tile }}: ReturnType<typeof selectTile>) {
 }
 
 export default function* selectedTileActionsFlow() {
-  yield takeEvery(SelectedTilesActions.SELECT_TILE, selectTileSaga);
+  yield takeEvery(SelectedTilesActions.SELECT_TILE, handleSelectTile);
 }

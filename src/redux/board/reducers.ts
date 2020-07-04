@@ -5,9 +5,9 @@ import { tileUpdated, twoTilesUpdated, twoTilesRemoved } from './actions';
 
 const initialState: BoardState = createBoard();
 
-const tileUpdatedHandler: BoardHandler<typeof tileUpdated> = (
+const handleTileUpdated: BoardHandler<typeof tileUpdated> = (
   state,
-  { payload: { coordinates, update } },
+  { payload: { coordinates, update }},
 ) => {
   const { layer, row, col } = coordinates;
 
@@ -17,9 +17,9 @@ const tileUpdatedHandler: BoardHandler<typeof tileUpdated> = (
   };
 };
 
-const twoTilesUpdatedHandler: BoardHandler<typeof twoTilesUpdated> = (
+const handleTwoTilesUpdated: BoardHandler<typeof twoTilesUpdated> = (
   state,
-  { payload: { coordinates, update } },
+  { payload: { coordinates, update }},
 ) => {
   const [first_tile_coordinates, second_tile_coordinates] = coordinates;
 
@@ -46,9 +46,9 @@ const twoTilesUpdatedHandler: BoardHandler<typeof twoTilesUpdated> = (
   };
 };
 
-const twoTilesRemovedHandler: BoardHandler<typeof twoTilesRemoved> = (
+const handleTwoTilesRemoved: BoardHandler<typeof twoTilesRemoved> = (
   state,
-  { payload: { coordinates } },
+  { payload: { coordinates }},
 ) => {
   const [first_tile_coordinates, second_tile_coordinates] = coordinates;
 
@@ -69,9 +69,9 @@ const twoTilesRemovedHandler: BoardHandler<typeof twoTilesRemoved> = (
 };
 
 export const HANDLERS = {
-  [BoardActions.TILE_UPDATED]: tileUpdatedHandler,
-  [BoardActions.TWO_TILES_UPDATED]: twoTilesUpdatedHandler,
-  [BoardActions.TWO_TILES_REMOVED]: twoTilesRemovedHandler,
+  [BoardActions.TILE_UPDATED]: handleTileUpdated,
+  [BoardActions.TWO_TILES_UPDATED]: handleTwoTilesUpdated,
+  [BoardActions.TWO_TILES_REMOVED]: handleTwoTilesRemoved,
 };
 
 export default createReducer(initialState, HANDLERS);

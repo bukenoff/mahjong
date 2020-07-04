@@ -4,15 +4,15 @@ import { processingToggled } from './actions';
 
 const initialState: ProcessingState = false;
 
-const processingToggledHandler: ProcessingHandler<typeof processingToggled> = (
+const handleProcessingToggled: ProcessingHandler<typeof processingToggled> = (
   state,
-  { payload: { value } },
+  { payload: { value }},
 ) => (
   state = value
 );
 
 export const HANDLERS = {
-  [ProcessingActions.PROCESSING_TOGGLED]: processingToggledHandler,
+  [ProcessingActions.PROCESSING_TOGGLED]: handleProcessingToggled,
 };
 
 export default createReducer(initialState, HANDLERS);
