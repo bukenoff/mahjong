@@ -1,28 +1,28 @@
 import React, { FC, useCallback, useMemo, memo } from 'react';
-import { useDispatch } from 'react-redux';
 import * as styles from './styles.scss';
-import { selectTile } from '~/redux/selected-tiles/actions';
 import classNames from 'classnames';
 import { Tile } from '~/types';
 import { renderIcon, getTileBackground } from '~/utils';
-
+import { TileIconStyles } from '~/styles/styles';
 
 interface Props {
   tile: Tile;
+  selectTile: (tile: Tile) => void;
 }
 
 const Tile: FC<Props> = memo(({
   tile,
+  selectTile,
 }) => {
-  const dispatch = useDispatch();
   const { is_selected, is_blocked, coordinates, icon, special_styles } = tile;
 
   const handleTileClick = useCallback(() => {
     if (is_selected || is_blocked) {
       return null;
     }
-    dispatch(selectTile(tile));
-  }, [dispatch, tile]);
+
+    selectTile(tile);
+  }, [selectTile, tile]);
 
   const tileBackgroundColor = useMemo(() => {
     if (!tile) {
@@ -51,8 +51,6 @@ const Tile: FC<Props> = memo(({
     };
   }, [tile]);
 
-  console.log('render');
-
   return (
     <div
       style={tileStyles}
@@ -68,7 +66,7 @@ const Tile: FC<Props> = memo(({
       <span className={styles.layer_badge}>
         {coordinates.layer}
       </span>
-      {React.createElement(renderIcon(icon), { size: '30px', color: '#30292f' })}
+      {React.createElement(renderIcon(icon), TileIconStyles)}
     </div>
   );
 });

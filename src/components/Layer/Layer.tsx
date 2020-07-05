@@ -1,4 +1,4 @@
-import React, { FC, useMemo, memo } from 'react';
+import React, { FC, useMemo } from 'react';
 import Row from '../Row';
 import { Layer } from '~/types';
 

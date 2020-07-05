@@ -14,10 +14,10 @@ const Board: FC = () => {
   return (
     <div className={styles.container}>
       {
-        layers.map((l, i) => (
+        layers.map((layer) => (
           <Layer
-            key={l}
-            layer={board[l]}
+            key={layer}
+            layer={board[layer]}
           />
         ))
       }
