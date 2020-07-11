@@ -7,47 +7,5 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 10px;
-}
-
-.history_controls {
-  display: flex;
-}
-
-.history_navigate_button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-
-  &:nth-child(1) {
-    margin-right: 5px;
-  }
-}
-
-.moves_and_time {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.menu {
-  position: absolute;
-  top: 30px;
-  right: 0;
-  background-color: $cadet;
-  color: $white;
-  
-  &:after {
-    content: "";
-    width: 0; 
-    height: 0; 
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid $cadet;
-    position: absolute;
-    top: -4px;
-    left: 13px;
-  }
+  padding: 5px 20px;
 }
