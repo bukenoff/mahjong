@@ -4,6 +4,7 @@ export interface State {
   board: BoardState;
   selected_tiles: SelectedTilesState;
   processing: ProcessingState;
+  timer: any; // any for now, since I don't have any solid implementation ideas
 }
 
 export type ProcessingState = boolean;
