@@ -1,5 +1,5 @@
 const TileIconStyles = {
-  size: '30px',
+  size: '26px',
   color: '#30292f',
 };
 

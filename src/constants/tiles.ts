@@ -52,14 +52,14 @@ const SPECIAL_TILES_UNBLOCKS: SpecialTilesUnblocksMap = {
 const SPECIAL_TILES_STYLES = {
   0: {
     3: {
-      0: { transform: 'translate(0, 40px)' },
-      13: { transform: 'translate(0, 40px)' },
-      14: { transform: 'translate(0, 40px)' },
+      0: { transform: 'translate(0, 32px)' },
+      13: { transform: 'translate(0, 32px)' },
+      14: { transform: 'translate(0, 32px)' },
     },
   },
   4: {
     3: {
-      6: { transform: 'translate(25px, 40px)' },
+      6: { transform: 'translate(20px, 32px)' },
     },
   },
 };
