@@ -110,6 +110,15 @@ export enum ProcessingActions {
   PROCESSING_TOGGLED = 'PROCESSING_TOGGLED',
 }
 
+export enum TimerActions {
+  STOP_TIMER = 'STOP_TIMER',
+  TIMER_STOPPED = 'TIMER_STOPPED',
+  RESUME_TIMER = 'RESUME_TIMER',
+  TIMER_RESUMED = 'TIMER_RESUMED',
+  RESET_TIMER = 'RESET_TIMER',
+  TIMER_RESET = 'TIMER_RESET',
+}
+
 export type TileUpdate = Partial<
   Pick<Tile, 'is_selected' | 'is_blocked'>
 >;
