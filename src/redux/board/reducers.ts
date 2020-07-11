@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { BoardState, BoardActions, BoardHandler } from '~/types';
 import { createBoard } from '~/logic/createBoard';
-import { tileUpdated, multipleTilesUpdated, twoTilesRemoved } from './actions';
+import { tileUpdated, multipleTilesUpdated, twoTilesRemoved, newBoardGenerated } from './actions';
 
 const initialState: BoardState = createBoard();
 
@@ -46,10 +46,18 @@ const handleTwoTilesRemoved: BoardHandler<typeof twoTilesRemoved> = (
   });
 };
 
+const handleNewBoardGenerated: BoardHandler<typeof newBoardGenerated> = (
+  state,
+  { payload: { new_board }},
+) => ({
+  ...new_board,
+});
+
 export const HANDLERS = {
   [BoardActions.TILE_UPDATED]: handleTileUpdated,
   [BoardActions.MULTIPLE_TILES_UPDATED]: handleMultipleTilesUpdated,
   [BoardActions.TWO_TILES_REMOVED]: handleTwoTilesRemoved,
+  [BoardActions.NEW_BOARD_GENERATED]: handleNewBoardGenerated,
 };
 
 export default createReducer(initialState, HANDLERS);
