@@ -1,9 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { BoardState, BoardActions, BoardHandler } from '~/types';
-import { createBoard } from '~/logic/createBoard';
 import { tileUpdated, multipleTilesUpdated, twoTilesRemoved, newBoardGenerated } from './actions';
 
-const initialState: BoardState = createBoard();
+const initialState: BoardState = null;
 
 const handleTileUpdated: BoardHandler<typeof tileUpdated> = (
   state,

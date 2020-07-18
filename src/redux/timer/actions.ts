@@ -24,8 +24,10 @@ const stopTimer = createAction(
 
 const timerStopped = createAction(
   TimerActions.TIMER_STOPPED,
-  () => ({
-    payload: null,
+  (seconds: number) => ({
+    payload: {
+      seconds,
+    },
   }),
 );
 

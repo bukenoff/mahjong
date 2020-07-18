@@ -5,8 +5,9 @@ import timerService from '~/services/TimerService';
 
 function* handleStopTimer() {
   timerService.pause();
+  const seconds = timerService.seconds;
 
-  yield put(timerStopped());
+  yield put(timerStopped(seconds));
 }
 
 function* handleResumeTimer() {

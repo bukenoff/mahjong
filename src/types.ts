@@ -7,6 +7,11 @@ export interface State {
   timer: any; // any for now, since I don't have any solid implementation ideas
 }
 
+export interface TimerState {
+  is_stopped: boolean;
+  stopped_at: number;
+}
+
 export type ProcessingState = boolean;
 
 export interface SelectedTilesState {
@@ -25,6 +30,11 @@ export type BoardHandler<T = undefined> = (
 
 export type ProcessingHandler<T = undefined> = (
   state: ProcessingState,
+  payload: T extends (...args: any[]) => infer R ? R : any,
+) => void
+
+export type TimerHandler<T = undefined> = (
+  state: TimerState,
   payload: T extends (...args: any[]) => infer R ? R : any,
 ) => void
 
