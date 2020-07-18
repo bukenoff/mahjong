@@ -3,7 +3,7 @@
     "types": ["jest", "@testing-library/jest-dom"],
     "target": "es5" ,
     "downlevelIteration": true,
-    "lib": ["esnext", "dom"],
+    "lib": ["esnext", "dom", "webworker"],
     "module": "commonjs",
     "allowJs": true,
     "jsx": "react",
