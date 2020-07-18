@@ -4,8 +4,8 @@ let timerId;
 const startTimer = () => {
   return setInterval(() => {
     seconds += 1;
+    self.postMessage({ type: 'INCREMENT_SECONDS', seconds});
     console.log(seconds);
-    postMessage(seconds, 'http://localhost:3000');
   }, 1000);
 };
 

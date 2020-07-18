@@ -1,10 +1,18 @@
 const worker = new Worker('./timer.worker.ts',  { type: 'module' });
 
-worker.addEventListener('message', function(e) {
-  console.log('MESSAGA', e.data);
-});
-
 class TimerService {
+  _seconds = 0;
+
+  set seconds(value) {
+    this._seconds = value;
+  }
+
+  get seconds() {
+    return this._seconds;
+  }
+
+  setTime = (arg: any) => {};
+
   pause = () => {
     worker.postMessage('pause');
   }
@@ -17,6 +25,13 @@ class TimerService {
     worker.postMessage('reset');
   }
 }
+
+worker.addEventListener('message', function(e) {
+  if (e.data.type === 'INCREMENT_SECONDS') {
+    timerService.seconds = e.data.seconds;
+    timerService.setTime(e.data.seconds);
+  }
+});
 
 const timerService = new TimerService();
 export default timerService;
