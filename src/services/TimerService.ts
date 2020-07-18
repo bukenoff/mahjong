@@ -22,6 +22,8 @@ class TimerService {
   }
 
   reset = () => {
+    this._seconds = 0;
+    this.setTime(0);
     worker.postMessage('reset');
   }
 }

@@ -16,7 +16,7 @@ const TimerAndMovesCount: FC = () => {
   return (
     <div className={styles.container}>
       <div>Moves left: 19</div>
-      <div>{time}</div>
+      <div>Time: {time}</div>
     </div>
   );
 };
