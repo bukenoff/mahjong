@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import { Tile } from './Tile';
 import { TilesSymbols } from '../../types';
 
-test('renders learn react link', () => {
+test('renders without crash', () => {
   const { getByTestId } = render(
     <Tile
       tile={{
