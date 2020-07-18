@@ -1,16 +1,17 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import { TimerActions } from '~/types';
 import { timerStopped, timerResumed } from './actions';
+import timerService from '~/services/TimerService';
 
 function* handleStopTimer() {
-  // [-] do side effect to our timer service
-  // [+] dispatch action to change state
+  timerService.pause();
+
   yield put(timerStopped());
 }
 
 function* handleResumeTimer() {
-  // [-] do side effect to our timer service
-  // [+] dispatch action to change state
+  timerService.unpause();
+
   yield put(timerResumed());
 }
 
