@@ -28,9 +28,19 @@ const TimerControls: FC<Props> = ({
       className={styles.container}
       onClick={handleTogglePauseClick}
       type="button"
+      data-testid="timer-controls"
     >
       {
-        is_stopped ? <FiPlay /> : <FiPause />
+        is_stopped
+          ? (
+            <FiPlay
+              data-testid="fi-play-icon"
+            />)
+          : (
+            <FiPause
+              data-testid="fi-pause-icon"
+            />
+          )
       }
     </button>
   );
