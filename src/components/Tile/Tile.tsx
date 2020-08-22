@@ -14,7 +14,13 @@ const Tile: FC<Props> = memo(({
   tile,
   selectTile,
 }) => {
-  const { is_selected, is_blocked, coordinates, icon, special_styles } = tile;
+  const {
+    is_selected,
+    is_blocked,
+    coordinates,
+    icon,
+    special_styles,
+  } = tile;
 
   const handleTileClick = useCallback(() => {
     if (is_selected || is_blocked) {

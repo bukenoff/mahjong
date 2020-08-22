@@ -1,9 +1,8 @@
-import { put, takeEvery, select, call } from 'redux-saga/effects';
+import { put, takeEvery, select, call, delay } from 'redux-saga/effects';
 import { SelectedTilesActions, Tile, TileUpdate, TileCoordinatesPair } from '~/types';
 import { selectTile, tileAddedToStack, stackCleared } from './actions';
 import { selectStack } from './selectors';
 import { tileUpdated, twoTilesRemoved, multipleTilesUpdated } from '../board/actions';
-import { delay } from 'redux-saga';
 import { processingToggled } from '../processing/actions';
 import { selectProcessing } from '../processing/selectors';
 import { selectTileFromBoard } from '../board/selectors';
@@ -30,8 +29,9 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
   };
 
   const tiles_to_update_coordinates = [];
+  const all_unblocks = [...first_tile.unblocks, ...second_tile.unblocks];
 
-  for (const coordinates of [...first_tile.unblocks, ...second_tile.unblocks]) {
+  for (const coordinates of all_unblocks) {
     const { layer, row, col } = coordinates;
     const tile: ReturnType<typeof selectTileFromBoard> = yield select(selectTileFromBoard, layer, row, col);
 
@@ -53,7 +53,7 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
 }
 
 function* handleSelectTile({ payload: { tile }}: ReturnType<typeof selectTile>) {
-  const processing = yield select(selectProcessing);
+  const processing: ReturnType<typeof selectProcessing> = yield select(selectProcessing);
 
   if (processing) {
     return null;

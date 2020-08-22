@@ -8,7 +8,7 @@ const initialState: SelectedTilesState = {
 
 const handleTileAddedToStack: SelectedTilesHandler<typeof tileAddedToStack> = (
   state,
-  { payload: { tile } },
+  { payload: { tile }},
 ) => {
   state.stack.push(tile);
 };
