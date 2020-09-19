@@ -22,17 +22,18 @@ const Menu: FC<Props> = ({
   }, [setMenuOpen]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="menu-root">
       <button
         className={styles.toggle_button}
         onClick={handleMenuToggleClick}
         type="button"
+        data-testid="menu-button"
       >
         <FiMenu />
       </button>
       {
         is_menu_open && (
-          <ul className={styles.menu}>
+          <ul className={styles.menu} data-testid="menu-list">
             <MenuItem
               title="new game"
               clickHandler={generateNewBoard}
