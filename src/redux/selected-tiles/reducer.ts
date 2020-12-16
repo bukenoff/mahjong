@@ -1,29 +1,19 @@
 import { createReducer } from '@reduxjs/toolkit';
-import {
-  SelectedTilesActions,
-  SelectedTilesHandler,
-  SelectedTilesState,
-} from '~/types';
-import { tileAddedToStack } from './actions';
+import { SelectedTilesState } from '~/types';
+import { tileAddedToStack, stackCleared } from './actions';
 
 const initialState: SelectedTilesState = {
   stack: [],
 };
 
-const handleTileAddedToStack: SelectedTilesHandler<typeof tileAddedToStack> = (
-  state,
-  { payload: { tile } },
-) => {
-  state.stack.push(tile);
-};
+export default createReducer(initialState, (builder) =>
+  builder
+    .addCase(tileAddedToStack, (state, { payload }) => {
+      const { tile } = payload;
 
-const handleStackCleared: SelectedTilesHandler = (state) => {
-  state.stack = [];
-};
-
-export const HANDLERS = {
-  [SelectedTilesActions.TILE_ADDED_TO_STACK]: handleTileAddedToStack,
-  [SelectedTilesActions.STACK_CLEARED]: handleStackCleared,
-};
-
-export default createReducer(initialState, HANDLERS);
+      state.stack.push(tile);
+    })
+    .addCase(stackCleared, (state) => {
+      state.stack = [];
+    }),
+);

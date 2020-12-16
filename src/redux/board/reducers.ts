@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { BoardState, BoardActions, BoardHandler, Tile } from '~/types';
+import { BoardState, Tile } from '~/types';
 import {
   tileUpdated,
   multipleTilesUpdated,
@@ -7,71 +7,55 @@ import {
   newBoardGenerated,
 } from './actions';
 
-const initialState: BoardState = null;
+const initialState: BoardState = {};
 
-const handleTileUpdated: BoardHandler<typeof tileUpdated> = (
-  state,
-  { payload: { coordinates, update } },
-) => {
-  const { layer, row, col } = coordinates;
+export default createReducer(initialState, (builder) =>
+  builder
+    .addCase(tileUpdated, (state, { payload }) => {
+      const { layer, row, col } = payload.coordinates;
+      const { update } = payload;
 
-  if (!state) return state;
+      if (!state[layer] && !state[layer][row] && !state[layer][row][col]) {
+        return state;
+      }
 
-  if (!state[layer] && !state[layer][row] && !state[layer][row][col]) {
-    return state;
-  }
+      state[layer][row][col] = {
+        ...(state[layer][row][col] as Tile),
+        ...update,
+      };
+    })
+    .addCase(multipleTilesUpdated, (state, { payload }) => {
+      const { coordinates, update } = payload;
 
-  state[layer][row][col] = {
-    ...(state[layer][row][col] as Tile),
-    ...update,
-  };
-};
+      coordinates.forEach(({ layer, row, col }) => {
+        if (!state) return state;
 
-const handleMultipleTilesUpdated: BoardHandler<typeof multipleTilesUpdated> = (
-  state,
-  { payload: { coordinates, update } },
-) => {
-  coordinates.forEach(({ layer, row, col }) => {
-    if (!state) return state;
+        if (!state[layer] && !state[layer][row] && !state[layer][row][col]) {
+          return state;
+        }
 
-    if (!state[layer] && !state[layer][row] && !state[layer][row][col]) {
-      return state;
-    }
+        state[layer][row][col] = {
+          ...(state[layer][row][col] as Tile),
+          ...update,
+        };
+      });
+    })
+    .addCase(twoTilesRemoved, (state, { payload }) => {
+      const { coordinates } = payload;
 
-    state[layer][row][col] = {
-      ...(state[layer][row][col] as Tile),
-      ...update,
-    };
-  });
-};
+      coordinates.forEach(({ layer, row, col }) => {
+        if (!state) return state;
 
-const handleTwoTilesRemoved: BoardHandler<typeof twoTilesRemoved> = (
-  state,
-  { payload: { coordinates } },
-) => {
-  coordinates.forEach(({ layer, row, col }) => {
-    if (!state) return state;
+        if (!state[layer] && !state[layer][row] && !state[layer][row][col]) {
+          return state;
+        }
 
-    if (!state[layer] && !state[layer][row] && !state[layer][row][col]) {
-      return state;
-    }
+        state[layer][row][col] = null;
+      });
+    })
+    .addCase(newBoardGenerated, (state, { payload }) => {
+      const { new_board } = payload;
 
-    state[layer][row][col] = null;
-  });
-};
-
-const handleNewBoardGenerated: BoardHandler<typeof newBoardGenerated> = (
-  state,
-  { payload: { new_board } },
-) => ({
-  ...new_board,
-});
-
-export const HANDLERS = {
-  [BoardActions.TILE_UPDATED]: handleTileUpdated,
-  [BoardActions.MULTIPLE_TILES_UPDATED]: handleMultipleTilesUpdated,
-  [BoardActions.TWO_TILES_REMOVED]: handleTwoTilesRemoved,
-  [BoardActions.NEW_BOARD_GENERATED]: handleNewBoardGenerated,
-};
-
-export default createReducer(initialState, HANDLERS);
+      return new_board;
+    }),
+);
