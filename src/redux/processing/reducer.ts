@@ -6,10 +6,8 @@ const initialState: ProcessingState = false;
 
 const handleProcessingToggled: ProcessingHandler<typeof processingToggled> = (
   state,
-  { payload: { value }},
-) => (
-  state = value
-);
+  { payload: { value } },
+) => (state = value);
 
 export const HANDLERS = {
   [ProcessingActions.PROCESSING_TOGGLED]: handleProcessingToggled,

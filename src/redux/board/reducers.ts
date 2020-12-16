@@ -1,12 +1,17 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { BoardState, BoardActions, BoardHandler, Tile } from '~/types';
-import { tileUpdated, multipleTilesUpdated, twoTilesRemoved, newBoardGenerated } from './actions';
+import {
+  tileUpdated,
+  multipleTilesUpdated,
+  twoTilesRemoved,
+  newBoardGenerated,
+} from './actions';
 
 const initialState: BoardState = null;
 
 const handleTileUpdated: BoardHandler<typeof tileUpdated> = (
   state,
-  { payload: { coordinates, update }},
+  { payload: { coordinates, update } },
 ) => {
   const { layer, row, col } = coordinates;
 
@@ -17,20 +22,16 @@ const handleTileUpdated: BoardHandler<typeof tileUpdated> = (
   }
 
   state[layer][row][col] = {
-    ...state[layer][row][col] as Tile,
+    ...(state[layer][row][col] as Tile),
     ...update,
   };
 };
 
 const handleMultipleTilesUpdated: BoardHandler<typeof multipleTilesUpdated> = (
   state,
-  { payload: { coordinates, update }},
+  { payload: { coordinates, update } },
 ) => {
-  coordinates.forEach(({
-    layer,
-    row,
-    col,
-  }) => {
+  coordinates.forEach(({ layer, row, col }) => {
     if (!state) return state;
 
     if (!state[layer] && !state[layer][row] && !state[layer][row][col]) {
@@ -38,7 +39,7 @@ const handleMultipleTilesUpdated: BoardHandler<typeof multipleTilesUpdated> = (
     }
 
     state[layer][row][col] = {
-      ...state[layer][row][col] as Tile,
+      ...(state[layer][row][col] as Tile),
       ...update,
     };
   });
@@ -46,13 +47,9 @@ const handleMultipleTilesUpdated: BoardHandler<typeof multipleTilesUpdated> = (
 
 const handleTwoTilesRemoved: BoardHandler<typeof twoTilesRemoved> = (
   state,
-  { payload: { coordinates }},
+  { payload: { coordinates } },
 ) => {
-  coordinates.forEach(({
-    layer,
-    row,
-    col,
-  }) => {
+  coordinates.forEach(({ layer, row, col }) => {
     if (!state) return state;
 
     if (!state[layer] && !state[layer][row] && !state[layer][row][col]) {
@@ -65,7 +62,7 @@ const handleTwoTilesRemoved: BoardHandler<typeof twoTilesRemoved> = (
 
 const handleNewBoardGenerated: BoardHandler<typeof newBoardGenerated> = (
   state,
-  { payload: { new_board }},
+  { payload: { new_board } },
 ) => ({
   ...new_board,
 });

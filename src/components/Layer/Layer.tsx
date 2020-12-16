@@ -1,30 +1,21 @@
 import React, { FC, useMemo } from 'react';
 import Row from '../Row';
-import { Layer } from '~/types';
+import { Layer as LayerType } from '~/types';
 
 interface Props {
-  layer: Layer;
+  layer: LayerType;
 }
 
-const Layer: FC<Props> = ({
-  layer,
-}) => {
+export const Layer: FC<Props> = ({ layer }) => {
   const rowList = useMemo(() => {
     return Object.keys(layer);
   }, [layer]);
 
   return (
     <>
-      {
-        rowList.map((r, i) => (
-          <Row
-            key={`${r}${i}`}
-            row={layer[+r]}
-          />
-        ))
-      }
+      {rowList.map((r, i) => (
+        <Row key={`${r}${i}`} row={layer[+r]} />
+      ))}
     </>
   );
 };
-
-export { Layer };

@@ -1,16 +1,14 @@
 import React, { FC, useMemo } from 'react';
 import Tile from '../Tile';
-import { Row } from '~/types';
+import { Row as RowType } from '~/types';
 import useActions from '~/hooks/useActions';
 import { selectTile as selectTileActionCreator } from '~/redux/selected-tiles/actions';
 
 interface Props {
-  row: Row;
+  row: RowType;
 }
 
-const Row: FC<Props> = ({
-  row,
-}) => {
+export const Row: FC<Props> = ({ row }) => {
   const tileList = useMemo(() => {
     return Object.keys(row);
   }, [row]);
@@ -19,23 +17,13 @@ const Row: FC<Props> = ({
 
   return (
     <>
-      {
-        tileList.map((r, index) => {
-          if (!row[+r]) {
-            return null;
-          }
+      {tileList.map((r, index) => {
+        if (!row[+r]) {
+          return null;
+        }
 
-          return (
-            <Tile
-              key={index}
-              tile={row[+r]}
-              selectTile={selectTile}
-            />
-          );
-        })
-      }
+        return <Tile key={index} tile={row[+r]} selectTile={selectTile} />;
+      })}
     </>
   );
 };
-
-export { Row };

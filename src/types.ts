@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties } from 'react';
 
 export type BoardState = Board | null;
 
@@ -23,22 +23,22 @@ export interface SelectedTilesState {
 export type SelectedTilesHandler<T = undefined> = (
   state: SelectedTilesState,
   payload: T extends (...args: any[]) => infer R ? R : any,
-) => void
+) => void;
 
 export type BoardHandler<T = undefined> = (
   state: BoardState,
   payload: T extends (...args: any[]) => infer R ? R : any,
-) => void
+) => void;
 
 export type ProcessingHandler<T = undefined> = (
   state: ProcessingState,
   payload: T extends (...args: any[]) => infer R ? R : any,
-) => void
+) => void;
 
 export type TimerHandler<T = undefined> = (
   state: TimerState,
   payload: T extends (...args: any[]) => infer R ? R : any,
-) => void
+) => void;
 
 export interface TileCoordinates {
   layer: number;
@@ -134,9 +134,7 @@ export enum TimerActions {
   TIMER_RESET = 'TIMER_RESET',
 }
 
-export type TileUpdate = Partial<
-  Pick<Tile, 'is_selected' | 'is_blocked'>
->;
+export type TileUpdate = Partial<Pick<Tile, 'is_selected' | 'is_blocked'>>;
 
 export type TileCoordinatesPair = [Tile['coordinates'], Tile['coordinates']];
 

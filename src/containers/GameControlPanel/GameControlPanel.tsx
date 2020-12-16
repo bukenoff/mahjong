@@ -10,7 +10,7 @@ import TimerControls from '~/components/TimerControls';
 import { selectIsStopped } from '~/redux/timer/selectors';
 import { stopTimer, resumeTimer } from '~/redux/timer/actions';
 
-const GameControlPanel: FC = () => {
+export const GameControlPanel: FC = () => {
   const is_stopped = useSelector(selectIsStopped);
   const actions = useActions({
     generateNewBoard,
@@ -28,12 +28,8 @@ const GameControlPanel: FC = () => {
           resumeTimer={actions.resumeTimer}
           is_stopped={is_stopped}
         />
-        <Menu
-          generateNewBoard={actions.generateNewBoard}
-        />
+        <Menu generateNewBoard={actions.generateNewBoard} />
       </div>
     </nav>
   );
 };
-
-export { GameControlPanel };

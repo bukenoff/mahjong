@@ -1,7 +1,44 @@
-import { FiGitlab, FiGithub, FiFolder, FiAtSign, FiBook, FiCamera, FiDollarSign, FiEye, FiEyeOff, FiGift, FiGlobe, FiHeadphones, FiHeart, FiInfo, FiMail, FiMeh, FiMic, FiMicOff, FiMoon, FiMusic, FiPieChart, FiPower, FiSettings, FiShare, FiSmile, FiSun, FiSunrise, FiSunset, FiThumbsDown, FiThumbsUp, FiTruck, FiUser, FiWatch, FiYoutube, FiZoomIn, FiZoomOut } from 'react-icons/fi';
+import {
+  FiGitlab,
+  FiGithub,
+  FiFolder,
+  FiAtSign,
+  FiBook,
+  FiCamera,
+  FiDollarSign,
+  FiEye,
+  FiEyeOff,
+  FiGift,
+  FiGlobe,
+  FiHeadphones,
+  FiHeart,
+  FiInfo,
+  FiMail,
+  FiMeh,
+  FiMic,
+  FiMicOff,
+  FiMoon,
+  FiMusic,
+  FiPieChart,
+  FiPower,
+  FiSettings,
+  FiShare,
+  FiSmile,
+  FiSun,
+  FiSunrise,
+  FiSunset,
+  FiThumbsDown,
+  FiThumbsUp,
+  FiTruck,
+  FiUser,
+  FiWatch,
+  FiYoutube,
+  FiZoomIn,
+  FiZoomOut,
+} from 'react-icons/fi';
 import { TilesSymbols } from '~/types';
 
-const ICONS_MAP = {
+export const ICONS_MAP = {
   [TilesSymbols.Github]: FiGithub,
   [TilesSymbols.Gitlab]: FiGitlab,
   [TilesSymbols.Folder]: FiFolder,
@@ -39,5 +76,3 @@ const ICONS_MAP = {
   [TilesSymbols.ZoomIn]: FiZoomIn,
   [TilesSymbols.ZoomOut]: FiZoomOut,
 };
-
-export { ICONS_MAP };

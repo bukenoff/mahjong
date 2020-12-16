@@ -10,7 +10,7 @@ describe('TimerControls component', () => {
         is_stopped={true}
         stopTimer={timerActions.stopTimer}
         resumeTimer={timerActions.resumeTimer}
-      />
+      />,
     );
     const controlsButton = getByTestId('timer-controls');
     expect(controlsButton).toBeInTheDocument();
@@ -22,7 +22,7 @@ describe('TimerControls component', () => {
         is_stopped={false}
         stopTimer={timerActions.stopTimer}
         resumeTimer={timerActions.resumeTimer}
-      />
+      />,
     );
     const controlsButton = getByTestId('fi-pause-icon');
     expect(controlsButton).toBeInTheDocument();
@@ -34,7 +34,7 @@ describe('TimerControls component', () => {
         is_stopped={true}
         stopTimer={timerActions.stopTimer}
         resumeTimer={timerActions.resumeTimer}
-      />
+      />,
     );
     const controlsButton = getByTestId('fi-play-icon');
     expect(controlsButton).toBeInTheDocument();

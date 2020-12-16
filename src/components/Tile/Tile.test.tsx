@@ -16,15 +16,17 @@ test('renders without crash', () => {
         is_blocked: false,
         is_selected: false,
         icon: TilesSymbols.AtSign,
-        unblocks: [{
-          layer: 1,
-          row: 1,
-          col: 2,
-        }],
+        unblocks: [
+          {
+            layer: 1,
+            row: 1,
+            col: 2,
+          },
+        ],
         special_styles: null,
       }}
       selectTile={jest.fn}
-    />
+    />,
   );
   const tileElement = getByTestId('tile');
   expect(tileElement).toBeInTheDocument();

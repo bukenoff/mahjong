@@ -1,23 +1,23 @@
 import { CSSProperties } from 'react';
 import { TileCoordinates } from '~/types';
 
-const ICON_SYMBOL_REPEAT_COUNT = 4;
+export const ICON_SYMBOL_REPEAT_COUNT = 4;
 
-const TOTAL_TILE_COUNT = 144;
+export const TOTAL_TILE_COUNT = 144;
 
-const TILE_SYMBOLS_COUNT = 36;
+export const TILE_SYMBOLS_COUNT = 36;
 
-const LAYERS_COUNT = 5;
+export const LAYERS_COUNT = 5;
 
-interface SpecialTilesMap {
-  [row:number]: {
-    [layer:number]: {
-      [col:number]: boolean
-    }
-  }
+export interface SpecialTilesMap {
+  [row: number]: {
+    [layer: number]: {
+      [col: number]: boolean;
+    };
+  };
 }
 
-const SPECIAL_TILES: SpecialTilesMap = {
+export const SPECIAL_TILES: SpecialTilesMap = {
   0: {
     3: {
       0: true,
@@ -31,19 +31,25 @@ const SPECIAL_TILES: SpecialTilesMap = {
   },
 };
 
-interface SpecialTilesUnblocksMap {
+export interface SpecialTilesUnblocksMap {
   [layer: number]: {
     [row: number]: {
-      [col: number]: TileCoordinates[],
-    }
-  }
+      [col: number]: TileCoordinates[];
+    };
+  };
 }
 
-const SPECIAL_TILES_UNBLOCKS: SpecialTilesUnblocksMap = {
+export const SPECIAL_TILES_UNBLOCKS: SpecialTilesUnblocksMap = {
   0: {
     3: {
-      0: [{ layer: 0, row: 3, col: 1 }, { layer: 0, row: 4, col: 1 }],
-      13: [{ layer: 0, row: 3, col: 12 }, { layer: 0, row: 4, col: 12 }],
+      0: [
+        { layer: 0, row: 3, col: 1 },
+        { layer: 0, row: 4, col: 1 },
+      ],
+      13: [
+        { layer: 0, row: 3, col: 12 },
+        { layer: 0, row: 4, col: 12 },
+      ],
     },
   },
   4: {
@@ -58,15 +64,15 @@ const SPECIAL_TILES_UNBLOCKS: SpecialTilesUnblocksMap = {
   },
 };
 
-interface SpecialStylesMap {
-  [row:number]: {
-    [layer:number]: {
-      [col:number]: CSSProperties
-    }
-  }
+export interface SpecialStylesMap {
+  [row: number]: {
+    [layer: number]: {
+      [col: number]: CSSProperties;
+    };
+  };
 }
 
-const SPECIAL_TILES_STYLES: SpecialStylesMap = {
+export const SPECIAL_TILES_STYLES: SpecialStylesMap = {
   0: {
     3: {
       0: { transform: 'translate(0, 32px)' },
@@ -79,14 +85,4 @@ const SPECIAL_TILES_STYLES: SpecialStylesMap = {
       6: { transform: 'translate(20px, 32px)' },
     },
   },
-};
-
-export {
-  ICON_SYMBOL_REPEAT_COUNT,
-  TILE_SYMBOLS_COUNT,
-  TOTAL_TILE_COUNT,
-  LAYERS_COUNT,
-  SPECIAL_TILES,
-  SPECIAL_TILES_UNBLOCKS,
-  SPECIAL_TILES_STYLES,
 };

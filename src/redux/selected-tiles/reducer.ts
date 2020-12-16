@@ -1,5 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { SelectedTilesActions, SelectedTilesHandler, SelectedTilesState } from '~/types';
+import {
+  SelectedTilesActions,
+  SelectedTilesHandler,
+  SelectedTilesState,
+} from '~/types';
 import { tileAddedToStack } from './actions';
 
 const initialState: SelectedTilesState = {
@@ -8,14 +12,12 @@ const initialState: SelectedTilesState = {
 
 const handleTileAddedToStack: SelectedTilesHandler<typeof tileAddedToStack> = (
   state,
-  { payload: { tile }},
+  { payload: { tile } },
 ) => {
   state.stack.push(tile);
 };
 
-const handleStackCleared: SelectedTilesHandler = (
-  state,
-) => {
+const handleStackCleared: SelectedTilesHandler = (state) => {
   state.stack = [];
 };
 

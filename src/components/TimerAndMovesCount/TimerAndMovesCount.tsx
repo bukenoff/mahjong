@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import * as styles from './styles.scss';
 import timerService from '~/services/TimerService';
 
-const TimerAndMovesCount: FC = () => {
+export const TimerAndMovesCount: FC = () => {
   const [time, setTime] = useState(timerService.seconds);
 
   useEffect(() => {
@@ -20,5 +20,3 @@ const TimerAndMovesCount: FC = () => {
     </div>
   );
 };
-
-export { TimerAndMovesCount };

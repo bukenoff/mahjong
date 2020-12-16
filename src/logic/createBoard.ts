@@ -1,16 +1,28 @@
 import { LAYERS_ROWS_SCHEMES, LayersRowsSchemeType } from '~/constants/rows';
-import { LAYERS_COUNT, SPECIAL_TILES, SPECIAL_TILES_UNBLOCKS, SPECIAL_TILES_STYLES } from '~/constants/tiles';
+import {
+  LAYERS_COUNT,
+  SPECIAL_TILES,
+  SPECIAL_TILES_UNBLOCKS,
+  SPECIAL_TILES_STYLES,
+} from '~/constants/tiles';
 import { uuid } from 'uuidv4';
-import { Row, Board, Layer, TilesSymbols, TileCoordinates, RowScheme, LayerScheme } from '~/types';
+import {
+  Row,
+  Board,
+  Layer,
+  TilesSymbols,
+  TileCoordinates,
+  RowScheme,
+} from '~/types';
 import { shuffleArray, isEmptyObject } from '~/utils';
 
-const getBlockedStatus = (
+export const getBlockedStatus = (
   layer: TileCoordinates['layer'],
   row: TileCoordinates['row'],
   col: TileCoordinates['col'],
   open_tiles_indexes: number[],
 ): boolean => {
-  if ((layer === 0) && (row === 4)) {
+  if (layer === 0 && row === 4) {
     return true;
   }
 
@@ -21,7 +33,7 @@ const getBlockedStatus = (
   return !open_tiles_indexes.includes(col);
 };
 
-const getSpecialStyles = (
+export const getSpecialStyles = (
   layer: TileCoordinates['layer'],
   row: TileCoordinates['row'],
   col: TileCoordinates['col'],
@@ -29,7 +41,7 @@ const getSpecialStyles = (
   return SPECIAL_TILES_STYLES[layer][row][col];
 };
 
-const hasSpecialStyles = (
+export const hasSpecialStyles = (
   layer: TileCoordinates['layer'],
   row: TileCoordinates['row'],
   col: TileCoordinates['col'],
@@ -49,7 +61,7 @@ const hasSpecialStyles = (
   return true;
 };
 
-const getSpecialUnblocks = (
+export const getSpecialUnblocks = (
   layer: TileCoordinates['layer'],
   row: TileCoordinates['row'],
   col: TileCoordinates['col'],
@@ -69,7 +81,7 @@ const getSpecialUnblocks = (
   return null;
 };
 
-const isTileSpecial = (
+export const isTileSpecial = (
   layer: TileCoordinates['layer'],
   row: TileCoordinates['row'],
   col: TileCoordinates['col'],
@@ -91,7 +103,7 @@ const isTileSpecial = (
 
 // collects coordinates of tiles that get unblocked
 // if the tile with provided coordinates gets open
-const getUnblocks = (
+export const getUnblocks = (
   layer: TileCoordinates['layer'],
   row: TileCoordinates['row'],
   col: TileCoordinates['col'],
@@ -119,7 +131,7 @@ const getUnblocks = (
   ];
 };
 
-const createRow = (
+export const createRow = (
   row_scheme: RowScheme,
   row_index: number,
   layer_index: number,
@@ -129,7 +141,7 @@ const createRow = (
 
   const open_tiles_indexes = [
     Object.values(row_scheme).indexOf(true),
-    Object.values(row_scheme).lastIndexOf(true)
+    Object.values(row_scheme).lastIndexOf(true),
   ];
 
   Object.values(row_scheme).forEach((t, i) => {
@@ -138,12 +150,21 @@ const createRow = (
     }
 
     const tile_is_special = isTileSpecial(layer_index, row_index, i);
-    const tile_with_special_styles = hasSpecialStyles(layer_index, row_index, i);
+    const tile_with_special_styles = hasSpecialStyles(
+      layer_index,
+      row_index,
+      i,
+    );
     const [icon] = tile_symbols.splice(tile_symbols.length - 1, 1);
 
     row[i] = {
       id: uuid(),
-      is_blocked: getBlockedStatus(layer_index, row_index, i, open_tiles_indexes),
+      is_blocked: getBlockedStatus(
+        layer_index,
+        row_index,
+        i,
+        open_tiles_indexes,
+      ),
       is_selected: false,
       coordinates: {
         layer: layer_index,
@@ -163,7 +184,7 @@ const createRow = (
   return row;
 };
 
-const createLayer = (
+export const createLayer = (
   layer_scheme: LayersRowsSchemeType[keyof LayersRowsSchemeType],
   layer_index: number,
   tile_symbols: any,
@@ -183,7 +204,7 @@ const createLayer = (
   return rows;
 };
 
-const createRandomlyOrderedTileSymbols = (): string[] => {
+export const createRandomlyOrderedTileSymbols = (): string[] => {
   const tile_symbols: string[] = [];
 
   for (const sym in TilesSymbols) {
@@ -198,7 +219,7 @@ const createRandomlyOrderedTileSymbols = (): string[] => {
   return shuffled_tile_symbols;
 };
 
-const createBoard = (): Board => {
+export const createBoard = (): Board => {
   const board: Board = {};
   const tile_symbols = createRandomlyOrderedTileSymbols();
 
@@ -207,12 +228,4 @@ const createBoard = (): Board => {
   });
 
   return board;
-};
-
-export {
-  createBoard,
-  createRandomlyOrderedTileSymbols,
-  getUnblocks,
-  isTileSpecial,
-  getSpecialUnblocks,
 };

@@ -4,7 +4,7 @@ import { newBoardGenerated } from './actions';
 import { createBoard } from '~/logic/createBoard';
 import { resetTimer, resumeTimer } from '../timer/actions';
 
-function* handleGenerateNewBoard(){
+function* handleGenerateNewBoard() {
   const new_board = createBoard();
 
   yield put(newBoardGenerated(new_board));

@@ -2,12 +2,13 @@ import { TilesSymbols, TileCoordinates } from '~/types';
 import { ICONS_MAP } from './constants/iconsMap';
 import { IconType } from 'react-icons/lib';
 
-const shuffleArray = <T>(array: T[]): T[] => {
-  let currentIndex = array.length, temporaryValue, randomIndex;
+export const shuffleArray = <T>(array: T[]): T[] => {
+  let currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
 
   // While there remain elements to shuffle...
   while (0 !== currentIndex) {
-
     // Pick a remaining element...
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
@@ -21,15 +22,17 @@ const shuffleArray = <T>(array: T[]): T[] => {
   return array;
 };
 
-const isEmptyObject = (object: Record<string | number, unknown>): boolean => {
+export const isEmptyObject = (
+  object: Record<string | number, unknown>,
+): boolean => {
   return Object.keys(object).length === 0 && object.constructor === Object;
 };
 
-const renderIcon = (icon: TilesSymbols): IconType | 'no-icon' => {
+export const renderIcon = (icon: TilesSymbols): IconType | 'no-icon' => {
   return ICONS_MAP[icon] || 'no-icon';
 };
 
-const getTileBackground = (layer: TileCoordinates['layer']): string => {
+export const getTileBackground = (layer: TileCoordinates['layer']): string => {
   if (layer === 0) {
     return '#FCFCFC';
   }
@@ -47,11 +50,4 @@ const getTileBackground = (layer: TileCoordinates['layer']): string => {
   }
 
   return '#C2CACE';
-};
-
-export {
-  shuffleArray,
-  isEmptyObject,
-  renderIcon,
-  getTileBackground,
 };
