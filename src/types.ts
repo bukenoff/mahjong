@@ -7,6 +7,7 @@ export interface State {
   selected_tiles: SelectedTilesState;
   processing: ProcessingState;
   timer: any; // any for now, since I don't have any solid implementation ideas
+  steps: any;
 }
 
 export interface TimerState {
@@ -14,31 +15,16 @@ export interface TimerState {
   stopped_at: number | null;
 }
 
+export interface StepsState {
+  step_index: number;
+  steps_stack: any[];
+}
+
 export type ProcessingState = boolean;
 
 export interface SelectedTilesState {
   stack: Tile[];
 }
-
-export type SelectedTilesHandler<T = undefined> = (
-  state: SelectedTilesState,
-  payload: T extends (...args: any[]) => infer R ? R : any,
-) => void;
-
-export type BoardHandler<T = undefined> = (
-  state: BoardState,
-  payload: T extends (...args: any[]) => infer R ? R : any,
-) => void;
-
-export type ProcessingHandler<T = undefined> = (
-  state: ProcessingState,
-  payload: T extends (...args: any[]) => infer R ? R : any,
-) => void;
-
-export type TimerHandler<T = undefined> = (
-  state: TimerState,
-  payload: T extends (...args: any[]) => infer R ? R : any,
-) => void;
 
 export interface TileCoordinates {
   layer: number;
@@ -132,6 +118,15 @@ export enum TimerActions {
   TIMER_RESUMED = 'TIMER_RESUMED',
   RESET_TIMER = 'RESET_TIMER',
   TIMER_RESET = 'TIMER_RESET',
+}
+
+export enum StepsActions {
+  TAKE_STEP_BACK = 'TAKE_STEP_BACK',
+  STEP_BACK_TAKEN = 'STEP_BACK_TAKEN',
+  TAKE_STEP_FORWARD = 'TAKE_STEP_FORWARD',
+  STEP_FORWARD_TAKEN = 'STEP_FORWARD_TAKEN',
+  STEP_INDEX_INCREMENTED = 'STEP_INDEX_INCREMENTED',
+  STEP_INDEX_DECREMENTED = 'STEP_INDEX_DECREMENTED',
 }
 
 export type TileUpdate = Partial<Pick<Tile, 'is_selected' | 'is_blocked'>>;
