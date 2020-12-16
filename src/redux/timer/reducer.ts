@@ -15,7 +15,7 @@ const handleTimerStopped: TimerHandler<typeof timerStopped> = (
   state.stopped_at = payload.seconds;
 };
 
-const handleTimerResumed = (state) => {
+const handleTimerResumed: TimerHandler = (state) => {
   state.is_stopped = false;
   state.stopped_at = null;
 };

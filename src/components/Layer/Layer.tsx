@@ -19,7 +19,7 @@ const Layer: FC<Props> = ({
         rowList.map((r, i) => (
           <Row
             key={`${r}${i}`}
-            row={layer[r]}
+            row={layer[+r]}
           />
         ))
       }

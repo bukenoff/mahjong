@@ -5,11 +5,15 @@ const selectBoard = (state: State): State['board'] => {
 };
 
 const selectTileFromBoard = (
-  state,
+  state: State,
   layer: TileCoordinates['layer'],
   row: TileCoordinates['row'],
   col: TileCoordinates['col'],
 ): Tile | null => {
+  if (!state || !state.board || !state.board[layer] || !state.board[layer][row] || !state.board[layer][row][col]) {
+    return null;
+  }
+
   return state.board[layer][row][col];
 };
 

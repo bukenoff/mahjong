@@ -9,7 +9,7 @@ const isDevelopment = process.env.NODE_ENV !== "production";
 
 module.exports = {
   entry: ['react-hot-loader/patch', './src/index.tsx'],
-  devtool: 'inline-source-map',
+  devtool: isDevelopment ? 'inline-source-map' : undefined,
   output: {
     path: path.join(__dirname, outputDirectory),
     filename: '[name].js',

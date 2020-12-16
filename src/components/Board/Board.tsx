@@ -8,8 +8,11 @@ const Board: FC = () => {
   const board = useSelector(selectBoard);
 
   const layers = useMemo(() => {
+    if (!board) return;
     return Object.keys(board);
   }, [board]);
+
+  if (!board || !layers) return null;
 
   return (
     <div className={styles.container}>
@@ -17,7 +20,7 @@ const Board: FC = () => {
         layers.map((layer) => (
           <Layer
             key={layer}
-            layer={board[layer]}
+            layer={board[+layer]}
           />
         ))
       }

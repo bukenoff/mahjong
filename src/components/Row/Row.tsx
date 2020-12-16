@@ -20,15 +20,15 @@ const Row: FC<Props> = ({
   return (
     <>
       {
-        tileList.map((r, i) => {
-          if (!row[r]) {
+        tileList.map((r, index) => {
+          if (!row[+r]) {
             return null;
           }
 
           return (
             <Tile
-              key={`${row[r].id}${i}`}
-              tile={row[r]}
+              key={index}
+              tile={row[+r]}
               selectTile={selectTile}
             />
           );

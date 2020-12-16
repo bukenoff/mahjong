@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { BoardState, BoardActions, BoardHandler } from '~/types';
+import { BoardState, BoardActions, BoardHandler, Tile } from '~/types';
 import { tileUpdated, multipleTilesUpdated, twoTilesRemoved, newBoardGenerated } from './actions';
 
 const initialState: BoardState = null;
@@ -10,8 +10,14 @@ const handleTileUpdated: BoardHandler<typeof tileUpdated> = (
 ) => {
   const { layer, row, col } = coordinates;
 
+  if (!state) return state;
+
+  if (!state[layer] && !state[layer][row] && !state[layer][row][col]) {
+    return state;
+  }
+
   state[layer][row][col] = {
-    ...state[layer][row][col],
+    ...state[layer][row][col] as Tile,
     ...update,
   };
 };
@@ -25,8 +31,14 @@ const handleMultipleTilesUpdated: BoardHandler<typeof multipleTilesUpdated> = (
     row,
     col,
   }) => {
+    if (!state) return state;
+
+    if (!state[layer] && !state[layer][row] && !state[layer][row][col]) {
+      return state;
+    }
+
     state[layer][row][col] = {
-      ...state[layer][row][col],
+      ...state[layer][row][col] as Tile,
       ...update,
     };
   });
@@ -41,6 +53,12 @@ const handleTwoTilesRemoved: BoardHandler<typeof twoTilesRemoved> = (
     row,
     col,
   }) => {
+    if (!state) return state;
+
+    if (!state[layer] && !state[layer][row] && !state[layer][row][col]) {
+      return state;
+    }
+
     state[layer][row][col] = null;
   });
 };

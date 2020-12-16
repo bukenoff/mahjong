@@ -1,4 +1,4 @@
-import { LAYERS_ROWS_SCHEMES } from '~/constants/rows';
+import { LAYERS_ROWS_SCHEMES, LayersRowsSchemeType } from '~/constants/rows';
 import { LAYERS_COUNT, SPECIAL_TILES, SPECIAL_TILES_UNBLOCKS, SPECIAL_TILES_STYLES } from '~/constants/tiles';
 import { uuid } from 'uuidv4';
 import { Row, Board, Layer, TilesSymbols, TileCoordinates, RowScheme, LayerScheme } from '~/types';
@@ -123,7 +123,7 @@ const createRow = (
   row_scheme: RowScheme,
   row_index: number,
   layer_index: number,
-  tile_symbols,
+  tile_symbols: any,
 ): Row => {
   const row: Row = {};
 
@@ -164,16 +164,16 @@ const createRow = (
 };
 
 const createLayer = (
-  layer_scheme: LayerScheme,
+  layer_scheme: LayersRowsSchemeType[keyof LayersRowsSchemeType],
   layer_index: number,
-  tile_symbols,
+  tile_symbols: any,
 ): Layer => {
-  const rows = {};
+  const rows: Layer = {};
 
   Object.values(layer_scheme).forEach((v, i) => {
     const new_row = createRow(v, i, layer_index, tile_symbols);
 
-    if (isEmptyObject(new_row)) {
+    if (isEmptyObject(new_row as Record<number, any>)) {
       return null;
     }
 

@@ -1,4 +1,12 @@
-export const LAYERS_ROWS_SCHEMES = {
+export interface LayersRowsSchemeType {
+  [layer: number]: {
+    [row: number]: {
+      [cell: number]: boolean;
+    }
+  }
+}
+
+export const LAYERS_ROWS_SCHEMES: LayersRowsSchemeType = {
   0: {
     0: {
       0: false,

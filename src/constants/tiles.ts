@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react';
 import { TileCoordinates } from '~/types';
 
 const ICON_SYMBOL_REPEAT_COUNT = 4;
@@ -8,7 +9,15 @@ const TILE_SYMBOLS_COUNT = 36;
 
 const LAYERS_COUNT = 5;
 
-const SPECIAL_TILES = {
+interface SpecialTilesMap {
+  [row:number]: {
+    [layer:number]: {
+      [col:number]: boolean
+    }
+  }
+}
+
+const SPECIAL_TILES: SpecialTilesMap = {
   0: {
     3: {
       0: true,
@@ -49,7 +58,15 @@ const SPECIAL_TILES_UNBLOCKS: SpecialTilesUnblocksMap = {
   },
 };
 
-const SPECIAL_TILES_STYLES = {
+interface SpecialStylesMap {
+  [row:number]: {
+    [layer:number]: {
+      [col:number]: CSSProperties
+    }
+  }
+}
+
+const SPECIAL_TILES_STYLES: SpecialStylesMap = {
   0: {
     3: {
       0: { transform: 'translate(0, 32px)' },

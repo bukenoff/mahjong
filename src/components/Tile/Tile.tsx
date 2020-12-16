@@ -6,7 +6,7 @@ import { renderIcon, getTileBackground } from '~/utils';
 import { TileIconStyles } from '~/styles/styles';
 
 interface Props {
-  tile: Tile;
+  tile: Tile | null;
   selectTile: (tile: Tile) => void;
 }
 
@@ -14,6 +14,8 @@ const Tile: FC<Props> = memo(({
   tile,
   selectTile,
 }) => {
+  if (!tile) return null;
+
   const {
     is_selected,
     is_blocked,
@@ -32,7 +34,7 @@ const Tile: FC<Props> = memo(({
 
   const tileBackgroundColor = useMemo(() => {
     if (!tile) {
-      return null;
+      return;
     }
 
     return getTileBackground(coordinates.layer);
@@ -40,7 +42,7 @@ const Tile: FC<Props> = memo(({
 
   const tileStyles = useMemo(() => {
     if (!tile) {
-      return null;
+      return;
     }
 
     const main_styles = {

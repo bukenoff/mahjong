@@ -1,4 +1,6 @@
-export type BoardState = Board;
+import { CSSProperties } from "react";
+
+export type BoardState = Board | null;
 
 export interface State {
   board: BoardState;
@@ -9,7 +11,7 @@ export interface State {
 
 export interface TimerState {
   is_stopped: boolean;
-  stopped_at: number;
+  stopped_at: number | null;
 }
 
 export type ProcessingState = boolean;
@@ -50,12 +52,12 @@ export interface Tile {
   is_blocked: boolean;
   is_selected: boolean;
   icon: TilesSymbols;
-  unblocks: TileCoordinates[];
-  special_styles: number[] | null;
+  unblocks: TileCoordinates[] | null;
+  special_styles: CSSProperties | null;
 }
 
 export interface Row {
-  [index: number]: Tile;
+  [index: number]: Tile | null;
 }
 
 export interface Layer {

@@ -1,5 +1,5 @@
 let seconds = 0;
-let timerId;
+let timerId: ReturnType<typeof setInterval>;
 
 const startTimer = () => {
   return setInterval(() => {

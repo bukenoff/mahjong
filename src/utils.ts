@@ -2,7 +2,7 @@ import { TilesSymbols, TileCoordinates } from '~/types';
 import { ICONS_MAP } from './constants/iconsMap';
 import { IconType } from 'react-icons/lib';
 
-const shuffleArray = (array: any[]): any[] => {
+const shuffleArray = <T>(array: T[]): T[] => {
   let currentIndex = array.length, temporaryValue, randomIndex;
 
   // While there remain elements to shuffle...
@@ -21,7 +21,7 @@ const shuffleArray = (array: any[]): any[] => {
   return array;
 };
 
-const isEmptyObject = (object): boolean => {
+const isEmptyObject = (object: Record<string | number, unknown>): boolean => {
   return Object.keys(object).length === 0 && object.constructor === Object;
 };
 
