@@ -9,6 +9,8 @@ import useActions from '~/hooks/useActions';
 import TimerControls from '~/components/TimerControls';
 import { selectIsStopped } from '~/redux/timer/selectors';
 import { stopTimer, resumeTimer } from '~/redux/timer/actions';
+import { takeStepBack, takeStepForward } from '~/redux/steps/actions';
+import { selectStepStack } from '~/redux/steps/selectors';
 
 export const GameControlPanel: FC = () => {
   const is_stopped = useSelector(selectIsStopped);
@@ -16,11 +18,19 @@ export const GameControlPanel: FC = () => {
     generateNewBoard,
     stopTimer,
     resumeTimer,
+    takeStepBack,
+    takeStepForward,
   });
+
+  const step_stack = useSelector(selectStepStack);
 
   return (
     <nav className={styles.container}>
-      <HistoryControls />
+      <HistoryControls
+        takeStepBack={actions.takeStepBack}
+        takeStepForward={actions.takeStepForward}
+        step_stack={step_stack}
+      />
       <TimerAndMovesCount />
       <div style={{ display: 'flex' }}>
         <TimerControls
