@@ -7,7 +7,7 @@ export interface State {
   selected_tiles: SelectedTilesState;
   processing: ProcessingState;
   timer: any; // any for now, since I don't have any solid implementation ideas
-  steps: any;
+  steps: StepsState;
 }
 
 export interface TimerState {
@@ -17,7 +17,7 @@ export interface TimerState {
 
 export interface StepsState {
   step_index: number;
-  steps_stack: any[];
+  steps_stack: [Tile, Tile][];
 }
 
 export type ProcessingState = boolean;
@@ -105,6 +105,7 @@ export enum BoardActions {
   TWO_TILES_REMOVED = 'TWO_TILES_REMOVED',
   GENERATE_NEW_BOARD = 'GENERATE_NEW_BOARD',
   NEW_BOARD_GENERATED = 'NEW_BOARD_GENERATED',
+  MULTIPLE_TILES_RESTORED = 'MULTIPLE_TILES_RESTORED',
 }
 
 export enum ProcessingActions {
@@ -127,6 +128,7 @@ export enum StepsActions {
   STEP_FORWARD_TAKEN = 'STEP_FORWARD_TAKEN',
   STEP_INDEX_INCREMENTED = 'STEP_INDEX_INCREMENTED',
   STEP_INDEX_DECREMENTED = 'STEP_INDEX_DECREMENTED',
+  STEP_ADDED_TO_STACK = 'STEP_ADDED_TO_STACK',
 }
 
 export type TileUpdate = Partial<Pick<Tile, 'is_selected' | 'is_blocked'>>;

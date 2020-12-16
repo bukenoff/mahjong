@@ -5,6 +5,7 @@ import {
   multipleTilesUpdated,
   twoTilesRemoved,
   newBoardGenerated,
+  multipleTilesRestored,
 } from './actions';
 
 const initialState: BoardState = {};
@@ -57,5 +58,16 @@ export default createReducer(initialState, (builder) =>
       const { new_board } = payload;
 
       return new_board;
+    })
+    .addCase(multipleTilesRestored, (state, { payload }) => {
+      const { tile_pair } = payload;
+
+      tile_pair.forEach((tile) => {
+        const {
+          coordinates: { layer, row, col },
+        } = tile;
+
+        state[layer][row][col] = tile;
+      });
     }),
 );

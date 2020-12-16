@@ -1,4 +1,4 @@
-import { StepsActions } from '~/types';
+import { StepsActions, Tile } from '~/types';
 import { createAction } from '@reduxjs/toolkit';
 
 export const takeStepBack = createAction(StepsActions.TAKE_STEP_BACK);
@@ -15,4 +15,13 @@ export const stepIndexIncremented = createAction(
 
 export const stepIndexDecremented = createAction(
   StepsActions.STEP_INDEX_DECREMENTED,
+);
+
+export const stepAddedToStack = createAction(
+  StepsActions.STEP_ADDED_TO_STACK,
+  (tile_pair: [Tile, Tile]) => ({
+    payload: {
+      tile_pair,
+    },
+  }),
 );

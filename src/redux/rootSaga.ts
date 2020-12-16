@@ -3,6 +3,7 @@ import selectedTilesFlow from './selected-tiles/sagas';
 import boardFlow from './board/sagas';
 import timerFlow from './timer/sagas';
 import { generateNewBoard } from './board/actions';
+import stepsFlow from './steps/sagas';
 
 function* initializeSaga() {
   yield put(generateNewBoard());
@@ -13,4 +14,5 @@ export default function* rootSaga() {
   yield fork(selectedTilesFlow);
   yield fork(boardFlow);
   yield fork(timerFlow);
+  yield fork(stepsFlow);
 }

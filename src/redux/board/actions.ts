@@ -52,3 +52,8 @@ export const newBoardGenerated = createAction(
     },
   }),
 );
+
+export const multipleTilesRestored = createAction(
+  BoardActions.MULTIPLE_TILES_RESTORED,
+  (tile_pair: [Tile, Tile]) => ({ payload: { tile_pair } }),
+);
