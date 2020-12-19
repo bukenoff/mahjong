@@ -35,7 +35,6 @@ export const GameControlPanel: FC = () => {
       <HistoryControls
         takeStepBack={actions.takeStepBack}
         takeStepForward={actions.takeStepForward}
-        step_stack={step_stack}
         is_step_forward_possible={is_step_forward_possible}
         is_step_back_possible={is_step_back_possible}
       />

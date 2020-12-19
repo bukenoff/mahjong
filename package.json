@@ -6,7 +6,8 @@
   "scripts": {
     "build": "NODE_ENV=production webpack --env production --config=webpack.config.js --progress -p",
     "start": "webpack-dev-server --mode development --devtool inline-source-map --hot",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "keywords": [],
   "author": "Serik Bukenov",

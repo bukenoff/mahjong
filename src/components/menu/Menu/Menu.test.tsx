@@ -6,9 +6,7 @@ import { generateNewBoard as generateNewBoardAction } from '../../../redux/board
 describe('Menu component', () => {
   it('renders without crash', () => {
     const { getByTestId } = render(
-      <Menu
-        generateNewBoard={generateNewBoardAction}
-      />
+      <Menu generateNewBoard={generateNewBoardAction} />,
     );
 
     const root_component = getByTestId('menu-root');
@@ -17,9 +15,7 @@ describe('Menu component', () => {
 
   it('renders menu if you click button', () => {
     const { getByTestId } = render(
-      <Menu
-        generateNewBoard={generateNewBoardAction}
-      />
+      <Menu generateNewBoard={generateNewBoardAction} />,
     );
 
     const button = getByTestId('menu-button');
