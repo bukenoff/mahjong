@@ -30,6 +30,7 @@ export default createReducer(initialState, (builder) =>
     .addCase(newBoardGenerated, (state) => {
       state.step_index = -1;
       state.steps_stack = [];
+      state.steps_made = 0;
     })
     .addCase(stepsMadeIncremented, (state) => {
       state.steps_made = state.steps_made + 1;

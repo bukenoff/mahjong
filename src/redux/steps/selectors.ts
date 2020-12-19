@@ -13,3 +13,6 @@ export const selectIsStepForwardPossible = ({ steps }: State): boolean => {
 export const selectIsStepBackPossible = ({ steps }: State): boolean => {
   return steps.step_index !== -1;
 };
+
+export const selectStepsMade = ({ steps }: State): StepsState['steps_made'] =>
+  steps.steps_made;
