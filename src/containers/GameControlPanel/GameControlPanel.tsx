@@ -13,6 +13,7 @@ import { takeStepBack, takeStepForward } from '~/redux/steps/actions';
 import {
   selectStepStack,
   selectIsStepForwardPossible,
+  selectIsStepBackPossible,
 } from '~/redux/steps/selectors';
 
 export const GameControlPanel: FC = () => {
@@ -27,6 +28,7 @@ export const GameControlPanel: FC = () => {
 
   const step_stack = useSelector(selectStepStack);
   const is_step_forward_possible = useSelector(selectIsStepForwardPossible);
+  const is_step_back_possible = useSelector(selectIsStepBackPossible);
 
   return (
     <nav className={styles.container}>
@@ -35,6 +37,7 @@ export const GameControlPanel: FC = () => {
         takeStepForward={actions.takeStepForward}
         step_stack={step_stack}
         is_step_forward_possible={is_step_forward_possible}
+        is_step_back_possible={is_step_back_possible}
       />
       <TimerAndMovesCount />
       <div style={{ display: 'flex' }}>

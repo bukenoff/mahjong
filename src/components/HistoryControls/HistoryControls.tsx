@@ -9,6 +9,7 @@ interface Props {
   takeStepForward: typeof stepsActions.takeStepForward;
   step_stack: StepsState['steps_stack'];
   is_step_forward_possible: boolean;
+  is_step_back_possible: boolean;
 }
 
 export const HistoryControls: FC<Props> = ({
@@ -16,6 +17,7 @@ export const HistoryControls: FC<Props> = ({
   takeStepForward,
   step_stack,
   is_step_forward_possible,
+  is_step_back_possible,
 }) => {
   const onBackClick = () => takeStepBack();
   const onForwardClick = () => takeStepForward();
@@ -25,7 +27,7 @@ export const HistoryControls: FC<Props> = ({
       <button
         className={styles.history_navigate_button}
         type="button"
-        disabled={step_stack.length === 0}
+        disabled={is_step_back_possible === false}
         onClick={onBackClick}
       >
         <FiArrowLeft />
@@ -33,7 +35,7 @@ export const HistoryControls: FC<Props> = ({
       <button
         className={styles.history_navigate_button}
         type="button"
-        disabled={is_step_forward_possible}
+        disabled={is_step_forward_possible === false}
         onClick={onForwardClick}
       >
         <FiArrowRight />

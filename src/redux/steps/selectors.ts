@@ -7,5 +7,9 @@ export const selectStepIndex = ({ steps }: State): StepsState['step_index'] =>
   steps.step_index;
 
 export const selectIsStepForwardPossible = ({ steps }: State): boolean => {
-  return steps.step_index === steps.steps_stack.length - 1;
+  return steps.step_index !== steps.steps_stack.length - 1;
+};
+
+export const selectIsStepBackPossible = ({ steps }: State): boolean => {
+  return steps.step_index !== -1;
 };
