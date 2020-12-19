@@ -15,7 +15,11 @@ import {
 import { processingToggled } from '../processing/actions';
 import { selectProcessing } from '../processing/selectors';
 import { selectTileFromBoard } from '../board/selectors';
-import { stepAddedToStack, stepIndexIncremented } from '../steps/actions';
+import {
+  stepAddedToStack,
+  stepIndexIncremented,
+  stepsMadeIncremented,
+} from '../steps/actions';
 
 function* unselectTiles(first_tile: Tile, second_tile: Tile) {
   const update: TileUpdate = {
@@ -64,6 +68,7 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
   yield put(stepAddedToStack([first_tile, second_tile]));
   yield put(twoTilesRemoved(two_tiles_coordinates));
   yield put(stepIndexIncremented());
+  yield put(stepsMadeIncremented());
 }
 
 function* handleSelectTile({

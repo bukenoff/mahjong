@@ -18,6 +18,7 @@ export interface TimerState {
 export interface StepsState {
   step_index: number;
   steps_stack: [Tile, Tile][];
+  steps_made: number;
 }
 
 export type ProcessingState = boolean;
@@ -129,6 +130,7 @@ export enum StepsActions {
   STEP_INDEX_INCREMENTED = 'STEP_INDEX_INCREMENTED',
   STEP_INDEX_DECREMENTED = 'STEP_INDEX_DECREMENTED',
   STEP_ADDED_TO_STACK = 'STEP_ADDED_TO_STACK',
+  STEPS_MADE_INCREMENTED = 'STEPS_MADE_INCREMENTED',
 }
 
 export type TileUpdate = Partial<Pick<Tile, 'is_selected' | 'is_blocked'>>;

@@ -17,6 +17,10 @@ export const stepIndexDecremented = createAction(
   StepsActions.STEP_INDEX_DECREMENTED,
 );
 
+export const stepsMadeIncremented = createAction(
+  StepsActions.STEPS_MADE_INCREMENTED,
+);
+
 export const stepAddedToStack = createAction(
   StepsActions.STEP_ADDED_TO_STACK,
   (tile_pair: [Tile, Tile]) => ({

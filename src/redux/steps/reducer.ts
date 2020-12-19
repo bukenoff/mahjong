@@ -4,12 +4,14 @@ import {
   stepIndexDecremented,
   stepIndexIncremented,
   stepAddedToStack,
+  stepsMadeIncremented,
 } from './actions';
 import { newBoardGenerated } from '../board/actions';
 
 const initialState: StepsState = {
   step_index: -1,
   steps_stack: [],
+  steps_made: 0,
 };
 
 export default createReducer(initialState, (builder) =>
@@ -28,5 +30,8 @@ export default createReducer(initialState, (builder) =>
     .addCase(newBoardGenerated, (state) => {
       state.step_index = -1;
       state.steps_stack = [];
+    })
+    .addCase(stepsMadeIncremented, (state) => {
+      state.steps_made = state.steps_made + 1;
     }),
 );
