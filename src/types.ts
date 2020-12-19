@@ -8,7 +8,10 @@ export interface State {
   processing: ProcessingState;
   timer: any; // any for now, since I don't have any solid implementation ideas
   steps: StepsState;
+  tile_pairs_resolved_count: TilePairsResolvedCountState;
 }
+
+export type TilePairsResolvedCountState = number;
 
 export interface TimerState {
   is_stopped: boolean;

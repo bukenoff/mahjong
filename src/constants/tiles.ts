@@ -5,6 +5,8 @@ export const ICON_SYMBOL_REPEAT_COUNT = 4;
 
 export const TOTAL_TILE_COUNT = 144;
 
+export const TOTAL_TILE_PAIRS_COUNT = 72;
+
 export const TILE_SYMBOLS_COUNT = 36;
 
 export const LAYERS_COUNT = 5;
