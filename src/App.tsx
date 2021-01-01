@@ -8,12 +8,17 @@ import '~/styles/reset.scss';
 import '~/styles/global.scss';
 
 import GameView from './containers/GameView';
+import StartView from './containers/StartView';
+import { PATHS } from './constants/paths';
 
 const App: FC = () => (
   <Provider store={store}>
     <PersistGate loading={<div>...loading</div>} persistor={persistor}>
       <ConnectedRouter history={history}>
-        <Route exact path="/" component={GameView} />
+        <main>
+          <Route exact path={PATHS.HOME} component={StartView} />
+          <Route path={PATHS.GAME} component={GameView} />
+        </main>
       </ConnectedRouter>
     </PersistGate>
   </Provider>

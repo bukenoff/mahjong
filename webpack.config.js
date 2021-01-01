@@ -10,7 +10,7 @@ const outputDirectory = 'dist';
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-  entry: ['react-hot-loader/patch', './src/index.tsx'],
+  entry: ['./src/index.tsx'],
   devtool: isDevelopment ? 'inline-source-map' : undefined,
   output: {
     path: path.join(__dirname, outputDirectory),
@@ -21,7 +21,6 @@ module.exports = {
     extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],
     alias: {
       '~': path.resolve(__dirname, 'src/'),
-      'react-dom': '@hot-loader/react-dom',
     },
   },
   module: {

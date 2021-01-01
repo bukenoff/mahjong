@@ -5,6 +5,7 @@ import { createBrowserHistory } from 'history';
 
 import rootReducer from './rootReducer';
 import rootSaga from './rootSaga';
+import { routerMiddleware } from 'connected-react-router';
 
 const initialState = {};
 const sagaMiddleware = createSagaMiddleware();
@@ -21,7 +22,7 @@ const composeEnhancers =
 const store = createStore(
   rootReducer(history),
   initialState,
-  composeEnhancers(applyMiddleware(sagaMiddleware)),
+  composeEnhancers(applyMiddleware(sagaMiddleware, routerMiddleware(history))),
 );
 
 const persistor = persistStore(store);

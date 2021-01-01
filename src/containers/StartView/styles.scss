@@ -1,0 +1,17 @@
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.start_button {
+  & a {
+    color: black;
+    text-transform: capitalize;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
