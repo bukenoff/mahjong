@@ -1,17 +1,30 @@
 import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { createBrowserHistory } from 'history';
+
 import boardReducer from './board/reducers';
 import selectedTilesReducer from './selected-tiles/reducer';
 import processingHandler from './processing/reducer';
 import timerReducer from './timer/reducer';
 import stepsReducer from './steps/reducer';
+import scoresReducer from './scores/reducer';
+import { connectRouter } from 'connected-react-router';
 
-const rootReducer = () =>
+const scores_persist_config = {
+  key: 'scores',
+  storage,
+};
+
+const rootReducer = (history: ReturnType<typeof createBrowserHistory>) =>
   combineReducers({
     board: boardReducer,
     selected_tiles: selectedTilesReducer,
     processing: processingHandler,
     timer: timerReducer,
     steps: stepsReducer,
+    router: connectRouter(history),
+    scores: persistReducer(scores_persist_config, scoresReducer),
   });
 
 export default rootReducer;
