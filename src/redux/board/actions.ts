@@ -1,5 +1,4 @@
 import {
-  BoardActions,
   Tile,
   TileUpdate,
   TileCoordinatesPair,
@@ -9,7 +8,7 @@ import {
 import { createAction } from '@reduxjs/toolkit';
 
 export const tileUpdated = createAction(
-  BoardActions.TILE_UPDATED,
+  'Board/tile_updated',
   (coordinates: Tile['coordinates'], update: TileUpdate) => ({
     payload: {
       coordinates,
@@ -24,7 +23,7 @@ export const tileUpdated = createAction(
 // hopefully this will lead to less rerenders and better performance
 // but who knows ¯\_(ツ)_/¯
 export const multipleTilesUpdated = createAction(
-  BoardActions.MULTIPLE_TILES_UPDATED,
+  'Board/multiple_tiles_updated',
   (coordinates: TileCoordinates[], update: TileUpdate) => ({
     payload: {
       coordinates,
@@ -34,7 +33,7 @@ export const multipleTilesUpdated = createAction(
 );
 
 export const twoTilesRemoved = createAction(
-  BoardActions.TWO_TILES_REMOVED,
+  'Board/two_tiles_removed',
   (coordinates: TileCoordinatesPair) => ({
     payload: {
       coordinates,
@@ -42,10 +41,10 @@ export const twoTilesRemoved = createAction(
   }),
 );
 
-export const generateNewBoard = createAction(BoardActions.GENERATE_NEW_BOARD);
+export const generateNewBoard = createAction('Board/generate_new_board');
 
 export const newBoardGenerated = createAction(
-  BoardActions.NEW_BOARD_GENERATED,
+  'Board/new_board_generated',
   (new_board: Board) => ({
     payload: {
       new_board,
@@ -54,6 +53,6 @@ export const newBoardGenerated = createAction(
 );
 
 export const multipleTilesRestored = createAction(
-  BoardActions.MULTIPLE_TILES_RESTORED,
+  'Board/multiple_tiles_restored',
   (tile_pair: [Tile, Tile]) => ({ payload: { tile_pair } }),
 );

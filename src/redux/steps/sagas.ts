@@ -9,7 +9,6 @@ import {
 } from './actions';
 import { getType } from '@reduxjs/toolkit';
 import { selectStepIndex, selectStepStack } from './selectors';
-import { selectBoard } from '../board/selectors';
 import { twoTilesRemoved, multipleTilesRestored } from '../board/actions';
 
 function* handleTakeStepBack() {

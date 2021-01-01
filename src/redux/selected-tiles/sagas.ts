@@ -1,10 +1,5 @@
 import { put, takeEvery, select, call, delay } from 'redux-saga/effects';
-import {
-  SelectedTilesActions,
-  Tile,
-  TileUpdate,
-  TileCoordinatesPair,
-} from '~/types';
+import { Tile, TileUpdate, TileCoordinatesPair } from '~/types';
 import { selectTile, tileAddedToStack, stackCleared } from './actions';
 import { selectStack } from './selectors';
 import {
@@ -20,6 +15,7 @@ import {
   stepIndexIncremented,
   stepsMadeIncremented,
 } from '../steps/actions';
+import { getType } from '@reduxjs/toolkit';
 
 function* unselectTiles(first_tile: Tile, second_tile: Tile) {
   const update: TileUpdate = {
@@ -115,5 +111,5 @@ function* handleSelectTile({
 }
 
 export default function* selectedTileActionsFlow() {
-  yield takeEvery(SelectedTilesActions.SELECT_TILE, handleSelectTile);
+  yield takeEvery(getType(selectTile), handleSelectTile);
 }

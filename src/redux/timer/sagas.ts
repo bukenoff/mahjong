@@ -1,7 +1,14 @@
 import { put, takeLatest } from 'redux-saga/effects';
-import { TimerActions } from '~/types';
-import { timerStopped, timerResumed, timerReset } from './actions';
+import {
+  timerStopped,
+  timerResumed,
+  timerReset,
+  stopTimer,
+  resetTimer,
+  resumeTimer,
+} from './actions';
 import timerService from '~/services/TimerService';
+import { getType } from '@reduxjs/toolkit';
 
 function* handleStopTimer() {
   timerService.pause();
@@ -23,7 +30,7 @@ function* handleResetTimer() {
 }
 
 export default function* timerFlow() {
-  yield takeLatest(TimerActions.STOP_TIMER, handleStopTimer);
-  yield takeLatest(TimerActions.RESUME_TIMER, handleResumeTimer);
-  yield takeLatest(TimerActions.RESET_TIMER, handleResetTimer);
+  yield takeLatest(getType(stopTimer), handleStopTimer);
+  yield takeLatest(getType(resumeTimer), handleResumeTimer);
+  yield takeLatest(getType(resetTimer), handleResetTimer);
 }

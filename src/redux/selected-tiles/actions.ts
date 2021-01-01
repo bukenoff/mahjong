@@ -1,8 +1,8 @@
-import { SelectedTilesActions, Tile } from '~/types';
+import { Tile } from '~/types';
 import { createAction } from '@reduxjs/toolkit';
 
 export const tileAddedToStack = createAction(
-  SelectedTilesActions.TILE_ADDED_TO_STACK,
+  'SelectedTiles/tile_added_to_stack',
   (tile: Tile) => ({
     payload: {
       tile,
@@ -10,10 +10,10 @@ export const tileAddedToStack = createAction(
   }),
 );
 
-export const stackCleared = createAction(SelectedTilesActions.STACK_CLEARED);
+export const stackCleared = createAction('SelectedTiles/stack_cleared');
 
 export const selectTile = createAction(
-  SelectedTilesActions.SELECT_TILE,
+  'SelectedTiles/select_tile',
   (tile: Tile) => ({
     payload: {
       tile,

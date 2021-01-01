@@ -1,20 +1,13 @@
 import { createAction } from '@reduxjs/toolkit';
-import { TimerActions } from '~/types';
 
-export const resetTimer = createAction(TimerActions.RESET_TIMER, () => ({
-  payload: null,
-}));
+export const resetTimer = createAction('timer/reset_timer');
 
-export const timerReset = createAction(TimerActions.TIMER_RESET, () => ({
-  payload: null,
-}));
+export const timerReset = createAction('timer/timer_reset');
 
-export const stopTimer = createAction(TimerActions.STOP_TIMER, () => ({
-  payload: null,
-}));
+export const stopTimer = createAction('timer/stop_timer');
 
 export const timerStopped = createAction(
-  TimerActions.TIMER_STOPPED,
+  'timer/timer_stopped',
   (seconds: number) => ({
     payload: {
       seconds,
@@ -22,10 +15,6 @@ export const timerStopped = createAction(
   }),
 );
 
-export const resumeTimer = createAction(TimerActions.RESUME_TIMER, () => ({
-  payload: null,
-}));
+export const resumeTimer = createAction('timer/resume_timer');
 
-export const timerResumed = createAction(TimerActions.TIMER_RESUMED, () => ({
-  payload: null,
-}));
+export const timerResumed = createAction('timer/timer_resumed');

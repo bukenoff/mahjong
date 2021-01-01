@@ -1,8 +1,8 @@
 import { put, takeEvery } from 'redux-saga/effects';
-import { BoardActions } from '~/types';
-import { newBoardGenerated } from './actions';
+import { newBoardGenerated, generateNewBoard } from './actions';
 import { createBoard } from '~/logic/createBoard';
 import { resetTimer, resumeTimer } from '../timer/actions';
+import { getType } from '@reduxjs/toolkit';
 
 function* handleGenerateNewBoard() {
   const new_board = createBoard();
@@ -13,5 +13,5 @@ function* handleGenerateNewBoard() {
 }
 
 export default function* boardFlow() {
-  yield takeEvery(BoardActions.GENERATE_NEW_BOARD, handleGenerateNewBoard);
+  yield takeEvery(getType(generateNewBoard), handleGenerateNewBoard);
 }
