@@ -24,8 +24,15 @@ export default createReducer(initialState, (builder) =>
     })
     .addCase(stepAddedToStack, (state, { payload }) => {
       const { tile_pair } = payload;
+      const { step_index } = state;
+      let { steps_stack } = state;
 
-      state.steps_stack.push(tile_pair);
+      if (steps_stack.length === step_index + 1) {
+        steps_stack.push(tile_pair);
+        return;
+      }
+
+      steps_stack = steps_stack.slice(0, step_index + 1);
     })
     .addCase(newBoardGenerated, (state) => {
       state.step_index = -1;
