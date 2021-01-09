@@ -4,7 +4,7 @@ import { createBoard } from '~/logic/createBoard';
 import { resetTimer, resumeTimer } from '../timer/actions';
 import { getType } from '@reduxjs/toolkit';
 
-function* handleGenerateNewBoard() {
+export function* handleGenerateNewBoard() {
   const new_board = createBoard();
 
   yield put(newBoardGenerated(new_board));
