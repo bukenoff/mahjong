@@ -5,7 +5,7 @@ import { createBrowserHistory } from 'history';
 
 import boardReducer from './board/reducers';
 import selectedTilesReducer from './selected-tiles/reducer';
-import processingHandler from './processing/reducer';
+import processingHandler from './processing/slice';
 import timerReducer from './timer/reducer';
 import stepsReducer from './steps/reducer';
 import scoresReducer from './scores/reducer';

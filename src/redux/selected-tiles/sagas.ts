@@ -7,7 +7,7 @@ import {
   twoTilesRemoved,
   multipleTilesUpdated,
 } from '../board/actions';
-import { processingToggled } from '../processing/actions';
+import { processingToggled } from '../processing/slice';
 import { selectProcessing } from '../processing/selectors';
 import { selectTileFromBoard } from '../board/selectors';
 import {
@@ -78,7 +78,7 @@ function* handleSelectTile({
     return null;
   }
 
-  yield put(processingToggled(true));
+  yield put(processingToggled({ value: true }));
   yield put(tileAddedToStack(tile));
 
   const stack: ReturnType<typeof selectStack> = yield select(selectStack);
@@ -107,7 +107,7 @@ function* handleSelectTile({
     yield put(stackCleared());
   }
 
-  yield put(processingToggled(false));
+  yield put(processingToggled({ value: false }));
 }
 
 export default function* selectedTileActionsFlow() {
