@@ -4,7 +4,7 @@ import * as styles from './styles.scss';
 import Menu from '~/components/menu/Menu';
 import HistoryControls from '~/components/HistoryControls';
 import TimerAndMovesCount from '~/components/TimerAndMovesCount';
-import { generateNewBoard } from '~/redux/board/actions';
+import { generateNewBoard } from '~/redux/board/slice';
 import useActions from '~/hooks/useActions';
 import TimerControls from '~/components/TimerControls';
 import { selectIsStopped } from '~/redux/timer/selectors';

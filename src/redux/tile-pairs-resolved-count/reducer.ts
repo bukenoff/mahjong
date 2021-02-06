@@ -1,10 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { StepsState, TilePairsResolvedCountState } from '~/types';
+import { TilePairsResolvedCountState } from '~/types';
 import {
   tilePairsResolvedCountDecremented,
   tilePairsResolvedCountIncremented,
 } from './actions';
-import { newBoardGenerated } from '../board/actions';
+import { newBoardGenerated } from '../board/slice';
 
 const initialState: TilePairsResolvedCountState = 0;
 

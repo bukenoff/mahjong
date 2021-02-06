@@ -6,7 +6,7 @@ import {
   stepAddedToStack,
   stepsMadeIncremented,
 } from './actions';
-import { newBoardGenerated } from '../board/actions';
+import { newBoardGenerated } from '../board/slice';
 
 const initialState: StepsState = {
   step_index: -1,

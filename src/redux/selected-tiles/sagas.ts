@@ -1,12 +1,17 @@
 import { put, takeEvery, select, call, delay } from 'redux-saga/effects';
-import { Tile, TileUpdate, TileCoordinatesPair } from '~/types';
+import {
+  Tile,
+  TileUpdate,
+  TileCoordinatesPair,
+  TileCoordinates,
+} from '~/types';
 import { selectTile, tileAddedToStack, stackCleared } from './actions';
 import { selectStack } from './selectors';
 import {
   tileUpdated,
   twoTilesRemoved,
   multipleTilesUpdated,
-} from '../board/actions';
+} from '../board/slice';
 import { processingToggled } from '../processing/slice';
 import { selectProcessing } from '../processing/selectors';
 import { selectTileFromBoard } from '../board/selectors';
@@ -22,12 +27,12 @@ function* unselectTiles(first_tile: Tile, second_tile: Tile) {
     is_selected: false,
   };
 
-  const two_tiles_coordinates: TileCoordinatesPair = [
+  const coordinates: TileCoordinatesPair = [
     first_tile.coordinates,
     second_tile.coordinates,
   ];
 
-  yield put(multipleTilesUpdated(two_tiles_coordinates, update));
+  yield put(multipleTilesUpdated({ coordinates, update }));
 }
 
 function* resolveTiles(first_tile: Tile, second_tile: Tile) {
@@ -35,7 +40,7 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
     is_blocked: false,
   };
 
-  const tiles_to_update_coordinates = [];
+  const tiles_to_update_coordinates: TileCoordinates[] = [];
   const all_unblocks = [...first_tile.unblocks, ...second_tile.unblocks];
 
   for (const coordinates of all_unblocks) {
@@ -53,7 +58,12 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
   }
 
   if (tiles_to_update_coordinates.length) {
-    yield put(multipleTilesUpdated(tiles_to_update_coordinates, update));
+    yield put(
+      multipleTilesUpdated({
+        coordinates: tiles_to_update_coordinates,
+        update,
+      }),
+    );
   }
 
   const two_tiles_coordinates: TileCoordinatesPair = [
@@ -62,7 +72,7 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
   ];
 
   yield put(stepAddedToStack([first_tile, second_tile]));
-  yield put(twoTilesRemoved(two_tiles_coordinates));
+  yield put(twoTilesRemoved({ coordinates: two_tiles_coordinates }));
   yield put(stepIndexIncremented());
   yield put(stepsMadeIncremented());
 }
@@ -83,7 +93,12 @@ function* handleSelectTile({
 
   const stack: ReturnType<typeof selectStack> = yield select(selectStack);
 
-  yield put(tileUpdated(tile.coordinates, { is_selected: true }));
+  yield put(
+    tileUpdated({
+      coordinates: tile.coordinates,
+      update: { is_selected: true },
+    }),
+  );
 
   if (stack.length === 2) {
     // once we have two tiles selected

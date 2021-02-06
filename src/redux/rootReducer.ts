@@ -3,7 +3,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { createBrowserHistory } from 'history';
 
-import boardReducer from './board/reducers';
+import boardReducer from './board/slice';
 import selectedTilesReducer from './selected-tiles/reducer';
 import processingHandler from './processing/slice';
 import timerReducer from './timer/reducer';

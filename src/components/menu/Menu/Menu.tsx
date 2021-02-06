@@ -1,16 +1,14 @@
 import React, { FC, useState, useCallback } from 'react';
 import { FiMenu } from 'react-icons/fi';
 import * as styles from './styles.scss';
-import { generateNewBoard as generateNewBoardAction } from '~/redux/board/actions';
+import { generateNewBoard as generateNewBoardAction } from '~/redux/board/slice';
 import MenuItem from '../MenuItem';
 
 interface Props {
   generateNewBoard: typeof generateNewBoardAction;
 }
 
-const Menu: FC<Props> = ({
-  generateNewBoard,
-}) => {
+const Menu: FC<Props> = ({ generateNewBoard }) => {
   const [is_menu_open, setMenuOpen] = useState(false);
 
   const handleMenuToggleClick = useCallback(() => {
@@ -31,17 +29,15 @@ const Menu: FC<Props> = ({
       >
         <FiMenu />
       </button>
-      {
-        is_menu_open && (
-          <ul className={styles.menu} data-testid="menu-list">
-            <MenuItem
-              title="new game"
-              clickHandler={generateNewBoard}
-              closeMenu={closeMenu}
-            />
-          </ul>
-        )
-      }
+      {is_menu_open && (
+        <ul className={styles.menu} data-testid="menu-list">
+          <MenuItem
+            title="new game"
+            clickHandler={generateNewBoard}
+            closeMenu={closeMenu}
+          />
+        </ul>
+      )}
     </div>
   );
 };

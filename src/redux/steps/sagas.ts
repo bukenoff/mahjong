@@ -9,7 +9,7 @@ import {
 } from './actions';
 import { getType } from '@reduxjs/toolkit';
 import { selectStepIndex, selectStepStack } from './selectors';
-import { twoTilesRemoved, multipleTilesRestored } from '../board/actions';
+import { twoTilesRemoved, multipleTilesRestored } from '../board/slice';
 
 function* handleTakeStepBack() {
   const step_index: ReturnType<typeof selectStepIndex> = yield select(
@@ -23,7 +23,7 @@ function* handleTakeStepBack() {
 
   const [first_tile, second_tile] = steps_stack[step_index];
 
-  yield put(multipleTilesRestored([first_tile, second_tile]));
+  yield put(multipleTilesRestored({ tile_pair: [first_tile, second_tile] }));
   yield put(stepBackTaken());
   yield put(stepIndexDecremented());
 }
@@ -40,7 +40,11 @@ function* handleTakeStepForward() {
 
   const [first_tile, second_tile] = steps_stack[step_index + 1];
 
-  yield put(twoTilesRemoved([first_tile.coordinates, second_tile.coordinates]));
+  yield put(
+    twoTilesRemoved({
+      coordinates: [first_tile.coordinates, second_tile.coordinates],
+    }),
+  );
   yield put(stepForwardTaken());
   yield put(stepIndexIncremented());
 }

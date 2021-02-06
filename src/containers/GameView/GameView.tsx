@@ -4,7 +4,7 @@ import Board from '~/components/Board';
 import GameControlPanel from '~/containers/GameControlPanel';
 import * as styles from './styles.scss';
 import { selectIsStopped } from '~/redux/timer/selectors';
-import { generateNewBoard } from '~/redux/board/actions';
+import { generateNewBoard } from '~/redux/board/slice';
 
 export const GameView: FC = () => {
   const is_stopped = useSelector(selectIsStopped);
@@ -12,7 +12,7 @@ export const GameView: FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(generateNewBoard());
+    dispatch(generateNewBoard(''));
   }, []);
 
   return (
