@@ -7,7 +7,7 @@ import { TileIconStyles } from '~/styles/styles';
 
 interface Props {
   tile: TileType | null;
-  selectTile: (tile: TileType) => void;
+  selectTile: (tile: { tile: TileType }) => void;
 }
 
 export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
@@ -20,7 +20,7 @@ export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
       return null;
     }
 
-    selectTile(tile);
+    selectTile({ tile });
   }, [selectTile, tile]);
 
   const tileBackgroundColor = useMemo(() => {

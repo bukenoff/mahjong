@@ -5,7 +5,7 @@ import {
   TileCoordinatesPair,
   TileCoordinates,
 } from '~/types';
-import { selectTile, tileAddedToStack, stackCleared } from './actions';
+import { selectTile, tileAddedToStack, stackCleared } from './slice';
 import { selectStack } from './selectors';
 import {
   tileUpdated,
@@ -89,7 +89,7 @@ function* handleSelectTile({
   }
 
   yield put(processingToggled({ value: true }));
-  yield put(tileAddedToStack(tile));
+  yield put(tileAddedToStack({ tile }));
 
   const stack: ReturnType<typeof selectStack> = yield select(selectStack);
 
