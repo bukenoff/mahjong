@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import * as styles from './styles.scss';
 import Menu from '~/components/menu/Menu';
@@ -8,7 +8,7 @@ import { generateNewBoard } from '~/redux/board/slice';
 import useActions from '~/hooks/useActions';
 import TimerControls from '~/components/TimerControls';
 import { selectIsStopped } from '~/redux/timer/selectors';
-import { stopTimer, resumeTimer } from '~/redux/timer/actions';
+import { stopTimer, resumeTimer } from '~/redux/timer/slice';
 import { takeStepBack, takeStepForward } from '~/redux/steps/actions';
 import {
   selectStepStack,

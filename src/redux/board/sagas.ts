@@ -1,7 +1,7 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import { newBoardGenerated, generateNewBoard } from './slice';
 import { createBoard } from '~/logic/createBoard';
-import { resetTimer, resumeTimer } from '../timer/actions';
+import { resetTimer, resumeTimer } from '../timer/slice';
 import { getType } from '@reduxjs/toolkit';
 
 export function* handleGenerateNewBoard() {

@@ -6,7 +6,7 @@ import { createBrowserHistory } from 'history';
 import boardReducer from './board/slice';
 import selectedTilesReducer from './selected-tiles/slice';
 import processingHandler from './processing/slice';
-import timerReducer from './timer/reducer';
+import timerReducer from './timer/slice';
 import stepsReducer from './steps/reducer';
 import scoresReducer from './scores/reducer';
 import { connectRouter } from 'connected-react-router';

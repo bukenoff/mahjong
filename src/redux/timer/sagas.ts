@@ -6,7 +6,7 @@ import {
   stopTimer,
   resetTimer,
   resumeTimer,
-} from './actions';
+} from './slice';
 import timerService from '~/services/TimerService';
 import { getType } from '@reduxjs/toolkit';
 
@@ -14,7 +14,7 @@ function* handleStopTimer() {
   timerService.pause();
   const seconds = timerService.seconds;
 
-  yield put(timerStopped(seconds));
+  yield put(timerStopped({ seconds }));
 }
 
 function* handleResumeTimer() {
