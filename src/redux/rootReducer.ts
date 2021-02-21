@@ -8,7 +8,7 @@ import selectedTilesReducer from './selected-tiles/slice';
 import processingHandler from './processing/slice';
 import timerReducer from './timer/slice';
 import stepsReducer from './steps/reducer';
-import scoresReducer from './scores/reducer';
+import scoresReducer from './scores/slice';
 import { connectRouter } from 'connected-react-router';
 
 const scores_persist_config = {

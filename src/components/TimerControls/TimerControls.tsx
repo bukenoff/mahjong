@@ -3,7 +3,7 @@ import { FiPlay, FiPause } from 'react-icons/fi';
 import {
   stopTimer as stopTimerAction,
   resumeTimer as resumeTimerAction,
-} from '~/redux/timer/actions';
+} from '~/redux/timer/slice';
 import * as styles from './styles.scss';
 
 interface Props {
