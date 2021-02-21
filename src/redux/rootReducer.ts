@@ -7,7 +7,7 @@ import boardReducer from './board/slice';
 import selectedTilesReducer from './selected-tiles/slice';
 import processingHandler from './processing/slice';
 import timerReducer from './timer/slice';
-import stepsReducer from './steps/reducer';
+import stepsReducer from './steps/slice';
 import scoresReducer from './scores/slice';
 import { connectRouter } from 'connected-react-router';
 

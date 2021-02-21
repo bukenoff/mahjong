@@ -6,7 +6,7 @@ import {
   stepForwardTaken,
   stepIndexDecremented,
   stepIndexIncremented,
-} from './actions';
+} from './slice';
 import { getType } from '@reduxjs/toolkit';
 import { selectStepIndex, selectStepStack } from './selectors';
 import { twoTilesRemoved, multipleTilesRestored } from '../board/slice';

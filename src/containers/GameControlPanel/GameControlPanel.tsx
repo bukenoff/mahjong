@@ -9,7 +9,7 @@ import useActions from '~/hooks/useActions';
 import TimerControls from '~/components/TimerControls';
 import { selectIsStopped } from '~/redux/timer/selectors';
 import { stopTimer, resumeTimer } from '~/redux/timer/slice';
-import { takeStepBack, takeStepForward } from '~/redux/steps/actions';
+import { takeStepBack, takeStepForward } from '~/redux/steps/slice';
 import {
   selectStepStack,
   selectIsStepForwardPossible,

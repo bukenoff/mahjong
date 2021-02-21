@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 import * as styles from './styles.scss';
-import * as stepsActions from '~/redux/steps/actions';
-import { StepsState } from '~/types';
+import * as stepsActions from '~/redux/steps/slice';
 
 interface Props {
   takeStepBack: typeof stepsActions.takeStepBack;

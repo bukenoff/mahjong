@@ -19,7 +19,7 @@ import {
   stepAddedToStack,
   stepIndexIncremented,
   stepsMadeIncremented,
-} from '../steps/actions';
+} from '../steps/slice';
 import { getType } from '@reduxjs/toolkit';
 
 function* unselectTiles(first_tile: Tile, second_tile: Tile) {
@@ -71,7 +71,7 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
     second_tile.coordinates,
   ];
 
-  yield put(stepAddedToStack([first_tile, second_tile]));
+  yield put(stepAddedToStack({ tile_pair: [first_tile, second_tile] }));
   yield put(twoTilesRemoved({ coordinates: two_tiles_coordinates }));
   yield put(stepIndexIncremented());
   yield put(stepsMadeIncremented());
