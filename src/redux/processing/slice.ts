@@ -13,5 +13,7 @@ const processing_slice = createSlice({
   },
 });
 
-export const { processingToggled } = processing_slice.actions;
-export default processing_slice.reducer;
+export const {
+  actions: processing_actions,
+  reducer: processing_reducer,
+} = processing_slice;

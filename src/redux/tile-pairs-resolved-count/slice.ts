@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { createSlice, Action } from '@reduxjs/toolkit';
 import { TilePairsResolvedCountState } from '~/types';
-import { newBoardGenerated } from '../board/slice';
+import { actions } from '../';
 
 const initial_state: TilePairsResolvedCountState = 0;
 
@@ -17,13 +17,12 @@ const tiles_pairs_resolved_count_slice = createSlice({
     },
   },
   extraReducers: (builder) =>
-    builder.addCase(newBoardGenerated, (state) => {
+    builder.addCase(actions.newBoardGenerated, (state) => {
       state = 0;
     }),
 });
 
 export const {
-  tilePairsResolvedCountDecremented,
-  tilePairsResolvedCountIncremented,
-} = tiles_pairs_resolved_count_slice.actions;
-export default tiles_pairs_resolved_count_slice.reducer;
+  actions: tile_pairs_resolved_count_actions,
+  reducer: tile_pairs_resolved_count_reducer,
+} = tiles_pairs_resolved_count_slice;

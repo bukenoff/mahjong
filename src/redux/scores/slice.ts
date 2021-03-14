@@ -19,5 +19,7 @@ const scores_slice = createSlice({
   },
 });
 
-export const { scoreAdded } = scores_slice.actions;
-export default scores_slice.reducer;
+export const {
+  actions: scores_actions,
+  reducer: scores_reducer,
+} = scores_slice;

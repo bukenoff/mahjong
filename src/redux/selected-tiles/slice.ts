@@ -23,8 +23,6 @@ const selected_tiles_slice = createSlice({
 });
 
 export const {
-  tileAddedToStack,
-  stackCleared,
-  selectTile,
-} = selected_tiles_slice.actions;
-export default selected_tiles_slice.reducer;
+  actions: selected_tiles_actions,
+  reducer: selected_tiles_reducer,
+} = selected_tiles_slice;

@@ -5,22 +5,11 @@ import {
   TileCoordinatesPair,
   TileCoordinates,
 } from '~/types';
-import { selectTile, tileAddedToStack, stackCleared } from './slice';
 import { selectStack } from './selectors';
-import {
-  tileUpdated,
-  twoTilesRemoved,
-  multipleTilesUpdated,
-} from '../board/slice';
-import { processingToggled } from '../processing/slice';
 import { selectProcessing } from '../processing/selectors';
 import { selectTileFromBoard } from '../board/selectors';
-import {
-  stepAddedToStack,
-  stepIndexIncremented,
-  stepsMadeIncremented,
-} from '../steps/slice';
 import { getType } from '@reduxjs/toolkit';
+import { actions } from '../';
 
 function* unselectTiles(first_tile: Tile, second_tile: Tile) {
   const update: TileUpdate = {
@@ -32,7 +21,7 @@ function* unselectTiles(first_tile: Tile, second_tile: Tile) {
     second_tile.coordinates,
   ];
 
-  yield put(multipleTilesUpdated({ coordinates, update }));
+  yield put(actions.multipleTilesUpdated({ coordinates, update }));
 }
 
 function* resolveTiles(first_tile: Tile, second_tile: Tile) {
@@ -41,7 +30,15 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
   };
 
   const tiles_to_update_coordinates: TileCoordinates[] = [];
-  const all_unblocks = [...first_tile.unblocks, ...second_tile.unblocks];
+  const all_unblocks = [];
+
+  if (first_tile.unblocks) {
+    all_unblocks.push(...first_tile.unblocks);
+  }
+
+  if (second_tile.unblocks) {
+    all_unblocks.push(...second_tile.unblocks);
+  }
 
   for (const coordinates of all_unblocks) {
     const { layer, row, col } = coordinates;
@@ -59,7 +56,7 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
 
   if (tiles_to_update_coordinates.length) {
     yield put(
-      multipleTilesUpdated({
+      actions.multipleTilesUpdated({
         coordinates: tiles_to_update_coordinates,
         update,
       }),
@@ -71,15 +68,15 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
     second_tile.coordinates,
   ];
 
-  yield put(stepAddedToStack({ tile_pair: [first_tile, second_tile] }));
-  yield put(twoTilesRemoved({ coordinates: two_tiles_coordinates }));
-  yield put(stepIndexIncremented());
-  yield put(stepsMadeIncremented());
+  yield put(actions.stepAddedToStack({ tile_pair: [first_tile, second_tile] }));
+  yield put(actions.twoTilesRemoved({ coordinates: two_tiles_coordinates }));
+  yield put(actions.stepIndexIncremented());
+  yield put(actions.stepsMadeIncremented());
 }
 
 function* handleSelectTile({
   payload: { tile },
-}: ReturnType<typeof selectTile>) {
+}: ReturnType<typeof actions.selectTile>) {
   const processing: ReturnType<typeof selectProcessing> = yield select(
     selectProcessing,
   );
@@ -88,13 +85,13 @@ function* handleSelectTile({
     return null;
   }
 
-  yield put(processingToggled({ value: true }));
-  yield put(tileAddedToStack({ tile }));
+  yield put(actions.processingToggled({ value: true }));
+  yield put(actions.tileAddedToStack({ tile }));
 
   const stack: ReturnType<typeof selectStack> = yield select(selectStack);
 
   yield put(
-    tileUpdated({
+    actions.tileUpdated({
       coordinates: tile.coordinates,
       update: { is_selected: true },
     }),
@@ -119,12 +116,12 @@ function* handleSelectTile({
       yield call(unselectTiles, first_tile, second_tile);
     }
 
-    yield put(stackCleared());
+    yield put(actions.stackCleared());
   }
 
-  yield put(processingToggled({ value: false }));
+  yield put(actions.processingToggled({ value: false }));
 }
 
 export default function* selectedTileActionsFlow() {
-  yield takeEvery(getType(selectTile), handleSelectTile);
+  yield takeEvery(getType(actions.selectTile), handleSelectTile);
 }

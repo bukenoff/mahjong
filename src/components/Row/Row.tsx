@@ -2,7 +2,7 @@ import React, { FC, useMemo } from 'react';
 import Tile from '../Tile';
 import { Row as RowType } from '~/types';
 import useActions from '~/hooks/useActions';
-import { selectTile as selectTileActionCreator } from '~/redux/selected-tiles/slice';
+import { actions } from '~/redux';
 
 interface Props {
   row: RowType;
@@ -13,7 +13,7 @@ export const Row: FC<Props> = ({ row }) => {
     return Object.keys(row);
   }, [row]);
 
-  const selectTile = useActions(selectTileActionCreator, null);
+  const selectTile = useActions(actions.selectTile, null);
 
   return (
     <>

@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
 import * as styles from './styles.scss';
-import * as stepsActions from '~/redux/steps/slice';
+import { actions } from '~/redux';
 
 interface Props {
-  takeStepBack: typeof stepsActions.takeStepBack;
-  takeStepForward: typeof stepsActions.takeStepForward;
+  takeStepBack: typeof actions.takeStepBack;
+  takeStepForward: typeof actions.takeStepForward;
   is_step_forward_possible: boolean;
   is_step_back_possible: boolean;
 }

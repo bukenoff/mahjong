@@ -28,12 +28,4 @@ const timer_slice = createSlice({
   },
 });
 
-export const {
-  timerResumed,
-  timerStopped,
-  resetTimer,
-  timerReset,
-  stopTimer,
-  resumeTimer,
-} = timer_slice.actions;
-export default timer_slice.reducer;
+export const { actions: timer_actions, reducer: timer_reducer } = timer_slice;

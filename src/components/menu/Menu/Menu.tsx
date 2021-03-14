@@ -1,11 +1,11 @@
 import React, { FC, useState, useCallback } from 'react';
 import { FiMenu } from 'react-icons/fi';
 import * as styles from './styles.scss';
-import { generateNewBoard as generateNewBoardAction } from '~/redux/board/slice';
+import { actions } from '~/redux';
 import MenuItem from '../MenuItem';
 
 interface Props {
-  generateNewBoard: typeof generateNewBoardAction;
+  generateNewBoard: typeof actions.generateNewBoard;
 }
 
 const Menu: FC<Props> = ({ generateNewBoard }) => {

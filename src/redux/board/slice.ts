@@ -99,12 +99,4 @@ const board_slice = createSlice({
   },
 });
 
-export const {
-  tileUpdated,
-  multipleTilesRestored,
-  multipleTilesUpdated,
-  twoTilesRemoved,
-  newBoardGenerated,
-  generateNewBoard,
-} = board_slice.actions;
-export default board_slice.reducer;
+export const { actions: board_actions, reducer: board_reducer } = board_slice;

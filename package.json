@@ -75,7 +75,7 @@
     "tape": "^4.10.1",
     "ts-jest": "^26.1.1",
     "ts-loader": "^5.4.5",
-    "typescript": "^3.9.6",
+    "typescript": "^4.2.3",
     "url-loader": "^1.0.1",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.0.8",
