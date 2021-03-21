@@ -1,15 +1,15 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { TimerControls } from './TimerControls';
-import * as timerActions from '../../redux/timer/actions';
+import { actions } from '../../redux';
 
 describe('TimerControls component', () => {
   it('renders without crash', () => {
     const { getByTestId } = render(
       <TimerControls
         is_stopped={true}
-        stopTimer={timerActions.stopTimer}
-        resumeTimer={timerActions.resumeTimer}
+        stopTimer={actions.stopTimer}
+        resumeTimer={actions.resumeTimer}
       />,
     );
     const controlsButton = getByTestId('timer-controls');
@@ -20,8 +20,8 @@ describe('TimerControls component', () => {
     const { getByTestId } = render(
       <TimerControls
         is_stopped={false}
-        stopTimer={timerActions.stopTimer}
-        resumeTimer={timerActions.resumeTimer}
+        stopTimer={actions.stopTimer}
+        resumeTimer={actions.resumeTimer}
       />,
     );
     const controlsButton = getByTestId('fi-pause-icon');
@@ -32,8 +32,8 @@ describe('TimerControls component', () => {
     const { getByTestId } = render(
       <TimerControls
         is_stopped={true}
-        stopTimer={timerActions.stopTimer}
-        resumeTimer={timerActions.resumeTimer}
+        stopTimer={actions.stopTimer}
+        resumeTimer={actions.resumeTimer}
       />,
     );
     const controlsButton = getByTestId('fi-play-icon');

@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { HistoryControls } from './HistoryControls';
-import * as stepActions from '../../redux/steps/actions';
+import { actions } from '../../redux';
 
 describe('HistoryControls component', () => {
   it('renders without crash', () => {
-    const takeStepBackMock = (jest.fn() as unknown) as typeof stepActions.takeStepBack;
-    const takeStepForwardMock = (jest.fn() as unknown) as typeof stepActions.takeStepForward;
+    const takeStepBackMock = (jest.fn() as unknown) as typeof actions.takeStepBack;
+    const takeStepForwardMock = (jest.fn() as unknown) as typeof actions.takeStepForward;
 
     const { getByTestId } = render(
       <HistoryControls
@@ -22,8 +22,8 @@ describe('HistoryControls component', () => {
   });
 
   it('should disable step back and step forward buttons', () => {
-    const takeStepBackMock = (jest.fn() as unknown) as typeof stepActions.takeStepBack;
-    const takeStepForwardMock = (jest.fn() as unknown) as typeof stepActions.takeStepForward;
+    const takeStepBackMock = (jest.fn() as unknown) as typeof actions.takeStepBack;
+    const takeStepForwardMock = (jest.fn() as unknown) as typeof actions.takeStepForward;
 
     const { getByTestId } = render(
       <HistoryControls
@@ -42,8 +42,8 @@ describe('HistoryControls component', () => {
   });
 
   it('should enable step back and step forward buttons', () => {
-    const takeStepBackMock = (jest.fn() as unknown) as typeof stepActions.takeStepBack;
-    const takeStepForwardMock = (jest.fn() as unknown) as typeof stepActions.takeStepForward;
+    const takeStepBackMock = (jest.fn() as unknown) as typeof actions.takeStepBack;
+    const takeStepForwardMock = (jest.fn() as unknown) as typeof actions.takeStepForward;
 
     const { getByTestId } = render(
       <HistoryControls
@@ -62,8 +62,8 @@ describe('HistoryControls component', () => {
   });
 
   it('should call takeStepBack when step back button is clicked', () => {
-    const takeStepBackMock = (jest.fn() as unknown) as typeof stepActions.takeStepBack;
-    const takeStepForwardMock = (jest.fn() as unknown) as typeof stepActions.takeStepForward;
+    const takeStepBackMock = (jest.fn() as unknown) as typeof actions.takeStepBack;
+    const takeStepForwardMock = (jest.fn() as unknown) as typeof actions.takeStepForward;
 
     const { getByTestId } = render(
       <HistoryControls
@@ -82,8 +82,8 @@ describe('HistoryControls component', () => {
   });
 
   it('should call takeStepForward when step forward button is clicked', () => {
-    const takeStepBackMock = (jest.fn() as unknown) as typeof stepActions.takeStepBack;
-    const takeStepForwardMock = (jest.fn() as unknown) as typeof stepActions.takeStepForward;
+    const takeStepBackMock = (jest.fn() as unknown) as typeof actions.takeStepBack;
+    const takeStepForwardMock = (jest.fn() as unknown) as typeof actions.takeStepForward;
 
     const { getByTestId } = render(
       <HistoryControls
