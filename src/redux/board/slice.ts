@@ -1,9 +1,4 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-import {
-  createSlice,
-  PayloadAction,
-  ActionCreatorWithoutPayload,
-} from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, Action } from '@reduxjs/toolkit';
 import {
   BoardState,
   Tile,
@@ -19,7 +14,7 @@ const board_slice = createSlice({
   name: 'board',
   initialState: initial_state,
   reducers: {
-    generateNewBoard(state, action: PayloadAction<any | void>) {},
+    generateNewBoard(state, action: Action) {},
     tileUpdated(
       state,
       action: PayloadAction<{

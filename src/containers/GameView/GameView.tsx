@@ -12,7 +12,7 @@ export const GameView: FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(actions.generateNewBoard(''));
+    dispatch(actions.generateNewBoard());
   }, []);
 
   return (
