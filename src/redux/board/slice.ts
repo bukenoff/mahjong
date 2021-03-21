@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { createSlice, PayloadAction, Action } from '@reduxjs/toolkit';
 import {
   BoardState,

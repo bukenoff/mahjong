@@ -6,7 +6,7 @@ describe('moveCardSaga', () => {
   it('Dispatches resumeTimer after succesfully generating a new board', () => {
     return expectSaga(handleGenerateNewBoard)
       .put(actions.resumeTimer())
-      .dispatch(actions.generateNewBoard(''))
+      .dispatch(actions.generateNewBoard())
       .run();
   });
 });
