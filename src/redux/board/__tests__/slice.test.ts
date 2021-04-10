@@ -2,8 +2,8 @@ import { board_reducer } from '../slice';
 import { board_actions } from '../slice';
 import { Tile, Board } from '../../../types';
 
-describe('Board reducer', () => {
-  it('should be defined', () => {
+describe('Board slice', () => {
+  it('reducer should be defined', () => {
     expect(board_reducer).toBeDefined();
   });
 
