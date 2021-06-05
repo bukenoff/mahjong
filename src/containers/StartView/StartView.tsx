@@ -9,6 +9,9 @@ export const StartView: FC = () => {
       <button type="button" className={styles.start_button}>
         <Link to={PATHS.GAME}>Start game</Link>
       </button>
+      <button type="button" className={styles.start_button}>
+        <Link to={PATHS.SCORES}>Scores</Link>
+      </button>
     </div>
   );
 };

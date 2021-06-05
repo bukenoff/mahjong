@@ -3,6 +3,8 @@ import { FiMenu } from 'react-icons/fi';
 import * as styles from './styles.scss';
 import { actions } from '~/redux';
 import MenuItem from '../MenuItem';
+import { push } from 'connected-react-router';
+import { PATHS } from '~/constants/paths';
 
 interface Props {
   generateNewBoard: typeof actions.generateNewBoard;
@@ -34,6 +36,12 @@ const Menu: FC<Props> = ({ generateNewBoard }) => {
           <MenuItem
             title="new game"
             clickHandler={generateNewBoard}
+            closeMenu={closeMenu}
+          />
+          <MenuItem
+            title="scores"
+            // TODO: Set up navigating to scores page
+            clickHandler={() => console.log('click works')}
             closeMenu={closeMenu}
           />
         </ul>

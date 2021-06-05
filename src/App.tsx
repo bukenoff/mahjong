@@ -9,6 +9,7 @@ import '~/styles/global.scss';
 
 import GameView from './containers/GameView';
 import StartView from './containers/StartView';
+import Scores from './containers/Scores';
 import { PATHS } from './constants/paths';
 
 const App: FC = () => (
@@ -18,6 +19,7 @@ const App: FC = () => (
         <main>
           <Route exact path={PATHS.HOME} component={StartView} />
           <Route path={PATHS.GAME} component={GameView} />
+          <Route path={PATHS.SCORES} component={Scores} />
         </main>
       </ConnectedRouter>
     </PersistGate>
