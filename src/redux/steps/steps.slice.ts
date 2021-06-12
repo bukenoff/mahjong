@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { createSlice, PayloadAction, Action } from '@reduxjs/toolkit';
 import { Tile, StepsState } from '~/types';
-import { board_actions } from '../board/slice';
+import { board_actions } from '../board/board.slice';
 
 const initial_state: StepsState = {
   step_index: -1,

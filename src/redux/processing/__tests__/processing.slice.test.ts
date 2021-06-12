@@ -1,4 +1,4 @@
-import { processing_actions, processing_reducer } from '../slice';
+import { processing_actions, processing_reducer } from '../processing.slice';
 
 describe('Processing slice', () => {
   it('reducer should be defined', () => {

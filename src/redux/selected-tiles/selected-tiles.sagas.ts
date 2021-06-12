@@ -5,9 +5,9 @@ import {
   TileCoordinatesPair,
   TileCoordinates,
 } from '~/types';
-import { selectStack } from './selectors';
-import { selectProcessing } from '../processing/selectors';
-import { selectTileFromBoard } from '../board/selectors';
+import { selectStack } from './selected-tiles.selectors';
+import { selectProcessing } from '../processing/processing.selectors';
+import { selectTileFromBoard } from '../board/board.selectors';
 import { getType } from '@reduxjs/toolkit';
 import { actions } from '../';
 

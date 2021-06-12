@@ -1,7 +1,7 @@
 import { put, takeLatest, select } from 'redux-saga/effects';
 import { actions } from '../';
 import { getType } from '@reduxjs/toolkit';
-import { selectStepIndex, selectStepStack } from './selectors';
+import { selectStepIndex, selectStepStack } from './steps.selectors';
 
 function* handleTakeStepBack() {
   const step_index: ReturnType<typeof selectStepIndex> = yield select(
