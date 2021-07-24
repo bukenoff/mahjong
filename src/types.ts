@@ -9,6 +9,7 @@ export interface State {
   timer: any; // any for now, since I don't have any solid implementation ideas
   steps: StepsState;
   tile_pairs_resolved_count: TilePairsResolvedCountState;
+  scores: ScoresState;
 }
 
 export type TilePairsResolvedCountState = number;
@@ -16,6 +17,15 @@ export type TilePairsResolvedCountState = number;
 export interface TimerState {
   is_stopped: boolean;
   stopped_at: number | null;
+}
+
+export interface Player {
+  name: string;
+  time: number;
+}
+
+export interface ScoresState {
+  players: Player[];
 }
 
 export interface StepsState {
