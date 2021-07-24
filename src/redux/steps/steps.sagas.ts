@@ -2,6 +2,8 @@ import { put, takeLatest, select } from 'redux-saga/effects';
 import { actions } from '../';
 import { getType } from '@reduxjs/toolkit';
 import { selectStepIndex, selectStepStack } from './steps.selectors';
+import { push } from 'connected-react-router';
+import { PATHS } from '~/constants/paths';
 
 function* handleTakeStepBack() {
   const step_index: ReturnType<typeof selectStepIndex> = yield select(
@@ -45,7 +47,21 @@ function* handleTakeStepForward() {
   yield put(actions.stepIndexIncremented());
 }
 
+function* handleStepIndexIncremented() {
+  const stepIndex: ReturnType<typeof selectStepIndex> = yield select(
+    selectStepIndex,
+  );
+
+  if (stepIndex === 71) {
+    yield put(push(PATHS.SCORES));
+  }
+}
+
 export default function* stepsFlow() {
   yield takeLatest(getType(actions.takeStepBack), handleTakeStepBack);
   yield takeLatest(getType(actions.takeStepForward), handleTakeStepForward);
+  yield takeLatest(
+    getType(actions.stepIndexIncremented),
+    handleStepIndexIncremented,
+  );
 }
