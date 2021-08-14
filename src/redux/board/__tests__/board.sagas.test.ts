@@ -1,5 +1,5 @@
 import { expectSaga } from 'redux-saga-test-plan';
-import { handleGenerateNewBoard } from '../sagas';
+import { handleGenerateNewBoard } from '../board.sagas';
 import { actions } from '../../';
 
 describe('moveCardSaga', () => {

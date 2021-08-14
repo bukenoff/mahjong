@@ -1,5 +1,5 @@
-import { board_reducer } from '../slice';
-import { board_actions } from '../slice';
+import { board_reducer } from '../board.slice';
+import { board_actions } from '../board.slice';
 import { Tile, Board } from '../../../types';
 
 describe('Board slice', () => {
