@@ -26,6 +26,7 @@ export interface Player {
 
 export interface ScoresState {
   players: Player[];
+  currentPlayerScore: number;
 }
 
 export interface StepsState {

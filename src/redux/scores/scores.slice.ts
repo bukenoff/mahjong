@@ -3,6 +3,7 @@ import { Player, ScoresState } from '~/types';
 
 const initial_state: ScoresState = {
   players: [],
+  currentPlayerScore: 0,
 };
 
 const scores_slice = createSlice({
@@ -12,6 +13,10 @@ const scores_slice = createSlice({
     scoreAdded: (state, action: PayloadAction<Player>) => {
       const { name, time } = action.payload;
       state.players.push({ name, time });
+    },
+    gameStopped: (state, action: PayloadAction<{ score: number }>) => {
+      const { score } = action.payload;
+      state.currentPlayerScore = score;
     },
   },
 });

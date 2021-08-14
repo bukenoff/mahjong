@@ -4,6 +4,7 @@ import { getType } from '@reduxjs/toolkit';
 import { selectStepIndex, selectStepStack } from './steps.selectors';
 import { push } from 'connected-react-router';
 import { PATHS } from '~/constants/paths';
+import timerService from '~/services/TimerService';
 
 function* handleTakeStepBack() {
   const step_index: ReturnType<typeof selectStepIndex> = yield select(
@@ -53,6 +54,8 @@ function* handleStepIndexIncremented() {
   );
 
   if (stepIndex === 71) {
+    const score = timerService.seconds;
+    yield put(actions.gameStopped({ score }));
     yield put(push(PATHS.SCORES));
   }
 }
