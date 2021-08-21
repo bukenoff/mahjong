@@ -1,8 +1,27 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Player, ScoresState } from '~/types';
 
+const dudes = [
+  {
+    name: 'Zeno',
+    time: 114,
+  },
+  {
+    name: 'Epictetus',
+    time: 121,
+  },
+  {
+    name: 'Lucilius Seneca',
+    time: 130,
+  },
+  {
+    name: 'Marcus Aurelius',
+    time: 144,
+  },
+];
+
 const initial_state: ScoresState = {
-  players: [],
+  players: dudes,
   currentPlayerScore: 0,
 };
 
@@ -14,9 +33,18 @@ const scores_slice = createSlice({
       const { name, time } = action.payload;
       state.players.push({ name, time });
     },
-    gameStopped: (state, action: PayloadAction<{ score: number }>) => {
-      const { score } = action.payload;
-      state.currentPlayerScore = score;
+    gameStopped: (
+      state,
+      action: PayloadAction<{ time: number; name: string | null }>,
+    ) => {
+      const { name, time } = action.payload;
+
+      if (!name) {
+        return state;
+      }
+
+      state.players.push({ name, time });
+      state.players.sort((scoreA, scoreB) => scoreA.time - scoreB.time);
     },
   },
 });

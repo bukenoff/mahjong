@@ -54,8 +54,9 @@ function* handleStepIndexIncremented() {
   );
 
   if (stepIndex === 71) {
-    const score = timerService.seconds;
-    yield put(actions.gameStopped({ score }));
+    const time = timerService.seconds;
+    const name = prompt('Enter your name sir');
+    yield put(actions.gameStopped({ time, name }));
     yield put(push(PATHS.SCORES));
   }
 }
