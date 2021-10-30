@@ -1,13 +1,22 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { CaseReducer, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ProcessingState } from '~/types';
 
 const initial_state: ProcessingState = false;
 
-const processing_slice = createSlice({
+type ProcessingReducer<T = undefined> = T extends undefined
+  ? (state: ProcessingState) => void
+  : CaseReducer<ProcessingState, PayloadAction<T>>;
+
+const processing_slice = createSlice<
+  ProcessingState,
+  {
+    processingToggled: ProcessingReducer<{ value: boolean }>;
+  }
+>({
   name: 'processing',
   initialState: initial_state,
   reducers: {
-    processingToggled(state, action: PayloadAction<{ value: boolean }>) {
+    processingToggled: (state, action) => {
       return action.payload.value;
     },
   },
