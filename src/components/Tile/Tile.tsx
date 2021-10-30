@@ -51,7 +51,7 @@ export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
   }, [tile]);
 
   return (
-    <div
+    <button
       style={tileStyles}
       className={classNames(styles.container, {
         [styles.is_selected]: is_selected,
@@ -62,6 +62,6 @@ export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
     >
       <span className={styles.layer_badge}>{coordinates.layer}</span>
       {React.createElement(renderIcon(icon), TileIconStyles)}
-    </div>
+    </button>
   );
 });
