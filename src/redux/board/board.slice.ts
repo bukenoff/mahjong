@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-import { createSlice, PayloadAction, Action } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, CaseReducer } from '@reduxjs/toolkit';
 import {
   BoardState,
   Tile,
@@ -11,22 +10,39 @@ import {
 
 const initial_state: BoardState = {};
 
-const board_slice = createSlice({
+type BoardReducer<T = undefined> = T extends undefined
+  ? (state: BoardState) => void
+  : CaseReducer<BoardState, PayloadAction<T>>;
+
+const board_slice = createSlice<
+  BoardState,
+  {
+    generateNewBoard: BoardReducer;
+    tileUpdated: BoardReducer<{
+      coordinates: Tile['coordinates'];
+      update: TileUpdate;
+    }>;
+    multipleTilesUpdated: BoardReducer<{
+      coordinates: TileCoordinates[];
+      update: TileUpdate;
+    }>;
+
+    twoTilesRemoved: BoardReducer<{ coordinates: TileCoordinatesPair }>;
+    newBoardGenerated: BoardReducer<{ new_board: Board }>;
+    multipleTilesRestored: BoardReducer<{ tile_pair: [Tile, Tile] }>;
+  }
+>({
   name: 'board',
   initialState: initial_state,
   reducers: {
-    generateNewBoard(state, action: Action) {},
-    tileUpdated(
-      state,
-      action: PayloadAction<{
-        coordinates: Tile['coordinates'];
-        update: TileUpdate;
-      }>,
-    ) {
+    generateNewBoard() {},
+    tileUpdated(state, action) {
       const { layer, row, col } = action.payload.coordinates;
       const { update } = action.payload;
 
-      if (!state[layer] && !state[layer][row] && !state[layer][row][col]) {
+      if (!state) return state;
+
+      if (!state[layer] && !state[layer]?.[row]?.[col]) {
         return state;
       }
 
@@ -35,19 +51,13 @@ const board_slice = createSlice({
         ...update,
       };
     },
-    multipleTilesUpdated(
-      state,
-      action: PayloadAction<{
-        coordinates: TileCoordinates[];
-        update: TileUpdate;
-      }>,
-    ) {
+    multipleTilesUpdated(state, action) {
       const { coordinates, update } = action.payload;
 
       coordinates.forEach(({ layer, row, col }) => {
         if (!state) return state;
 
-        if (!state[layer] && !state[layer][row] && !state[layer][row][col]) {
+        if (!state[layer]?.[row]?.[col]) {
           return state;
         }
 
@@ -57,32 +67,28 @@ const board_slice = createSlice({
         };
       });
     },
-    twoTilesRemoved(
-      state,
-      action: PayloadAction<{ coordinates: TileCoordinatesPair }>,
-    ) {
+    twoTilesRemoved(state, action) {
       const { coordinates } = action.payload;
 
       coordinates.forEach(({ layer, row, col }) => {
         if (!state) return state;
 
-        if (!state[layer] && !state[layer][row] && !state[layer][row][col]) {
+        if (!state[layer]?.[row]?.[col]) {
           return state;
         }
 
         state[layer][row][col] = null;
       });
     },
-    newBoardGenerated(state, action: PayloadAction<{ new_board: Board }>) {
+    newBoardGenerated(state, action) {
       const { new_board } = action.payload;
 
       return new_board;
     },
-    multipleTilesRestored(
-      state,
-      action: PayloadAction<{ tile_pair: [Tile, Tile] }>,
-    ) {
+    multipleTilesRestored(state, action) {
       const { tile_pair } = action.payload;
+
+      if (!state) return state;
 
       tile_pair.forEach((tile) => {
         const {
