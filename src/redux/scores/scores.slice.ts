@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { CaseReducer, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Player, ScoresState } from '~/types';
 
 const dudes = [
@@ -25,7 +25,17 @@ const initial_state: ScoresState = {
   currentPlayerScore: 0,
 };
 
-const scores_slice = createSlice({
+type ScoresReducer<T = undefined> = T extends undefined
+  ? (state: ScoresState) => void
+  : CaseReducer<ScoresState, PayloadAction<T>>;
+
+const scores_slice = createSlice<
+  ScoresState,
+  {
+    scoreAdded: ScoresReducer<Player>;
+    gameStopped: ScoresReducer<{ time: number; name: string | null }>;
+  }
+>({
   name: 'scores',
   initialState: initial_state,
   reducers: {

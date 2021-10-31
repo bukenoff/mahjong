@@ -1,16 +1,27 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { CaseReducer, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SelectedTilesState, Tile } from '~/types';
 
 const initial_state: SelectedTilesState = {
   stack: [],
 };
 
-const selected_tiles_slice = createSlice({
+type SelectedTilesReducer<T = undefined> = T extends undefined
+  ? (state: SelectedTilesState) => void
+  : CaseReducer<SelectedTilesState, PayloadAction<T>>;
+
+const selected_tiles_slice = createSlice<
+  SelectedTilesState,
+  {
+    tileAddedToStack: SelectedTilesReducer<{ tile: Tile }>;
+    stackCleared: SelectedTilesReducer;
+    selectTile: SelectedTilesReducer<{ tile: Tile }>;
+  }
+>({
   name: 'selected_tiles',
   initialState: initial_state,
   reducers: {
-    tileAddedToStack(state, action: PayloadAction<{ tile: Tile }>) {
+    tileAddedToStack(state, action) {
       const { tile } = action.payload;
 
       state.stack.push(tile);
@@ -18,7 +29,7 @@ const selected_tiles_slice = createSlice({
     stackCleared(state) {
       state.stack = [];
     },
-    selectTile(state, action: PayloadAction<{ tile: Tile }>) {},
+    selectTile() {},
   },
 });
 
