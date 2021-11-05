@@ -10,6 +10,7 @@ import { timer_reducer } from './timer/timer.slice';
 import { steps_reducer } from './steps/steps.slice';
 import { scores_reducer } from './scores/scores.slice';
 import { connectRouter } from 'connected-react-router';
+import { game_reducer } from './game/game.slice';
 
 const scores_persist_config = {
   key: 'scores',
@@ -20,6 +21,7 @@ const rootReducer = (history: ReturnType<typeof createBrowserHistory>) =>
   combineReducers({
     board: board_reducer,
     selected_tiles: selected_tiles_reducer,
+    game: game_reducer,
     processing: processing_reducer,
     timer: timer_reducer,
     steps: steps_reducer,

@@ -29,6 +29,10 @@ export interface ScoresState {
   currentPlayerScore: number;
 }
 
+export interface GameState {
+  is_over: boolean;
+}
+
 export interface StepsState {
   step_index: number;
   steps_stack: [Tile, Tile][];
