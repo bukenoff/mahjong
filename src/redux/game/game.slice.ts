@@ -14,15 +14,19 @@ type GameReducer<T = undefined> = T extends undefined
 const game_slice = createSlice<
   GameState,
   {
-    gameStarted: GameReducer;
+    gameStarted: GameReducer<string>;
     gameStopped: GameReducer;
   }
 >({
   name: 'game',
   initialState: initial_state,
   reducers: {
-    gameStarted: (state) => {
+    gameStarted: (state, { payload }) => {
       state.is_over = false;
+
+      if (payload) {
+        state.player_name = payload;
+      }
     },
     gameStopped: (state) => {
       state.is_over = true;

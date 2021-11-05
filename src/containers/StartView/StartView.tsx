@@ -20,6 +20,7 @@ export const StartView: FC = () => {
 
   const onStartGameClick = () => {
     dispatch(actions.generateNewBoard());
+    dispatch(actions.gameStarted(name));
     history.push(PATHS.GAME);
   };
 
@@ -27,19 +28,16 @@ export const StartView: FC = () => {
     <div className={styles.container}>
       <label htmlFor="name">Enter your name sir</label>
       <input type="text" id="name" value={name} onChange={onNameChange} />
-      <>
-        <button
-          type="button"
-          className={styles.start_button}
-          onClick={onStartGameClick}
-          disabled={!name.length}
-        >
-          Start game
-        </button>
-        <button type="button" className={styles.start_button}>
-          <Link to={PATHS.SCORES}>Scores</Link>
-        </button>
-      </>
+      <button
+        type="button"
+        className={styles.start_button}
+        onClick={onStartGameClick}
+      >
+        Start game
+      </button>
+      <button type="button" className={styles.start_button}>
+        <Link to={PATHS.SCORES}>Scores</Link>
+      </button>
     </div>
   );
 };

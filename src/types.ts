@@ -31,6 +31,7 @@ export interface ScoresState {
 
 export interface GameState {
   is_over: boolean;
+  player_name: string;
 }
 
 export interface StepsState {

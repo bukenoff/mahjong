@@ -1,4 +1,5 @@
 import { board_actions } from './board/board.slice';
+import { game_actions } from './game/game.slice';
 import { processing_actions } from './processing/processing.slice';
 import { scores_actions } from './scores/scores.slice';
 import { selected_tiles_actions } from './selected-tiles/selected-tiles.slice';
@@ -12,4 +13,5 @@ export const actions = {
   ...selected_tiles_actions,
   ...steps_actions,
   ...timer_actions,
+  ...game_actions,
 };
