@@ -4,6 +4,7 @@ import { GameState } from '~/types';
 
 const initial_state: GameState = {
   is_over: true,
+  player_name: 'anonymous',
 };
 
 type GameReducer<T = undefined> = T extends undefined
@@ -13,17 +14,17 @@ type GameReducer<T = undefined> = T extends undefined
 const game_slice = createSlice<
   GameState,
   {
-    startGame: GameReducer;
-    stopGame: GameReducer;
+    gameStarted: GameReducer;
+    gameStopped: GameReducer;
   }
 >({
   name: 'game',
   initialState: initial_state,
   reducers: {
-    startGame: (state) => {
+    gameStarted: (state) => {
       state.is_over = false;
     },
-    stopGame: (state) => {
+    gameStopped: (state) => {
       state.is_over = true;
     },
   },

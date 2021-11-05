@@ -33,7 +33,6 @@ const scores_slice = createSlice<
   ScoresState,
   {
     scoreAdded: ScoresReducer<Player>;
-    gameStopped: ScoresReducer<{ time: number; name: string | null }>;
   }
 >({
   name: 'scores',
@@ -42,19 +41,6 @@ const scores_slice = createSlice<
     scoreAdded: (state, action: PayloadAction<Player>) => {
       const { name, time } = action.payload;
       state.players.push({ name, time });
-    },
-    gameStopped: (
-      state,
-      action: PayloadAction<{ time: number; name: string | null }>,
-    ) => {
-      const { name, time } = action.payload;
-
-      if (!name) {
-        return state;
-      }
-
-      state.players.push({ name, time });
-      state.players.sort((scoreA, scoreB) => scoreA.time - scoreB.time);
     },
   },
 });
