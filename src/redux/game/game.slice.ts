@@ -5,6 +5,7 @@ import { GameState } from '~/types';
 const initial_state: GameState = {
   is_over: true,
   player_name: 'anonymous',
+  player_score: null,
 };
 
 type GameReducer<T = undefined> = T extends undefined
@@ -15,7 +16,7 @@ const game_slice = createSlice<
   GameState,
   {
     gameStarted: GameReducer<string>;
-    gameStopped: GameReducer;
+    gameStopped: GameReducer<number>;
   }
 >({
   name: 'game',
@@ -28,8 +29,9 @@ const game_slice = createSlice<
         state.player_name = payload;
       }
     },
-    gameStopped: (state) => {
+    gameStopped: (state, { payload }) => {
       state.is_over = true;
+      state.player_score = payload;
     },
   },
 });

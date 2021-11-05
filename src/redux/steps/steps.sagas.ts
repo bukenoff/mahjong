@@ -5,6 +5,8 @@ import { selectStepIndex, selectStepStack } from './steps.selectors';
 import { push } from 'connected-react-router';
 import { PATHS } from '~/constants/paths';
 import timerService from '~/services/TimerService';
+import { selectPlayerName } from '../game/game.selectors';
+import { GameState } from '~/types';
 
 function* handleTakeStepBack() {
   const step_index: ReturnType<typeof selectStepIndex> = yield select(
@@ -55,6 +57,10 @@ function* handleStepIndexIncremented() {
 
   if (stepIndex === 71) {
     const time = timerService.seconds;
+    const name: GameState['player_name'] = yield select(selectPlayerName);
+
+    yield put(actions.gameStopped(time));
+    yield put(actions.scoreAdded({ name, time }));
     yield put(push(PATHS.SCORES));
   }
 }

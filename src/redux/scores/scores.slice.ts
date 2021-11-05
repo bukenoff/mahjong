@@ -22,7 +22,6 @@ const dudes = [
 
 const initial_state: ScoresState = {
   players: dudes,
-  currentPlayerScore: 0,
 };
 
 type ScoresReducer<T = undefined> = T extends undefined

@@ -7,6 +7,7 @@ export interface State {
   selected_tiles: SelectedTilesState;
   processing: ProcessingState;
   timer: any; // any for now, since I don't have any solid implementation ideas
+  game: GameState;
   steps: StepsState;
   tile_pairs_resolved_count: TilePairsResolvedCountState;
   scores: ScoresState;
@@ -26,12 +27,12 @@ export interface Player {
 
 export interface ScoresState {
   players: Player[];
-  currentPlayerScore: number;
 }
 
 export interface GameState {
   is_over: boolean;
   player_name: string;
+  player_score: number | null;
 }
 
 export interface StepsState {
