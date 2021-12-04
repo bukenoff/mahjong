@@ -1,27 +1,8 @@
 import { CaseReducer, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Player, ScoresState } from '~/types';
 
-const dudes = [
-  {
-    name: 'Zeno',
-    time: 114,
-  },
-  {
-    name: 'Epictetus',
-    time: 121,
-  },
-  {
-    name: 'Lucilius Seneca',
-    time: 130,
-  },
-  {
-    name: 'Marcus Aurelius',
-    time: 144,
-  },
-];
-
 const initial_state: ScoresState = {
-  players: dudes,
+  players: [],
 };
 
 type ScoresReducer<T = undefined> = T extends undefined
