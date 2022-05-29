@@ -1,6 +1,6 @@
 import { put, select, takeEvery } from 'redux-saga/effects';
 import { actions } from '../';
-import { createBoard } from '~/logic/createBoard';
+import { createBoard } from '~/logic/board';
 import { getType } from '@reduxjs/toolkit';
 import { Board } from '~/types';
 import { selectBoard } from './board.selectors';

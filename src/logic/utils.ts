@@ -1,5 +1,5 @@
 import { TilesSymbols, TileCoordinates } from '~/types';
-import { ICONS_MAP } from './constants/iconsMap';
+import { ICONS_MAP } from '../constants/iconsMap';
 import { IconType } from 'react-icons/lib';
 
 export const shuffleArray = <T>(array: T[]): T[] => {

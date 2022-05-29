@@ -14,7 +14,7 @@ import {
   TileCoordinates,
   RowScheme,
 } from '~/types';
-import { shuffleArray, isEmptyObject } from '~/utils';
+import { shuffleArray, isEmptyObject } from './utils';
 
 export const getBlockedStatus = (
   layer: TileCoordinates['layer'],
