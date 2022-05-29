@@ -30,6 +30,8 @@ const board_slice = createSlice<
     twoTilesRemoved: BoardReducer<{ coordinates: TileCoordinatesPair }>;
     newBoardGenerated: BoardReducer<{ new_board: Board }>;
     multipleTilesRestored: BoardReducer<{ tile_pair: [Tile, Tile] }>;
+    shuffleBoard: BoardReducer;
+    boardShuffled: BoardReducer<Board>;
   }
 >({
   name: 'board',
@@ -97,6 +99,10 @@ const board_slice = createSlice<
 
         state[layer][row][col] = tile;
       });
+    },
+    shuffleBoard() {},
+    boardShuffled(state, action) {
+      state = action.payload;
     },
   },
 });
