@@ -2,10 +2,10 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { persistStore } from 'redux-persist';
 import { createBrowserHistory } from 'history';
+import { routerMiddleware } from 'connected-react-router';
 
 import rootReducer from './root.reducer';
 import rootSaga from './root.saga';
-import { routerMiddleware } from 'connected-react-router';
 
 const initialState = {};
 const sagaMiddleware = createSagaMiddleware();

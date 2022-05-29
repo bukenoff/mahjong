@@ -1,4 +1,4 @@
-import { createBoard } from '../logic/createBoard';
+import { createBoard } from '../logic/board';
 
 describe('createBoard function', () => {
   it('should be defined', () => {

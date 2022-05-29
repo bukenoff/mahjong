@@ -1,5 +1,4 @@
 import { State } from '~/types';
 
-export const selectProcessing = (state: State): State['processing'] => {
-  return state.processing;
-};
+export const selectProcessing = (state: State): State['processing'] =>
+  state.processing;

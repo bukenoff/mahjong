@@ -4,10 +4,11 @@ import classNames from 'classnames';
 import { Tile as TileType } from '~/types';
 import { renderIcon, getTileBackground } from '~/logic/utils';
 import { TileIconStyles } from '~/styles/styles';
+import { actions } from '~/redux';
 
 interface Props {
   tile: TileType | null;
-  selectTile: (tile: { tile: TileType }) => void;
+  selectTile: typeof actions.selectTile;
 }
 
 export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
@@ -20,7 +21,7 @@ export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
       return null;
     }
 
-    selectTile({ tile });
+    selectTile(tile);
   }, [selectTile, tile]);
 
   const tileBackgroundColor = useMemo(() => {

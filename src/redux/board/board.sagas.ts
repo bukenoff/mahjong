@@ -1,14 +1,13 @@
 import { put, select, takeEvery } from 'redux-saga/effects';
-import { actions } from '../';
-import { createBoard } from '~/logic/board';
 import { getType } from '@reduxjs/toolkit';
+import { actions, selectBoard } from '../';
+import { createBoard } from '~/logic/board';
 import { Board } from '~/types';
-import { selectBoard } from '..';
 
 export function* handleGenerateNewBoard() {
   const new_board = createBoard();
 
-  yield put(actions.newBoardGenerated({ new_board }));
+  yield put(actions.newBoardGenerated(new_board));
   yield put(actions.resetTimer());
   yield put(actions.resumeTimer());
 }

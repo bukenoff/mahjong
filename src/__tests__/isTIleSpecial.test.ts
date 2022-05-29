@@ -1,4 +1,4 @@
-import { isTileSpecial } from '../logic/createBoard';
+import { isTileSpecial } from '../logic/board';
 
 describe('isTileSpecial function:', () => {
   it('should be defined:', () => {

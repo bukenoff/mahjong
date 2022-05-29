@@ -1,13 +1,17 @@
 import { put, takeEvery, select, call, delay } from 'redux-saga/effects';
+import { getType } from '@reduxjs/toolkit';
 import {
   Tile,
   TileUpdate,
   TileCoordinatesPair,
   TileCoordinates,
 } from '~/types';
-import { selectStack, selectProcessing, selectTileFromBoard } from '..';
-import { getType } from '@reduxjs/toolkit';
-import { actions } from '../';
+import {
+  selectStack,
+  selectProcessing,
+  selectTileFromBoard,
+  actions,
+} from '..';
 
 function* unselectTiles(first_tile: Tile, second_tile: Tile) {
   const update: TileUpdate = {
@@ -66,15 +70,14 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
     second_tile.coordinates,
   ];
 
-  yield put(actions.stepAddedToStack({ tile_pair: [first_tile, second_tile] }));
-  yield put(actions.twoTilesRemoved({ coordinates: two_tiles_coordinates }));
+  yield put(actions.stepAddedToStack([first_tile, second_tile]));
+  yield put(actions.twoTilesRemoved(two_tiles_coordinates));
   yield put(actions.stepIndexIncremented());
   yield put(actions.stepsMadeIncremented());
 }
 
-function* handleSelectTile({
-  payload: { tile },
-}: ReturnType<typeof actions.selectTile>) {
+function* handleSelectTile({ payload }: ReturnType<typeof actions.selectTile>) {
+  const tile = payload;
   const processing: ReturnType<typeof selectProcessing> = yield select(
     selectProcessing,
   );
@@ -83,8 +86,8 @@ function* handleSelectTile({
     return null;
   }
 
-  yield put(actions.processingToggled({ value: true }));
-  yield put(actions.tileAddedToStack({ tile }));
+  yield put(actions.processingToggled(true));
+  yield put(actions.tileAddedToStack(tile));
 
   const stack: ReturnType<typeof selectStack> = yield select(selectStack);
 
@@ -96,28 +99,20 @@ function* handleSelectTile({
   );
 
   if (stack.length === 2) {
-    // once we have two tiles selected
-    // compare them
     const [first_tile, second_tile] = stack;
 
     yield delay(500);
 
     if (first_tile.icon === second_tile.icon) {
-      // if both tiles have the same icon
-      // remove them, and unblock the tiles that
-      // were blocked by them
       yield call(resolveTiles, first_tile, second_tile);
     } else {
-      // if tiles do not have the same icon
-      // unselect them
-      // clear the stack
       yield call(unselectTiles, first_tile, second_tile);
     }
 
     yield put(actions.stackCleared());
   }
 
-  yield put(actions.processingToggled({ value: false }));
+  yield put(actions.processingToggled(false));
 }
 
 export default function* selectedTileActionsFlow() {

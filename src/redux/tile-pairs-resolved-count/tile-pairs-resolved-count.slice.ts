@@ -19,17 +19,18 @@ const tiles_pairs_resolved_count_slice = createSlice<
   name: 'tiles_pairs_resolved_count',
   initialState: initial_state,
   reducers: {
-    tilePairsResolvedCountIncremented: (state) => {
+    tilePairsResolvedCountIncremented(state) {
       state += 1;
     },
-    tilePairsResolvedCountDecremented: (state) => {
+    tilePairsResolvedCountDecremented(state) {
       state += 1;
     },
   },
-  extraReducers: (builder) =>
-    builder.addCase(actions.newBoardGenerated, (state) => {
+  extraReducers(builder) {
+    return builder.addCase(actions.newBoardGenerated, (state) => {
       state = 0;
-    }),
+    });
+  },
 });
 
 export const {

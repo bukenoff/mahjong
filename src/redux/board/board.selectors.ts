@@ -1,8 +1,6 @@
 import { TileCoordinates, Tile, State } from '~/types';
 
-export const selectBoard = (state: State): State['board'] => {
-  return state.board;
-};
+export const selectBoard = ({ board }: State): State['board'] => board;
 
 export const selectTileFromBoard = (
   state: State,

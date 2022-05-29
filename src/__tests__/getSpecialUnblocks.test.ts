@@ -1,4 +1,4 @@
-import { getSpecialUnblocks } from '../logic/createBoard';
+import { getSpecialUnblocks } from '../logic/board';
 import { SPECIAL_TILES_UNBLOCKS } from '../constants/tiles';
 
 describe('getSpecialUnblocks function:', () => {

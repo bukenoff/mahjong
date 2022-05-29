@@ -13,16 +13,16 @@ type SelectedTilesReducer<T = undefined> = T extends undefined
 const selected_tiles_slice = createSlice<
   SelectedTilesState,
   {
-    tileAddedToStack: SelectedTilesReducer<{ tile: Tile }>;
+    tileAddedToStack: SelectedTilesReducer<Tile>;
     stackCleared: SelectedTilesReducer;
-    selectTile: SelectedTilesReducer<{ tile: Tile }>;
+    selectTile: SelectedTilesReducer<Tile>;
   }
 >({
   name: 'selected_tiles',
   initialState: initial_state,
   reducers: {
     tileAddedToStack(state, action) {
-      const { tile } = action.payload;
+      const tile = action.payload;
 
       state.stack.push(tile);
     },

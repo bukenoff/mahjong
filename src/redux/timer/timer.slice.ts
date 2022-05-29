@@ -15,7 +15,7 @@ const timer_slice = createSlice<
   TimerState,
   {
     timerResumed: TimerReducer;
-    timerStopped: TimerReducer<{ seconds: number }>;
+    timerStopped: TimerReducer<number>;
     resetTimer: TimerReducer;
     timerReset: TimerReducer;
     stopTimer: TimerReducer;
@@ -25,20 +25,20 @@ const timer_slice = createSlice<
   name: 'timer',
   initialState: initial_state,
   reducers: {
-    timerResumed: (state) => {
+    timerResumed(state) {
       state.is_stopped = false;
       state.stopped_at = null;
     },
-    timerStopped: (state, action) => {
-      const { seconds } = action.payload;
+    timerStopped(state, action) {
+      const seconds = action.payload;
 
       state.is_stopped = true;
       state.stopped_at = seconds;
     },
-    resetTimer: () => {},
-    timerReset: () => {},
-    stopTimer: () => {},
-    resumeTimer: () => {},
+    resetTimer() {},
+    timerReset() {},
+    stopTimer() {},
+    resumeTimer() {},
   },
 });
 

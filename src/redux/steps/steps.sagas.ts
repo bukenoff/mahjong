@@ -1,8 +1,12 @@
 import { put, takeLatest, select } from 'redux-saga/effects';
-import { actions } from '../';
 import { getType } from '@reduxjs/toolkit';
-import { selectPlayerName, selectStepIndex, selectStepStack } from '..';
 import { push } from 'connected-react-router';
+import {
+  selectPlayerName,
+  selectStepIndex,
+  selectStepStack,
+  actions,
+} from '..';
 import { PATHS } from '~/constants/paths';
 import timerService from '~/services/TimerService';
 import { GameState } from '~/types';
@@ -19,11 +23,7 @@ function* handleTakeStepBack() {
 
   const [first_tile, second_tile] = steps_stack[step_index];
 
-  yield put(
-    actions.multipleTilesRestored({
-      tile_pair: [first_tile, second_tile],
-    }),
-  );
+  yield put(actions.multipleTilesRestored([first_tile, second_tile]));
   yield put(actions.stepBackTaken());
   yield put(actions.stepIndexDecremented());
 }
@@ -41,9 +41,7 @@ function* handleTakeStepForward() {
   const [first_tile, second_tile] = steps_stack[step_index + 1];
 
   yield put(
-    actions.twoTilesRemoved({
-      coordinates: [first_tile.coordinates, second_tile.coordinates],
-    }),
+    actions.twoTilesRemoved([first_tile.coordinates, second_tile.coordinates]),
   );
   yield put(actions.stepForwardTaken());
   yield put(actions.stepIndexIncremented());

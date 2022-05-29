@@ -27,9 +27,9 @@ const board_slice = createSlice<
       update: TileUpdate;
     }>;
 
-    twoTilesRemoved: BoardReducer<{ coordinates: TileCoordinatesPair }>;
-    newBoardGenerated: BoardReducer<{ new_board: Board }>;
-    multipleTilesRestored: BoardReducer<{ tile_pair: [Tile, Tile] }>;
+    twoTilesRemoved: BoardReducer<TileCoordinatesPair>;
+    newBoardGenerated: BoardReducer<Board>;
+    multipleTilesRestored: BoardReducer<[Tile, Tile]>;
     shuffleBoard: BoardReducer;
     boardShuffled: BoardReducer<Board>;
   }
@@ -70,7 +70,7 @@ const board_slice = createSlice<
       });
     },
     twoTilesRemoved(state, action) {
-      const { coordinates } = action.payload;
+      const coordinates = action.payload;
 
       coordinates.forEach(({ layer, row, col }) => {
         if (!state) return state;
@@ -83,12 +83,12 @@ const board_slice = createSlice<
       });
     },
     newBoardGenerated(state, action) {
-      const { new_board } = action.payload;
+      const new_board = action.payload;
 
       return new_board;
     },
     multipleTilesRestored(state, action) {
-      const { tile_pair } = action.payload;
+      const tile_pair = action.payload;
 
       if (!state) return state;
 

@@ -7,10 +7,7 @@ describe('Processing slice', () => {
 
   it('should update state to provided value', () => {
     expect(
-      processing_reducer(
-        false,
-        processing_actions.processingToggled({ value: true }),
-      ),
+      processing_reducer(false, processing_actions.processingToggled(true)),
     ).toEqual(true);
   });
 });

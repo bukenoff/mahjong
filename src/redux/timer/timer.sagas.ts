@@ -1,13 +1,13 @@
 import { put, takeLatest } from 'redux-saga/effects';
+import { getType } from '@reduxjs/toolkit';
 import { actions } from '../';
 import timerService from '~/services/TimerService';
-import { getType } from '@reduxjs/toolkit';
 
 function* handleStopTimer() {
   timerService.pause();
   const seconds = timerService.seconds;
 
-  yield put(actions.timerStopped({ seconds }));
+  yield put(actions.timerStopped(seconds));
 }
 
 function* handleResumeTimer() {

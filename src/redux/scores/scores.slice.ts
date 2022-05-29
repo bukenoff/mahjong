@@ -18,7 +18,7 @@ const scores_slice = createSlice<
   name: 'scores',
   initialState: initial_state,
   reducers: {
-    scoreAdded: (state, action: PayloadAction<Player>) => {
+    scoreAdded(state, action: PayloadAction<Player>) {
       const { name, time } = action.payload;
       state.players.push({ name, time });
     },

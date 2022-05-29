@@ -1,4 +1,4 @@
-import { getUnblocks } from '../logic/createBoard';
+import { getUnblocks } from '../logic/board';
 
 describe('getUnblocks function:', () => {
   it('should be defined:', () => {

@@ -61,12 +61,10 @@ describe('Board slice', () => {
       1: { 2: { 4: null } },
     } as Board;
 
-    const two_tiles_removed_action = board_actions.twoTilesRemoved({
-      coordinates: [
-        { layer: 0, row: 1, col: 2 },
-        { layer: 1, row: 2, col: 4 },
-      ],
-    });
+    const two_tiles_removed_action = board_actions.twoTilesRemoved([
+      { layer: 0, row: 1, col: 2 },
+      { layer: 1, row: 2, col: 4 },
+    ]);
 
     expect(board_reducer(initial_state, two_tiles_removed_action)).toEqual(
       result_state,
@@ -77,9 +75,9 @@ describe('Board slice', () => {
     const initial_state = ('i am board' as unknown) as Board;
     const result_state = ('now I am board' as unknown) as Board;
 
-    const new_board_action = board_actions.newBoardGenerated({
-      new_board: ('now I am board' as unknown) as Board,
-    });
+    const new_board_action = board_actions.newBoardGenerated(
+      ('now I am board' as unknown) as Board,
+    );
 
     expect(board_reducer(initial_state, new_board_action)).toEqual(
       result_state,
