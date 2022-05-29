@@ -15,3 +15,11 @@ export const actions = {
   ...timer_actions,
   ...game_actions,
 };
+
+export * from './timer/timer.selectors';
+export * from './steps/steps.selectors';
+export * from './selected-tiles/selected-tiles.selectors';
+export * from './scores/scores.selectors';
+export * from './processing/processing.selectors';
+export * from './game/game.selectors';
+export * from './board/board.selectors';

@@ -6,12 +6,12 @@ import HistoryControls from '~/components/HistoryControls';
 import TimerAndMovesCount from '~/components/TimerAndMovesCount';
 import useActions from '~/hooks/useActions';
 import TimerControls from '~/components/TimerControls';
-import { selectIsStopped } from '~/redux/timer/timer.selectors';
-import { actions } from '../../redux';
 import {
   selectIsStepForwardPossible,
   selectIsStepBackPossible,
-} from '~/redux/steps/steps.selectors';
+  selectIsStopped,
+  actions,
+} from '~/redux';
 
 export const GameControlPanel: FC = () => {
   const is_stopped = useSelector(selectIsStopped);

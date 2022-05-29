@@ -2,7 +2,7 @@ import React, { FC, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import * as styles from './styles.scss';
 import Layer from '../Layer';
-import { selectBoard } from '~/redux/board/board.selectors';
+import { selectBoard } from '~/redux';
 
 export const Board: FC = () => {
   const board = useSelector(selectBoard);

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { selectPlayers } from '~/redux/scores/scores.selectors';
+import { selectPlayers } from '~/redux';
 import * as styles from './styles.scss';
 
 export const Scores: FC = () => {

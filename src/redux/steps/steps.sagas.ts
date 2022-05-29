@@ -1,11 +1,10 @@
 import { put, takeLatest, select } from 'redux-saga/effects';
 import { actions } from '../';
 import { getType } from '@reduxjs/toolkit';
-import { selectStepIndex, selectStepStack } from './steps.selectors';
+import { selectPlayerName, selectStepIndex, selectStepStack } from '..';
 import { push } from 'connected-react-router';
 import { PATHS } from '~/constants/paths';
 import timerService from '~/services/TimerService';
-import { selectPlayerName } from '../game/game.selectors';
 import { GameState } from '~/types';
 
 function* handleTakeStepBack() {
