@@ -21,6 +21,7 @@ export const GameControlPanel: FC = () => {
     resumeTimer: actions.resumeTimer,
     takeStepBack: actions.takeStepBack,
     takeStepForward: actions.takeStepForward,
+    shuffleBoard: actions.shuffleBoard,
   });
 
   const is_step_forward_possible = useSelector(selectIsStepForwardPossible);
@@ -41,7 +42,10 @@ export const GameControlPanel: FC = () => {
           resumeTimer={binded_actions.resumeTimer}
           is_stopped={is_stopped}
         />
-        <Menu generateNewBoard={binded_actions.generateNewBoard} />
+        <Menu
+          generateNewBoard={binded_actions.generateNewBoard}
+          shuffleBoard={binded_actions.shuffleBoard}
+        />
       </div>
     </nav>
   );

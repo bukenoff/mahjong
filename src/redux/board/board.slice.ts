@@ -102,7 +102,7 @@ const board_slice = createSlice<
     },
     shuffleBoard() {},
     boardShuffled(state, action) {
-      state = action.payload;
+      return action.payload;
     },
   },
 });
