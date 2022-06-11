@@ -41,6 +41,7 @@ export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
       gridColumn: `${coordinates.col + 1}`,
       gridRow: `${coordinates.row + 1}`,
       backgroundColor: tileBackgroundColor,
+      zIndex: coordinates.layer,
     };
 
     const optional_styles = special_styles || {};
@@ -66,3 +67,5 @@ export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
     </button>
   );
 });
+
+Tile.displayName = 'Tile';

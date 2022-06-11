@@ -6,14 +6,15 @@ import {
   SPECIAL_TILES_STYLES,
 } from '~/constants/tiles';
 import { uuid } from 'uuidv4';
-import {
+import type {
   Row,
   Board,
   Layer,
-  TilesSymbols,
   TileCoordinates,
   RowScheme,
+  Tile,
 } from '~/types';
+import { TilesSymbols } from '~/types';
 import { shuffleArray, isEmptyObject } from './utils';
 
 export const getBlockedStatus = (
@@ -228,4 +229,63 @@ export const createBoard = (): Board => {
   });
 
   return board;
+};
+
+export const shuffleBoard = (
+  board: Board,
+  board_copy: Board,
+  all_tiles: string[],
+) => {
+  let start = 0;
+  let end = 1;
+
+  try {
+    while (end < all_tiles.length) {
+      const [l1, r1, c1] = all_tiles[start].split('-');
+      const [l2, r2, c2] = all_tiles[end].split('-');
+
+      const first_tile_copy = board_copy[+l1][+r1][+c1];
+      const second_tile_copy = board_copy[+l2][+r2][+c2];
+
+      if (!!first_tile_copy) {
+        first_tile_copy.coordinates = board[+l2][+r2][+c2]!.coordinates;
+        first_tile_copy.unblocks = board[+l2][+r2][+c2]!.unblocks;
+        first_tile_copy.is_blocked = board[+l2][+r2][+c2]!.is_blocked;
+        first_tile_copy.special_styles = board[+l2][+r2][+c2]!.special_styles;
+      }
+
+      if (!!second_tile_copy) {
+        second_tile_copy.coordinates = board[+l1][+r1][+c1]!.coordinates;
+        second_tile_copy.unblocks = board[+l1][+r1][+c1]!.unblocks;
+        second_tile_copy.is_blocked = board[+l1][+r1][+c1]!.is_blocked;
+        second_tile_copy.special_styles = board[+l1][+r1][+c1]!.special_styles;
+      }
+
+      board_copy[+l1][+r1][+c1] = second_tile_copy;
+      board_copy[+l2][+r2][+c2] = first_tile_copy;
+
+      start += 2;
+      end += 2;
+    }
+  } catch (err) {
+    console.log('ERROR', err);
+  }
+
+  return board_copy;
+};
+
+export const collectUnresolvedTilesCoordinates = (board: Board) => {
+  return Object.values(board).reduce((acc: string[], layer: Layer) => {
+    Object.values(layer).forEach((row: Row) => {
+      Object.values(row).forEach((tile: Tile) => {
+        if (!tile) return;
+
+        const { layer, row, col } = tile.coordinates;
+
+        acc.push(`${layer}-${row}-${col}`);
+      });
+    });
+
+    return shuffleArray(acc);
+  }, []);
 };
