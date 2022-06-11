@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { CaseReducer, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SelectedTilesState, Tile } from '~/types';
+import { board_actions } from '../board/board.slice';
 
 const initial_state: SelectedTilesState = {
   stack: [],
@@ -30,6 +31,11 @@ const selected_tiles_slice = createSlice<
       state.stack = [];
     },
     selectTile() {},
+  },
+  extraReducers(builder) {
+    return builder.addCase(board_actions.boardShuffled, (state) => {
+      state.stack = [];
+    });
   },
 });
 
