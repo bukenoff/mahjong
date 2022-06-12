@@ -21,6 +21,7 @@ const scores_slice = createSlice<
     scoreAdded(state, action: PayloadAction<Player>) {
       const { name, time } = action.payload;
       state.players.push({ name, time });
+      state.players.sort((a, b) => a.time - b.time);
     },
   },
 });
