@@ -5,7 +5,6 @@ import { createBrowserHistory } from 'history';
 
 import { board_reducer } from './board/board.slice';
 import { selected_tiles_reducer } from './selected-tiles/selected-tiles.slice';
-import { processing_reducer } from './processing/processing.slice';
 import { timer_reducer } from './timer/timer.slice';
 import { steps_reducer } from './steps/steps.slice';
 import { scores_reducer } from './scores/scores.slice';
@@ -22,7 +21,6 @@ const rootReducer = (history: ReturnType<typeof createBrowserHistory>) =>
     board: board_reducer,
     selected_tiles: selected_tiles_reducer,
     game: game_reducer,
-    processing: processing_reducer,
     timer: timer_reducer,
     steps: steps_reducer,
     router: connectRouter(history),

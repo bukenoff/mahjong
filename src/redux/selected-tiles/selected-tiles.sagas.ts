@@ -6,12 +6,7 @@ import {
   TileCoordinatesPair,
   TileCoordinates,
 } from '~/types';
-import {
-  selectStack,
-  selectProcessing,
-  selectTileFromBoard,
-  actions,
-} from '..';
+import { selectStack, selectTileFromBoard, actions } from '..';
 
 function* unselectTiles(first_tile: Tile, second_tile: Tile) {
   const update: TileUpdate = {
@@ -78,25 +73,16 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
 
 function* handleSelectTile({ payload }: ReturnType<typeof actions.selectTile>) {
   const tile = payload;
-  const processing: ReturnType<typeof selectProcessing> = yield select(
-    selectProcessing,
-  );
 
-  if (processing) {
-    return null;
-  }
-
-  yield put(actions.processingToggled(true));
   yield put(actions.tileAddedToStack(tile));
-
-  const stack: ReturnType<typeof selectStack> = yield select(selectStack);
-
   yield put(
     actions.tileUpdated({
       coordinates: tile.coordinates,
       update: { is_selected: true },
     }),
   );
+
+  const stack: ReturnType<typeof selectStack> = yield select(selectStack);
 
   if (stack.length === 2) {
     const [first_tile, second_tile] = stack;
@@ -111,8 +97,6 @@ function* handleSelectTile({ payload }: ReturnType<typeof actions.selectTile>) {
 
     yield put(actions.stackCleared());
   }
-
-  yield put(actions.processingToggled(false));
 }
 
 export default function* selectedTileActionsFlow() {
