@@ -7175,6 +7175,11 @@ redux-dynamic-modules-react@^5.2.3:
     redux-dynamic-middlewares "^1.0.0"
     redux-dynamic-modules-core "^5.2.3"
 
+redux-dynamic-modules-saga@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/redux-dynamic-modules-saga/-/redux-dynamic-modules-saga-5.2.3.tgz#cdfbf963a220689c3f62518d4d8fe652fbd5520d"
+  integrity sha512-Lkxs1/X7ykTEY35hlN0GwWHnUG4DhqhVg3M8+f9q60TV9w59qg4k/XfKXBejTppSL5NohvEZG31whgr0S4YoYg==
+
 redux-dynamic-modules@^5.2.3:
   version "5.2.3"
   resolved "https://registry.yarnpkg.com/redux-dynamic-modules/-/redux-dynamic-modules-5.2.3.tgz#a035e981b4ad1fa75ff7d106740b92cf5ede58ed"

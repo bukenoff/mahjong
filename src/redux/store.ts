@@ -6,8 +6,8 @@ import { persistStore } from 'redux-persist';
 import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'connected-react-router';
 
-import rootSaga from './root.saga';
 import { getRouterModule } from './router/router.module';
+import { getSagaExtension } from 'redux-dynamic-modules-saga';
 
 const initialState = {};
 const sagaMiddleware = createSagaMiddleware();
@@ -19,12 +19,13 @@ const store = createStore(
     enhancers: [
       compose(applyMiddleware(sagaMiddleware, routerMiddleware(history))),
     ],
+    extensions: [getSagaExtension()],
   },
   getRouterModule(),
 );
 
 const persistor = persistStore(store);
 
-sagaMiddleware.run(rootSaga);
+// sagaMiddleware.run(rootSaga);
 
 export { store, persistor, history };

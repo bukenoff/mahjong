@@ -6,7 +6,6 @@ import GameControlPanel from '~/containers/GameControlPanel';
 import { actions, selectIsStopped } from '~/redux';
 import { getBoardModule } from '~/redux/board/board.module';
 import { getGameModule } from '~/redux/game/game.module';
-import { getRouterModule } from '~/redux/router/router.module';
 import { getSelectedTilesModule } from '~/redux/selected-tiles/selected-tiles.module';
 import { getStepsModule } from '~/redux/steps/steps.module';
 import { getTilePairsResolvedCountModule } from '~/redux/tile-pairs-resolved-count/tile-pairs-resolved-count.module';
