@@ -1,1 +1,1 @@
-export { Scores as default } from './Scores';
+export { AsyncScores as default } from './Scores';

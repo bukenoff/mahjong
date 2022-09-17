@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
+import { DynamicModuleLoader } from 'redux-dynamic-modules';
 import { selectPlayers } from '~/redux';
+import { getScoresModule } from '~/redux/scores/scores.module';
 import * as styles from './styles.scss';
 
 export const Scores: FC = () => {
@@ -18,5 +20,13 @@ export const Scores: FC = () => {
         ))}
       </ul>
     </div>
+  );
+};
+
+export const AsyncScores = () => {
+  return (
+    <DynamicModuleLoader modules={[getScoresModule()]}>
+      <Scores />
+    </DynamicModuleLoader>
   );
 };

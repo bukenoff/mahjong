@@ -1,13 +1,10 @@
 import React, { ChangeEventHandler, FC, useCallback, useState } from 'react';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { PATHS } from '~/constants/paths';
-import { actions } from '~/redux';
 import * as styles from './styles.scss';
 
 export const StartView: FC = () => {
-  const dispatch = useDispatch();
   const history = useHistory();
   const [name, setName] = useState('');
 
@@ -19,8 +16,6 @@ export const StartView: FC = () => {
   );
 
   const onStartGameClick = () => {
-    dispatch(actions.generateNewBoard());
-    dispatch(actions.gameStarted(name));
     history.push(PATHS.GAME);
   };
 

@@ -11,7 +11,10 @@ export interface State {
   steps: StepsState;
   tile_pairs_resolved_count: TilePairsResolvedCountState;
   scores: ScoresState;
+  router: any;
 }
+
+export type DynamicState<T extends keyof State> = Pick<State, T>;
 
 export type TilePairsResolvedCountState = number;
 

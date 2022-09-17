@@ -1,1 +1,1 @@
-export { GameView as default } from './GameView';
+export { AsyncGameView as default } from './GameView';
