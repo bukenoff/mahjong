@@ -1,3 +1,1 @@
-import { StartView } from './StartView';
-
-export default StartView;
+export { StartView as default } from './StartView';

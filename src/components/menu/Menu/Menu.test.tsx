@@ -1,12 +1,15 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { Menu } from './Menu';
 import { actions } from '../../../redux';
+import { Menu } from './Menu';
 
 describe('Menu component', () => {
   it('renders without crash', () => {
     const { getByTestId } = render(
-      <Menu generateNewBoard={actions.generateNewBoard} />,
+      <Menu
+        generateNewBoard={actions.generateNewBoard}
+        shuffleBoard={actions.shuffleBoard}
+      />,
     );
 
     const root_component = getByTestId('menu-root');
@@ -15,7 +18,10 @@ describe('Menu component', () => {
 
   it('renders menu if you click button', () => {
     const { getByTestId } = render(
-      <Menu generateNewBoard={actions.generateNewBoard} />,
+      <Menu
+        generateNewBoard={actions.generateNewBoard}
+        shuffleBoard={actions.shuffleBoard}
+      />,
     );
 
     const button = getByTestId('menu-button');

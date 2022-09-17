@@ -7,24 +7,15 @@ interface Props {
   closeMenu: () => void;
 }
 
-const MenuItem: FC<Props> = ({
-  title,
-  clickHandler,
-  closeMenu,
-}) => {
+export const MenuItem: FC<Props> = ({ title, clickHandler, closeMenu }) => {
   const handleClick = useCallback(() => {
     clickHandler();
     closeMenu();
   }, [clickHandler, closeMenu]);
 
   return (
-    <li
-      className={styles.container}
-      onClick={handleClick}
-    >
+    <li className={styles.container} onClick={handleClick}>
       {title}
     </li>
   );
 };
-
-export { MenuItem };

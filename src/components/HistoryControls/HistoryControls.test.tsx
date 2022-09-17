@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { HistoryControls } from './HistoryControls';
 import { actions } from '../../redux';
+import { HistoryControls } from './HistoryControls';
 
 describe('HistoryControls component', () => {
   it('renders without crash', () => {

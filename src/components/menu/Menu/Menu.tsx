@@ -1,16 +1,20 @@
 import React, { FC, useState, useCallback } from 'react';
 import { FiMenu } from 'react-icons/fi';
+import { useHistory } from 'react-router-dom';
 import { actions } from '~/redux';
-import * as styles from './styles.scss';
 import MenuItem from '../MenuItem';
+import * as styles from './styles.scss';
 
 interface Props {
   generateNewBoard: typeof actions.generateNewBoard;
   shuffleBoard: typeof actions.shuffleBoard;
 }
 
-const Menu: FC<Props> = ({ generateNewBoard, shuffleBoard }) => {
+export const Menu: FC<Props> = ({ generateNewBoard, shuffleBoard }) => {
   const [is_menu_open, setMenuOpen] = useState(false);
+  const history = useHistory();
+
+  const redirectToScores = useCallback(() => history.push('/scores'), []);
 
   const handleMenuToggleClick = useCallback(() => {
     setMenuOpen(!is_menu_open);
@@ -39,8 +43,7 @@ const Menu: FC<Props> = ({ generateNewBoard, shuffleBoard }) => {
           />
           <MenuItem
             title="scores"
-            // TODO: Set up navigating to scores page
-            clickHandler={() => console.log('click works')}
+            clickHandler={redirectToScores}
             closeMenu={closeMenu}
           />
           <MenuItem
@@ -53,5 +56,3 @@ const Menu: FC<Props> = ({ generateNewBoard, shuffleBoard }) => {
     </div>
   );
 };
-
-export { Menu };

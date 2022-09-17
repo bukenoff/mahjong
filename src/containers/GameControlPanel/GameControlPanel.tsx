@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
-import * as styles from './styles.scss';
 import Menu from '~/components/menu/Menu';
 import HistoryControls from '~/components/HistoryControls';
 import TimerAndMovesCount from '~/components/TimerAndMovesCount';
@@ -12,6 +11,7 @@ import {
   selectIsStopped,
   actions,
 } from '~/redux';
+import * as styles from './styles.scss';
 
 export const GameControlPanel: FC = () => {
   const is_stopped = useSelector(selectIsStopped);

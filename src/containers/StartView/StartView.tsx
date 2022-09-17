@@ -1,10 +1,10 @@
 import React, { ChangeEventHandler, FC, useCallback, useState } from 'react';
 import { useHistory } from 'react-router';
-import * as styles from './styles.scss';
 import { Link } from 'react-router-dom';
-import { PATHS } from '~/constants/paths';
 import { useDispatch } from 'react-redux';
+import { PATHS } from '~/constants/paths';
 import { actions } from '~/redux';
+import * as styles from './styles.scss';
 
 export const StartView: FC = () => {
   const dispatch = useDispatch();

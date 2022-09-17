@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react';
-import Row from '../Row';
 import { Layer as LayerType } from '~/types';
+import Row from '../Row';
 
 interface Props {
   layer: LayerType;

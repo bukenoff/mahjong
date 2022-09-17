@@ -1,3 +1,1 @@
-import { TimerAndMovesCount } from './TimerAndMovesCount';
-
-export default TimerAndMovesCount;
+export { TimerAndMovesCount as default } from './TimerAndMovesCount';

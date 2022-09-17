@@ -1,10 +1,10 @@
 import React, { FC, useCallback, useMemo, memo } from 'react';
-import * as styles from './styles.scss';
 import classNames from 'classnames';
 import { Tile as TileType } from '~/types';
 import { renderIcon, getTileBackground } from '~/logic/utils';
 import { TileIconStyles } from '~/styles/styles';
 import { actions } from '~/redux';
+import * as styles from './styles.scss';
 
 interface Props {
   tile: TileType | null;

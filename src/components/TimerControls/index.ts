@@ -1,3 +1,1 @@
-import { TimerControls } from './TimerControls';
-
-export default TimerControls;
+export { TimerControls as default } from './TimerControls';

@@ -1,20 +1,20 @@
 import React, { FC } from 'react';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
-import * as styles from './styles.scss';
 import { actions } from '~/redux';
+import * as styles from './styles.scss';
 
 interface Props {
-  takeStepBack: typeof actions.takeStepBack;
-  takeStepForward: typeof actions.takeStepForward;
   is_step_forward_possible: boolean;
   is_step_back_possible: boolean;
+  takeStepBack: typeof actions.takeStepBack;
+  takeStepForward: typeof actions.takeStepForward;
 }
 
 export const HistoryControls: FC<Props> = ({
-  takeStepBack,
-  takeStepForward,
   is_step_forward_possible,
   is_step_back_possible,
+  takeStepBack,
+  takeStepForward,
 }) => {
   const onBackClick = () => takeStepBack();
   const onForwardClick = () => takeStepForward();
@@ -24,7 +24,7 @@ export const HistoryControls: FC<Props> = ({
       <button
         className={styles.history_navigate_button}
         type="button"
-        disabled={is_step_back_possible === false}
+        disabled={!is_step_back_possible}
         onClick={onBackClick}
         data-testid="step_back_button"
       >
@@ -33,7 +33,7 @@ export const HistoryControls: FC<Props> = ({
       <button
         className={styles.history_navigate_button}
         type="button"
-        disabled={is_step_forward_possible === false}
+        disabled={!is_step_forward_possible}
         onClick={onForwardClick}
         data-testid="step_forward_button"
       >
