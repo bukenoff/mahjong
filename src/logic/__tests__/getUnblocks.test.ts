@@ -1,11 +1,11 @@
-import { getUnblocks } from '../logic/board';
+import { getUnblocks } from "../board";
 
-describe('getUnblocks function:', () => {
-  it('should be defined:', () => {
+describe("getUnblocks function:", () => {
+  it("should be defined:", () => {
     expect(getUnblocks).toBeDefined();
   });
 
-  it('should return expected values:', () => {
+  it("should return expected values:", () => {
     expect(getUnblocks(0, 0, 1, [1, 7])).toEqual([
       { layer: 0, row: 0, col: 2 },
     ]);

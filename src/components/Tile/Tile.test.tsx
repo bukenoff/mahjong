@@ -1,14 +1,14 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import { Tile } from './Tile';
-import { TilesSymbols } from '../../types';
-import { actions } from '../../redux';
+import React from "react";
+import { render } from "@testing-library/react";
+import { Tile } from "./Tile";
+import { TilesSymbols } from "../../types";
+import { actions } from "../../redux";
 
-test('renders without crash', () => {
+test("renders without crash", () => {
   const { getByTestId } = render(
     <Tile
       tile={{
-        id: 'string',
+        id: "string",
         coordinates: {
           layer: 1,
           row: 1,
@@ -26,9 +26,9 @@ test('renders without crash', () => {
         ],
         special_styles: null,
       }}
-      selectTile={(jest.fn as unknown) as typeof actions.selectTile}
-    />,
+      selectTile={jest.fn as unknown as typeof actions.selectTile}
+    />
   );
-  const tileElement = getByTestId('tile');
+  const tileElement = getByTestId("tile");
   expect(tileElement).toBeInTheDocument();
 });

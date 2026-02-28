@@ -1,7 +1,7 @@
-import { createBoard } from '../logic/board';
+import { createBoard } from "../board";
 
-describe('createBoard function', () => {
-  it('should be defined', () => {
+describe("createBoard function", () => {
+  it("should be defined", () => {
     expect(createBoard).toBeDefined();
   });
 });
