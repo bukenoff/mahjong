@@ -1,19 +1,19 @@
-import React, { type FC, memo } from "react";
-import classNames from "classnames";
+import React, { type FC, memo } from 'react'
+import classNames from 'classnames'
 
-import type { Tile as TileType } from "~/types";
-import { renderIcon, getTileBackground } from "~/logic/utils";
-import { TileIconStyles } from "~/styles/styles";
+import type { Tile as TileType } from '~/types'
+import { renderIcon, getTileBackground } from '~/logic/utils'
+import { TileIconStyles } from '~/styles/styles'
 
-import * as styles from "./Tile.styles.module.scss";
+import * as styles from './Tile.styles.module.scss'
 
 interface Props {
-  tile: TileType | null;
-  selectTile: (tile: TileType) => void;
+  tile: TileType | null
+  selectTile: (tile: TileType) => void
 }
 
 export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
-  if (!tile) return null;
+  if (!tile) return null
 
   const {
     is_selected,
@@ -21,17 +21,17 @@ export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
     coordinates,
     icon,
     special_styles = {},
-  } = tile;
+  } = tile
 
   function handleTileClick() {
     if (is_selected || is_blocked || !tile) {
-      return null;
+      return null
     }
 
-    selectTile(tile);
+    selectTile(tile)
   }
 
-  const tileBackgroundColor = getTileBackground(coordinates.layer);
+  const tileBackgroundColor = getTileBackground(coordinates.layer)
 
   const tileStyles = {
     gridColumn: `${coordinates.col + 1}`,
@@ -39,7 +39,7 @@ export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
     backgroundColor: tileBackgroundColor,
     zIndex: coordinates.layer,
     ...special_styles,
-  };
+  }
 
   return (
     <button
@@ -54,7 +54,7 @@ export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
       <span className={styles.layer_badge}>{coordinates.layer}</span>
       {React.createElement(renderIcon(icon), TileIconStyles)}
     </button>
-  );
-});
+  )
+})
 
-Tile.displayName = "Tile";
+Tile.displayName = 'Tile'

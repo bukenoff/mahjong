@@ -1,7 +1,7 @@
-import { createBoard } from "../board";
+import { createBoard } from '../board'
 
-describe("createBoard function", () => {
-  it("should be defined", () => {
-    expect(createBoard).toBeDefined();
-  });
-});
+describe('createBoard function', () => {
+  it('should be defined', () => {
+    expect(createBoard).toBeDefined()
+  })
+})

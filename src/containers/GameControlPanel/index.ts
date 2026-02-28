@@ -1,1 +1,1 @@
-export { GameControlPanel as default } from './GameControlPanel';
+export { GameControlPanel as default } from './GameControlPanel'

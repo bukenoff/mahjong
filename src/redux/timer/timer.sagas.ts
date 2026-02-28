@@ -1,30 +1,30 @@
-import { put, takeLatest } from "redux-saga/effects";
+import { put, takeLatest } from 'redux-saga/effects'
 
-import timerService from "~/services/TimerService";
+import timerService from '~/services/TimerService'
 
-import { actions } from "../";
+import { actions } from '../'
 
 function* handleStopTimer() {
-  timerService.pause();
-  const seconds = timerService.seconds;
+  timerService.pause()
+  const seconds = timerService.seconds
 
-  yield put(actions.timerStopped(seconds));
+  yield put(actions.timerStopped(seconds))
 }
 
 function* handleResumeTimer() {
-  timerService.unpause();
+  timerService.unpause()
 
-  yield put(actions.timerResumed());
+  yield put(actions.timerResumed())
 }
 
 function* handleResetTimer() {
-  timerService.reset();
+  timerService.reset()
 
-  yield put(actions.timerReset());
+  yield put(actions.timerReset())
 }
 
 export default function* timerFlow() {
-  yield takeLatest(actions.stopTimer, handleStopTimer);
-  yield takeLatest(actions.resumeTimer, handleResumeTimer);
-  yield takeLatest(actions.resetTimer, handleResetTimer);
+  yield takeLatest(actions.stopTimer, handleStopTimer)
+  yield takeLatest(actions.resumeTimer, handleResumeTimer)
+  yield takeLatest(actions.resetTimer, handleResetTimer)
 }

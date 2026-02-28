@@ -1,6 +1,7 @@
 # mahjong
 
 ## Install dependencies
+
 ```
 yarn install
 ```
@@ -12,11 +13,13 @@ yarn start
 ```
 
 ## If you need to run tests
+
 ```
 yarn test
 ```
 
 ## To build
+
 ```
 yarn build
 ```

@@ -35,8 +35,8 @@ import {
   FiYoutube,
   FiZoomIn,
   FiZoomOut,
-} from 'react-icons/fi';
-import { TilesSymbols } from '~/types';
+} from 'react-icons/fi'
+import { TilesSymbols } from '~/types'
 
 export const ICONS_MAP = {
   [TilesSymbols.Github]: FiGithub,
@@ -75,4 +75,4 @@ export const ICONS_MAP = {
   [TilesSymbols.YouTube]: FiYoutube,
   [TilesSymbols.ZoomIn]: FiZoomIn,
   [TilesSymbols.ZoomOut]: FiZoomOut,
-};
+}

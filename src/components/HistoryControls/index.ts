@@ -1,1 +1,1 @@
-export { HistoryControls as default } from './HistoryControls';
+export { HistoryControls as default } from './HistoryControls'

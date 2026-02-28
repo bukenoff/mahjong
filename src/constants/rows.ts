@@ -1,9 +1,9 @@
 export interface LayersRowsSchemeType {
   [layer: number]: {
     [row: number]: {
-      [cell: number]: boolean;
-    };
-  };
+      [cell: number]: boolean
+    }
+  }
 }
 
 export const LAYERS_ROWS_SCHEMES: LayersRowsSchemeType = {
@@ -697,4 +697,4 @@ export const LAYERS_ROWS_SCHEMES: LayersRowsSchemeType = {
       14: false,
     },
   },
-};
+}

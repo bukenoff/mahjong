@@ -1,17 +1,17 @@
-import { type FC } from "react";
-import { useSelector } from "react-redux";
+import { type FC } from 'react'
+import { useSelector } from 'react-redux'
 
-import { selectBoard } from "~/redux";
+import { selectBoard } from '~/redux'
 
-import Layer from "../Layer";
-import * as styles from "./Board.styles.module.scss";
+import Layer from '../Layer'
+import * as styles from './Board.styles.module.scss'
 
 export const Board: FC = () => {
-  const board = useSelector(selectBoard);
+  const board = useSelector(selectBoard)
 
-  const layers = Object.keys(board || {});
+  const layers = Object.keys(board || {})
 
-  if (!board || !layers) return null;
+  if (!board || !layers) return null
 
   return (
     <div className={styles.container}>
@@ -19,5 +19,5 @@ export const Board: FC = () => {
         <Layer key={layer} layer={board[+layer]} />
       ))}
     </div>
-  );
-};
+  )
+}

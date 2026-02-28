@@ -1,23 +1,23 @@
-import { type FC, useState } from "react";
-import { FiMenu } from "react-icons/fi";
+import { type FC, useState } from 'react'
+import { FiMenu } from 'react-icons/fi'
 
-import MenuItem from "../MenuItem";
-import * as styles from "./Menu.styles.module.scss";
+import MenuItem from '../MenuItem'
+import * as styles from './Menu.styles.module.scss'
 
 interface Props {
-  generateNewBoard: VoidFunction;
-  shuffleBoard: VoidFunction;
+  generateNewBoard: VoidFunction
+  shuffleBoard: VoidFunction
 }
 
 export const Menu: FC<Props> = ({ generateNewBoard, shuffleBoard }) => {
-  const [is_menu_open, setMenuOpen] = useState(false);
+  const [is_menu_open, setMenuOpen] = useState(false)
 
   function handleMenuToggleClick() {
-    setMenuOpen(!is_menu_open);
+    setMenuOpen(!is_menu_open)
   }
 
   function closeMenu() {
-    setMenuOpen(false);
+    setMenuOpen(false)
   }
 
   return (
@@ -45,5 +45,5 @@ export const Menu: FC<Props> = ({ generateNewBoard, shuffleBoard }) => {
         </ul>
       )}
     </div>
-  );
-};
+  )
+}

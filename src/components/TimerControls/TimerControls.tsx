@@ -1,12 +1,12 @@
-import { type FC } from "react";
-import { FiPlay, FiPause } from "react-icons/fi";
+import { type FC } from 'react'
+import { FiPlay, FiPause } from 'react-icons/fi'
 
-import * as styles from "./TimerControls.styles.module.scss";
+import * as styles from './TimerControls.styles.module.scss'
 
 interface Props {
-  is_stopped: boolean;
-  stopTimer: VoidFunction;
-  resumeTimer: VoidFunction;
+  is_stopped: boolean
+  stopTimer: VoidFunction
+  resumeTimer: VoidFunction
 }
 
 export const TimerControls: FC<Props> = ({
@@ -16,11 +16,11 @@ export const TimerControls: FC<Props> = ({
 }) => {
   function handleTogglePauseClick() {
     if (is_stopped) {
-      resumeTimer();
-      return;
+      resumeTimer()
+      return
     }
 
-    stopTimer();
+    stopTimer()
   }
 
   return (
@@ -36,5 +36,5 @@ export const TimerControls: FC<Props> = ({
         <FiPause data-testid="fi-pause-icon" />
       )}
     </button>
-  );
-};
+  )
+}

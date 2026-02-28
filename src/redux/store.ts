@@ -1,16 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
-import createSagaMiddleware from "redux-saga";
+import { configureStore } from '@reduxjs/toolkit'
+import createSagaMiddleware from 'redux-saga'
 
-import { board_reducer } from "./board/board.slice";
-import { game_reducer } from "./game/game.slice";
-import { scores_reducer } from "./scores/scores.slice";
-import { selected_tiles_reducer } from "./selected-tiles/selected-tiles.slice";
-import { steps_reducer } from "./steps/steps.slice";
-import { tile_pairs_resolved_count_reducer } from "./tile-pairs-resolved-count/tile-pairs-resolved-count.slice";
-import { timer_reducer } from "./timer/timer.slice";
-import rootSaga from "./rootSaga";
+import { board_reducer } from './board/board.slice'
+import { game_reducer } from './game/game.slice'
+import { scores_reducer } from './scores/scores.slice'
+import { selected_tiles_reducer } from './selected-tiles/selected-tiles.slice'
+import { steps_reducer } from './steps/steps.slice'
+import { tile_pairs_resolved_count_reducer } from './tile-pairs-resolved-count/tile-pairs-resolved-count.slice'
+import { timer_reducer } from './timer/timer.slice'
+import rootSaga from './rootSaga'
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware()
 
 const store = configureStore({
   reducer: {
@@ -24,8 +24,8 @@ const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),
-});
+})
 
-sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga)
 
-export default store;
+export default store

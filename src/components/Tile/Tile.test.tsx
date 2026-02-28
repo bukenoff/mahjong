@@ -1,14 +1,14 @@
-import { render } from "@testing-library/react";
+import { render } from '@testing-library/react'
 
-import { Tile } from "./Tile";
+import { Tile } from './Tile'
 
-import { TilesSymbols, type Tile as TileType } from "../../types";
+import { TilesSymbols, type Tile as TileType } from '../../types'
 
-test("renders without crash", () => {
+test('renders without crash', () => {
   const { getByTestId } = render(
     <Tile
       tile={{
-        id: "string",
+        id: 'string',
         coordinates: {
           layer: 1,
           row: 1,
@@ -28,7 +28,7 @@ test("renders without crash", () => {
       }}
       selectTile={jest.fn as (tile: TileType) => void}
     />
-  );
-  const tileElement = getByTestId("tile");
-  expect(tileElement).toBeInTheDocument();
-});
+  )
+  const tileElement = getByTestId('tile')
+  expect(tileElement).toBeInTheDocument()
+})

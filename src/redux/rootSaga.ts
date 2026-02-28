@@ -1,9 +1,9 @@
-import { all, fork } from "redux-saga/effects";
+import { all, fork } from 'redux-saga/effects'
 
-import boardFlow from "./board/board.sagas";
-import selectedTilesFlow from "./selected-tiles/selected-tiles.sagas";
-import stepsFlow from "./steps/steps.sagas";
-import timerFlow from "./timer/timer.sagas";
+import boardFlow from './board/board.sagas'
+import selectedTilesFlow from './selected-tiles/selected-tiles.sagas'
+import stepsFlow from './steps/steps.sagas'
+import timerFlow from './timer/timer.sagas'
 
 export default function* rootSaga() {
   yield all([
@@ -11,5 +11,5 @@ export default function* rootSaga() {
     fork(selectedTilesFlow),
     fork(stepsFlow),
     fork(timerFlow),
-  ]);
+  ])
 }

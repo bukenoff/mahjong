@@ -1,43 +1,43 @@
-import Worker from "./timer.worker.ts?worker";
+import Worker from './timer.worker.ts?worker'
 
-const worker = new Worker();
+const worker = new Worker()
 
 class TimerService {
-  _seconds = 0;
+  _seconds = 0
 
   set seconds(value) {
-    this._seconds = value;
+    this._seconds = value
   }
 
   get seconds() {
-    return this._seconds;
+    return this._seconds
   }
 
   setTime = (arg: number) => {
-    this.seconds = arg;
-  };
+    this.seconds = arg
+  }
 
   pause = () => {
-    worker.postMessage("pause");
-  };
+    worker.postMessage('pause')
+  }
 
   unpause = () => {
-    worker.postMessage("unpause");
-  };
+    worker.postMessage('unpause')
+  }
 
   reset = () => {
-    this._seconds = 0;
-    this.setTime(0);
-    worker.postMessage("reset");
-  };
+    this._seconds = 0
+    this.setTime(0)
+    worker.postMessage('reset')
+  }
 }
 
-worker.addEventListener("message", function (e) {
-  if (e.data.type === "INCREMENT_SECONDS") {
-    timerService.seconds = e.data.seconds;
-    timerService.setTime(e.data.seconds);
+worker.addEventListener('message', function (e) {
+  if (e.data.type === 'INCREMENT_SECONDS') {
+    timerService.seconds = e.data.seconds
+    timerService.setTime(e.data.seconds)
   }
-});
+})
 
-const timerService = new TimerService();
-export default timerService;
+const timerService = new TimerService()
+export default timerService

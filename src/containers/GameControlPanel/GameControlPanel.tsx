@@ -1,47 +1,47 @@
-import { type FC } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { type FC } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import Menu from "~/components/menu/Menu";
-import HistoryControls from "~/components/HistoryControls";
-import TimerAndMovesCount from "~/components/TimerAndMovesCount";
-import TimerControls from "~/components/TimerControls";
+import Menu from '~/components/menu/Menu'
+import HistoryControls from '~/components/HistoryControls'
+import TimerAndMovesCount from '~/components/TimerAndMovesCount'
+import TimerControls from '~/components/TimerControls'
 import {
   selectIsStepForwardPossible,
   selectIsStepBackPossible,
   selectIsStopped,
   actions,
-} from "~/redux";
+} from '~/redux'
 
-import * as styles from "./GameControlPanel.styles.module.scss";
+import * as styles from './GameControlPanel.styles.module.scss'
 
 export const GameControlPanel: FC = () => {
-  const dispatch = useDispatch();
-  const is_stopped = useSelector(selectIsStopped);
-  const is_step_forward_possible = useSelector(selectIsStepForwardPossible);
-  const is_step_back_possible = useSelector(selectIsStepBackPossible);
+  const dispatch = useDispatch()
+  const is_stopped = useSelector(selectIsStopped)
+  const is_step_forward_possible = useSelector(selectIsStepForwardPossible)
+  const is_step_back_possible = useSelector(selectIsStepBackPossible)
 
   function generateNewBoard() {
-    dispatch(actions.generateNewBoard());
+    dispatch(actions.generateNewBoard())
   }
 
   function stopTimer() {
-    dispatch(actions.stopTimer());
+    dispatch(actions.stopTimer())
   }
 
   function resumeTimer() {
-    dispatch(actions.resumeTimer());
+    dispatch(actions.resumeTimer())
   }
 
   function takeStepBack() {
-    dispatch(actions.takeStepBack());
+    dispatch(actions.takeStepBack())
   }
 
   function takeStepForward() {
-    dispatch(actions.takeStepForward());
+    dispatch(actions.takeStepForward())
   }
 
   function shuffleBoard() {
-    dispatch(actions.shuffleBoard());
+    dispatch(actions.shuffleBoard())
   }
 
   return (
@@ -53,7 +53,7 @@ export const GameControlPanel: FC = () => {
         is_step_back_possible={is_step_back_possible}
       />
       <TimerAndMovesCount />
-      <div style={{ display: "flex" }}>
+      <div style={{ display: 'flex' }}>
         <TimerControls
           stopTimer={stopTimer}
           resumeTimer={resumeTimer}
@@ -62,5 +62,5 @@ export const GameControlPanel: FC = () => {
         <Menu generateNewBoard={generateNewBoard} shuffleBoard={shuffleBoard} />
       </div>
     </nav>
-  );
-};
+  )
+}

@@ -1,13 +1,13 @@
-import { type FC } from "react";
-import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+import { type FC } from 'react'
+import { FiArrowLeft, FiArrowRight } from 'react-icons/fi'
 
-import * as styles from "./HistoryControl.styles.module.scss";
+import * as styles from './HistoryControl.styles.module.scss'
 
 interface Props {
-  is_step_forward_possible: boolean;
-  is_step_back_possible: boolean;
-  takeStepBack: VoidFunction;
-  takeStepForward: VoidFunction;
+  is_step_forward_possible: boolean
+  is_step_back_possible: boolean
+  takeStepBack: VoidFunction
+  takeStepForward: VoidFunction
 }
 
 export const HistoryControls: FC<Props> = ({
@@ -16,8 +16,8 @@ export const HistoryControls: FC<Props> = ({
   takeStepBack,
   takeStepForward,
 }) => {
-  const onBackClick = () => takeStepBack();
-  const onForwardClick = () => takeStepForward();
+  const onBackClick = () => takeStepBack()
+  const onForwardClick = () => takeStepForward()
 
   return (
     <div className={styles.container} data-testid="history_controls_root">
@@ -40,5 +40,5 @@ export const HistoryControls: FC<Props> = ({
         <FiArrowRight />
       </button>
     </div>
-  );
-};
+  )
+}

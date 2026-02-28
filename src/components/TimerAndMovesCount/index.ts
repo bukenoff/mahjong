@@ -1,1 +1,1 @@
-export { TimerAndMovesCount as default } from './TimerAndMovesCount';
+export { TimerAndMovesCount as default } from './TimerAndMovesCount'

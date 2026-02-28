@@ -1,22 +1,22 @@
-import type { CSSProperties } from "react";
-import type { TileCoordinates } from "~/types";
+import type { CSSProperties } from 'react'
+import type { TileCoordinates } from '~/types'
 
-export const ICON_SYMBOL_REPEAT_COUNT = 4;
+export const ICON_SYMBOL_REPEAT_COUNT = 4
 
-export const TOTAL_TILE_COUNT = 144;
+export const TOTAL_TILE_COUNT = 144
 
-export const TOTAL_TILE_PAIRS_COUNT = 72;
+export const TOTAL_TILE_PAIRS_COUNT = 72
 
-export const TILE_SYMBOLS_COUNT = 36;
+export const TILE_SYMBOLS_COUNT = 36
 
-export const LAYERS_COUNT = 5;
+export const LAYERS_COUNT = 5
 
 export interface SpecialTilesMap {
   [row: number]: {
     [layer: number]: {
-      [col: number]: boolean;
-    };
-  };
+      [col: number]: boolean
+    }
+  }
 }
 
 export const SPECIAL_TILES: SpecialTilesMap = {
@@ -31,14 +31,14 @@ export const SPECIAL_TILES: SpecialTilesMap = {
       6: true,
     },
   },
-};
+}
 
 export interface SpecialTilesUnblocksMap {
   [layer: number]: {
     [row: number]: {
-      [col: number]: TileCoordinates[];
-    };
-  };
+      [col: number]: TileCoordinates[]
+    }
+  }
 }
 
 export const SPECIAL_TILES_UNBLOCKS: SpecialTilesUnblocksMap = {
@@ -64,27 +64,27 @@ export const SPECIAL_TILES_UNBLOCKS: SpecialTilesUnblocksMap = {
       ],
     },
   },
-};
+}
 
 export interface SpecialStylesMap {
   [row: number]: {
     [layer: number]: {
-      [col: number]: CSSProperties;
-    };
-  };
+      [col: number]: CSSProperties
+    }
+  }
 }
 
 export const SPECIAL_TILES_STYLES: SpecialStylesMap = {
   0: {
     3: {
-      0: { transform: "translate(0, 32px)" },
-      13: { transform: "translate(0, 32px)" },
-      14: { transform: "translate(0, 32px)" },
+      0: { transform: 'translate(0, 32px)' },
+      13: { transform: 'translate(0, 32px)' },
+      14: { transform: 'translate(0, 32px)' },
     },
   },
   4: {
     3: {
-      6: { transform: "translate(20px, 32px)" },
+      6: { transform: 'translate(20px, 32px)' },
     },
   },
-};
+}

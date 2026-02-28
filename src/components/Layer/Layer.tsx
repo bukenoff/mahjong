@@ -1,13 +1,13 @@
-import { type FC } from "react";
-import type { Layer as LayerType } from "~/types";
-import Row from "../Row";
+import { type FC } from 'react'
+import type { Layer as LayerType } from '~/types'
+import Row from '../Row'
 
 interface Props {
-  layer: LayerType;
+  layer: LayerType
 }
 
 export const Layer: FC<Props> = ({ layer }) => {
-  const rowList = Object.keys(layer);
+  const rowList = Object.keys(layer)
 
   return (
     <>
@@ -15,5 +15,5 @@ export const Layer: FC<Props> = ({ layer }) => {
         <Row key={`${r}${i}`} row={layer[+r]} />
       ))}
     </>
-  );
-};
+  )
+}

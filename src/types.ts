@@ -1,137 +1,137 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties } from 'react'
 
-export type BoardState = Board | null;
+export type BoardState = Board | null
 
 export interface State {
-  board: BoardState;
-  selected_tiles: SelectedTilesState;
-  processing: ProcessingState;
-  timer: any; // any for now, since I don't have any solid implementation ideas
-  game: GameState;
-  steps: StepsState;
-  tile_pairs_resolved_count: TilePairsResolvedCountState;
-  scores: ScoresState;
+  board: BoardState
+  selected_tiles: SelectedTilesState
+  processing: ProcessingState
+  timer: any // any for now, since I don't have any solid implementation ideas
+  game: GameState
+  steps: StepsState
+  tile_pairs_resolved_count: TilePairsResolvedCountState
+  scores: ScoresState
 }
 
-export type DynamicState<T extends keyof State> = Pick<State, T>;
+export type DynamicState<T extends keyof State> = Pick<State, T>
 
-export type TilePairsResolvedCountState = number;
+export type TilePairsResolvedCountState = number
 
 export interface TimerState {
-  is_stopped: boolean;
-  stopped_at: number | null;
+  is_stopped: boolean
+  stopped_at: number | null
 }
 
 export interface Player {
-  name: string;
-  time: number;
+  name: string
+  time: number
 }
 
 export interface ScoresState {
-  players: Player[];
+  players: Player[]
 }
 
 export interface GameState {
-  is_over: boolean;
-  player_name: string;
-  player_score: number | null;
+  is_over: boolean
+  player_name: string
+  player_score: number | null
 }
 
 export interface StepsState {
-  step_index: number;
-  steps_stack: [Tile, Tile][];
-  steps_made: number;
+  step_index: number
+  steps_stack: [Tile, Tile][]
+  steps_made: number
 }
 
-export type ProcessingState = boolean;
+export type ProcessingState = boolean
 
 export interface SelectedTilesState {
-  stack: Tile[];
+  stack: Tile[]
 }
 
 export interface TileCoordinates {
-  layer: number;
-  row: number;
-  col: number;
+  layer: number
+  row: number
+  col: number
 }
 
 export interface Tile {
-  id: string;
-  coordinates: TileCoordinates;
-  is_blocked: boolean;
-  is_selected: boolean;
-  icon: TilesSymbolsValue;
-  unblocks: TileCoordinates[] | null;
-  special_styles: CSSProperties | null;
+  id: string
+  coordinates: TileCoordinates
+  is_blocked: boolean
+  is_selected: boolean
+  icon: TilesSymbolsValue
+  unblocks: TileCoordinates[] | null
+  special_styles: CSSProperties | null
 }
 
 export interface Row {
-  [index: number]: Tile | null;
+  [index: number]: Tile | null
 }
 
 export interface Layer {
-  [index: number]: Row;
+  [index: number]: Row
 }
 
 export interface Board {
-  [index: number]: Layer;
+  [index: number]: Layer
 }
 
 export const TilesSymbols = {
-  Gitlab: "Gitlab",
-  Github: "Github",
-  Heart: "Heart",
-  YouTube: "YouTube",
-  Book: "Book",
-  AtSign: "AtSign",
-  Camera: "Camera",
-  Info: "Info",
-  Meh: "Meh",
-  Mic: "Mic",
-  MicOff: "MicOff",
-  Moon: "Moon",
-  Truck: "Truck",
-  User: "User",
-  Watch: "Watch",
-  ZoomIn: "ZoomIn",
-  ZoomOut: "ZoomOut",
-  Sun: "Sun",
-  Sunrise: "Sunrise",
-  Sunset: "Sunset",
-  Share: "Share",
-  Power: "Power",
-  Mail: "Mail",
-  Globe: "Globe",
-  Headphones: "Headphones",
-  Eye: "Eye",
-  EyeOff: "EyeOff",
-  Folder: "Folder",
-  Dollar: "Dollar",
-  Gift: "Gift",
-  Music: "Music",
-  PieChart: "PieChart",
-  Settings: "Settings",
-  Smile: "Smile",
-  ThumbsUp: "ThumbsUp",
-  ThumbsDown: "ThumbsDown",
-} as const;
+  Gitlab: 'Gitlab',
+  Github: 'Github',
+  Heart: 'Heart',
+  YouTube: 'YouTube',
+  Book: 'Book',
+  AtSign: 'AtSign',
+  Camera: 'Camera',
+  Info: 'Info',
+  Meh: 'Meh',
+  Mic: 'Mic',
+  MicOff: 'MicOff',
+  Moon: 'Moon',
+  Truck: 'Truck',
+  User: 'User',
+  Watch: 'Watch',
+  ZoomIn: 'ZoomIn',
+  ZoomOut: 'ZoomOut',
+  Sun: 'Sun',
+  Sunrise: 'Sunrise',
+  Sunset: 'Sunset',
+  Share: 'Share',
+  Power: 'Power',
+  Mail: 'Mail',
+  Globe: 'Globe',
+  Headphones: 'Headphones',
+  Eye: 'Eye',
+  EyeOff: 'EyeOff',
+  Folder: 'Folder',
+  Dollar: 'Dollar',
+  Gift: 'Gift',
+  Music: 'Music',
+  PieChart: 'PieChart',
+  Settings: 'Settings',
+  Smile: 'Smile',
+  ThumbsUp: 'ThumbsUp',
+  ThumbsDown: 'ThumbsDown',
+} as const
 
-export type TilesSymbolsKey = keyof typeof TilesSymbols;
+export type TilesSymbolsKey = keyof typeof TilesSymbols
 
-export type TilesSymbolsValue = (typeof TilesSymbols)[TilesSymbolsKey];
+export type TilesSymbolsValue = (typeof TilesSymbols)[TilesSymbolsKey]
 
-export type TileUpdate = Partial<Pick<Tile, "is_selected" | "is_blocked">>;
+export type TileUpdate = Partial<Pick<Tile, 'is_selected' | 'is_blocked'>>
 
-export type TileCoordinatesPair = [Tile["coordinates"], Tile["coordinates"]];
+export type TileCoordinatesPair = [Tile['coordinates'], Tile['coordinates']]
 
 export interface RowScheme {
-  [index: number]: boolean;
+  [index: number]: boolean
 }
 
 export interface LayerScheme {
-  [index: number]: boolean;
+  [index: number]: boolean
 }
 
 export interface BoardScheme {
-  layer_scheme: LayerScheme;
+  layer_scheme: LayerScheme
 }
