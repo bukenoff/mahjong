@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-import type { SelectedTilesState } from "../../types";
+import type { SelectedTilesState, Tile } from "../../types";
 import { board_actions } from "../board/board.slice";
 
 const initial_state = {
@@ -19,7 +19,8 @@ const selected_tiles_slice = createSlice({
     stackCleared(state) {
       state.stack = [];
     },
-    selectTile(state) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    selectTile(state, _: PayloadAction<Tile>) {
       return state;
     },
   },

@@ -1,4 +1,3 @@
-import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import { actions } from "../../redux";
 import { HistoryControls } from "./HistoryControls";

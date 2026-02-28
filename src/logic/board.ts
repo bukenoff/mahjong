@@ -229,7 +229,7 @@ export const createBoard = (): Board => {
   const board: Board = {};
   const tile_symbols = createRandomlyOrderedTileSymbols();
 
-  [...new Array(LAYERS_COUNT)].forEach((u, i) => {
+  [...new Array(LAYERS_COUNT)].forEach((_, i) => {
     board[i] = createLayer(LAYERS_ROWS_SCHEMES[i], i, tile_symbols);
   });
 

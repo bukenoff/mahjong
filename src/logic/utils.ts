@@ -1,4 +1,4 @@
-import { TilesSymbols, type TileCoordinates } from "~/types";
+import { type TilesSymbolsValue, type TileCoordinates } from "~/types";
 import { ICONS_MAP } from "../constants/iconsMap";
 import type { IconType } from "react-icons/lib";
 
@@ -28,7 +28,7 @@ export const isEmptyObject = (
   return Object.keys(object).length === 0 && object.constructor === Object;
 };
 
-export const renderIcon = (icon: TilesSymbols): IconType | "no-icon" => {
+export const renderIcon = (icon: TilesSymbolsValue): IconType | "no-icon" => {
   return ICONS_MAP[icon] || "no-icon";
 };
 

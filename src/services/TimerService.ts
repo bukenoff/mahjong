@@ -13,7 +13,9 @@ class TimerService {
     return this._seconds;
   }
 
-  setTime = (arg: any) => {};
+  setTime = (arg: number) => {
+    this.seconds = arg;
+  };
 
   pause = () => {
     worker.postMessage("pause");

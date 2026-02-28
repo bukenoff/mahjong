@@ -1,8 +1,8 @@
-import React from "react";
 import { render } from "@testing-library/react";
+
 import { Tile } from "./Tile";
-import { TilesSymbols } from "../../types";
-import { actions } from "../../redux";
+
+import { TilesSymbols, type Tile as TileType } from "../../types";
 
 test("renders without crash", () => {
   const { getByTestId } = render(
@@ -26,7 +26,7 @@ test("renders without crash", () => {
         ],
         special_styles: null,
       }}
-      selectTile={jest.fn as unknown as typeof actions.selectTile}
+      selectTile={jest.fn as (tile: TileType) => void}
     />
   );
   const tileElement = getByTestId("tile");

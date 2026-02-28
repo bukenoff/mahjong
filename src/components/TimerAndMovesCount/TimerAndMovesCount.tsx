@@ -9,7 +9,7 @@ export const TimerAndMovesCount: FC = () => {
     timerService.setTime = setTime;
 
     return () => {
-      timerService.setTime = (arg) => {};
+      timerService.setTime = () => {};
     };
   }, [setTime]);
 
