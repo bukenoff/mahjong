@@ -1,4 +1,4 @@
-import React, { type FC, useState, useEffect } from "react";
+import { type FC, useState, useEffect } from "react";
 import * as styles from "./TimerAndMovesCount.styles.module.scss";
 import timerService from "~/services/TimerService";
 

@@ -1,4 +1,4 @@
-import React, { type FC, useState, useCallback } from "react";
+import { type FC, useState } from "react";
 import { FiMenu } from "react-icons/fi";
 
 import { actions } from "../../../redux";
@@ -13,13 +13,13 @@ interface Props {
 export const Menu: FC<Props> = ({ generateNewBoard, shuffleBoard }) => {
   const [is_menu_open, setMenuOpen] = useState(false);
 
-  const handleMenuToggleClick = useCallback(() => {
+  function handleMenuToggleClick() {
     setMenuOpen(!is_menu_open);
-  }, [setMenuOpen, is_menu_open]);
+  }
 
-  const closeMenu = useCallback(() => {
+  function closeMenu() {
     setMenuOpen(false);
-  }, [setMenuOpen]);
+  }
 
   return (
     <div className={styles.container} data-testid="menu-root">

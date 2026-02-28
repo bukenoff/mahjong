@@ -1,8 +1,10 @@
-import React, { type FC, useEffect } from "react";
+import { type FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import Board from "~/components/Board";
 import GameControlPanel from "~/containers/GameControlPanel";
 import { actions, selectIsStopped } from "~/redux";
+
 import * as styles from "./GameView.styles.module.scss";
 
 export const GameView: FC = () => {
@@ -12,6 +14,7 @@ export const GameView: FC = () => {
   useEffect(() => {
     dispatch(actions.generateNewBoard());
     dispatch(actions.gameStarted("johny"));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

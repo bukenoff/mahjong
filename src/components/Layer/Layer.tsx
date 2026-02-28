@@ -1,4 +1,4 @@
-import React, { type FC, useMemo } from "react";
+import { type FC } from "react";
 import type { Layer as LayerType } from "~/types";
 import Row from "../Row";
 
@@ -7,9 +7,7 @@ interface Props {
 }
 
 export const Layer: FC<Props> = ({ layer }) => {
-  const rowList = useMemo(() => {
-    return Object.keys(layer);
-  }, [layer]);
+  const rowList = Object.keys(layer);
 
   return (
     <>

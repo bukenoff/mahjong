@@ -1,6 +1,8 @@
-import React, { FC } from "react";
+import { type FC } from "react";
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+
 import { actions } from "~/redux";
+
 import * as styles from "./HistoryControl.styles.module.scss";
 
 interface Props {

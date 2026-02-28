@@ -1,4 +1,4 @@
-import React, { type FC, useCallback, useMemo, memo } from "react";
+import React, { type FC, memo } from "react";
 import classNames from "classnames";
 import type { Tile as TileType } from "~/types";
 import { renderIcon, getTileBackground } from "~/logic/utils";
@@ -14,43 +14,31 @@ interface Props {
 export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
   if (!tile) return null;
 
-  const { is_selected, is_blocked, coordinates, icon, special_styles } = tile;
+  const {
+    is_selected,
+    is_blocked,
+    coordinates,
+    icon,
+    special_styles = {},
+  } = tile;
 
-  const handleTileClick = useCallback(() => {
-    if (is_selected || is_blocked) {
+  function handleTileClick() {
+    if (is_selected || is_blocked || !tile) {
       return null;
     }
 
     selectTile(tile);
-  }, [selectTile, tile]);
+  }
 
-  const tileBackgroundColor = useMemo(() => {
-    if (!tile) {
-      return;
-    }
+  const tileBackgroundColor = getTileBackground(coordinates.layer);
 
-    return getTileBackground(coordinates.layer);
-  }, [tile]);
-
-  const tileStyles = useMemo(() => {
-    if (!tile) {
-      return;
-    }
-
-    const main_styles = {
-      gridColumn: `${coordinates.col + 1}`,
-      gridRow: `${coordinates.row + 1}`,
-      backgroundColor: tileBackgroundColor,
-      zIndex: coordinates.layer,
-    };
-
-    const optional_styles = special_styles || {};
-
-    return {
-      ...main_styles,
-      ...optional_styles,
-    };
-  }, [tile]);
+  const tileStyles = {
+    gridColumn: `${coordinates.col + 1}`,
+    gridRow: `${coordinates.row + 1}`,
+    backgroundColor: tileBackgroundColor,
+    zIndex: coordinates.layer,
+    ...special_styles,
+  };
 
   return (
     <button
