@@ -1,28 +1,13 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-import {
-  type CaseReducer,
-  createSlice,
-  type PayloadAction,
-} from "@reduxjs/toolkit";
-import type { SelectedTilesState, Tile } from "../../types";
+import { createSlice } from "@reduxjs/toolkit";
+
+import type { SelectedTilesState } from "../../types";
 import { board_actions } from "../board/board.slice";
 
-const initial_state: SelectedTilesState = {
+const initial_state = {
   stack: [],
-};
+} as SelectedTilesState;
 
-type SelectedTilesReducer<T = undefined> = T extends undefined
-  ? (state: SelectedTilesState) => void
-  : CaseReducer<SelectedTilesState, PayloadAction<T>>;
-
-const selected_tiles_slice = createSlice<
-  SelectedTilesState,
-  {
-    tileAddedToStack: SelectedTilesReducer<Tile>;
-    stackCleared: SelectedTilesReducer;
-    selectTile: SelectedTilesReducer<Tile>;
-  }
->({
+const selected_tiles_slice = createSlice({
   name: "selected_tiles",
   initialState: initial_state,
   reducers: {

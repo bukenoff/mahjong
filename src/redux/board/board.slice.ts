@@ -38,7 +38,6 @@ const board_slice = createSlice({
         ...(state[layer][row][col] as Tile),
         ...update,
       };
-      return state;
     },
     multipleTilesUpdated(
       state: Draft<BoardState>,
@@ -77,7 +76,6 @@ const board_slice = createSlice({
 
         state[layer][row][col] = null;
       }
-      return state;
     },
     newBoardGenerated(_state: Draft<BoardState>, action: PayloadAction<Board>) {
       return action.payload;
@@ -97,7 +95,6 @@ const board_slice = createSlice({
 
         state[layer][row][col] = tile;
       }
-      return state;
     },
     shuffleBoard(state: Draft<BoardState>) {
       return state;

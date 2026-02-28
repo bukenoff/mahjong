@@ -1,35 +1,15 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-import {
-  createSlice,
-  type PayloadAction,
-  type CaseReducer,
-} from "@reduxjs/toolkit";
-import type { Tile, StepsState } from "../../types";
+import { createSlice } from "@reduxjs/toolkit";
+
+import type { StepsState } from "../../types";
 import { board_actions } from "../board/board.slice";
 
-const initial_state: StepsState = {
+const initial_state = {
   step_index: -1,
   steps_stack: [],
   steps_made: 0,
-};
+} as StepsState;
 
-type StepsReducer<T = undefined> = T extends undefined
-  ? (state: StepsState) => void
-  : CaseReducer<StepsState, PayloadAction<T>>;
-
-const steps_slice = createSlice<
-  StepsState,
-  {
-    stepIndexIncremented: StepsReducer;
-    stepIndexDecremented: StepsReducer;
-    stepAddedToStack: StepsReducer<[Tile, Tile]>;
-    stepsMadeIncremented: StepsReducer;
-    takeStepBack: StepsReducer;
-    takeStepForward: StepsReducer;
-    stepBackTaken: StepsReducer;
-    stepForwardTaken: StepsReducer;
-  }
->({
+const steps_slice = createSlice({
   name: "steps",
   initialState: initial_state,
   reducers: {

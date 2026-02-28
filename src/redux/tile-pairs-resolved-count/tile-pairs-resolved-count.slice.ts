@@ -1,37 +1,24 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-import {
-  createSlice,
-  type CaseReducer,
-  type PayloadAction,
-} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+
 import type { TilePairsResolvedCountState } from "~/types";
+
 import { actions } from "../";
 
-const initial_state: TilePairsResolvedCountState = 0;
+const initial_state = 0 as TilePairsResolvedCountState;
 
-type TilePairsResolvedCountReducer<T = undefined> = T extends undefined
-  ? (state: TilePairsResolvedCountState) => void
-  : CaseReducer<TilePairsResolvedCountState, PayloadAction<T>>;
-
-const tiles_pairs_resolved_count_slice = createSlice<
-  TilePairsResolvedCountState,
-  {
-    tilePairsResolvedCountIncremented: TilePairsResolvedCountReducer;
-    tilePairsResolvedCountDecremented: TilePairsResolvedCountReducer;
-  }
->({
+const tiles_pairs_resolved_count_slice = createSlice({
   name: "tiles_pairs_resolved_count",
   initialState: initial_state,
   reducers: {
     tilePairsResolvedCountIncremented(state) {
-      state += 1;
+      return state + 1;
     },
     tilePairsResolvedCountDecremented(state) {
-      state += 1;
+      return state - 1;
     },
   },
   extraReducers(builder) {
-    return builder.addCase(actions.newBoardGenerated, (state) => {
+    return builder.addCase(actions.newBoardGenerated, () => {
       return 0;
     });
   },

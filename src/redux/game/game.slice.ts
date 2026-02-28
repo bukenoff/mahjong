@@ -1,28 +1,13 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-import {
-  createSlice,
-  type PayloadAction,
-  type CaseReducer,
-} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import type { GameState } from "../../types";
 
-const initial_state: GameState = {
+const initial_state = {
   is_over: true,
   player_name: "anonymous",
   player_score: null,
-};
+} as GameState;
 
-type GameReducer<T = undefined> = T extends undefined
-  ? (state: GameState) => void
-  : CaseReducer<GameState, PayloadAction<T>>;
-
-const game_slice = createSlice<
-  GameState,
-  {
-    gameStarted: GameReducer<string>;
-    gameStopped: GameReducer<number>;
-  }
->({
+const game_slice = createSlice({
   name: "game",
   initialState: initial_state,
   reducers: {

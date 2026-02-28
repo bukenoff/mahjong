@@ -9,8 +9,7 @@ import type { Board } from "~/types";
 import { actions, selectBoard } from "../";
 
 export function* handleGenerateNewBoard() {
-  const new_board = yield call(createBoard);
-  console.log("saga called", new_board);
+  const new_board: Board = yield call(createBoard);
 
   yield put(actions.newBoardGenerated(new_board));
   yield put(actions.resetTimer());

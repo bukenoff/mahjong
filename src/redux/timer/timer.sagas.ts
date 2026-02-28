@@ -1,6 +1,8 @@
 import { put, takeLatest } from "redux-saga/effects";
-import { actions } from "../";
+
 import timerService from "~/services/TimerService";
+
+import { actions } from "../";
 
 function* handleStopTimer() {
   timerService.pause();

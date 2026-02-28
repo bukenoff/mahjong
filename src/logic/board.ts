@@ -252,14 +252,14 @@ export const shuffleBoard = (
       const first_tile_copy = board_copy[+l1][+r1][+c1];
       const second_tile_copy = board_copy[+l2][+r2][+c2];
 
-      if (!!first_tile_copy) {
+      if (first_tile_copy) {
         first_tile_copy.coordinates = board[+l2][+r2][+c2]!.coordinates;
         first_tile_copy.unblocks = board[+l2][+r2][+c2]!.unblocks;
         first_tile_copy.is_blocked = board[+l2][+r2][+c2]!.is_blocked;
         first_tile_copy.special_styles = board[+l2][+r2][+c2]!.special_styles;
       }
 
-      if (!!second_tile_copy) {
+      if (second_tile_copy) {
         second_tile_copy.coordinates = board[+l1][+r1][+c1]!.coordinates;
         second_tile_copy.unblocks = board[+l1][+r1][+c1]!.unblocks;
         second_tile_copy.is_blocked = board[+l1][+r1][+c1]!.is_blocked;
