@@ -1,17 +1,17 @@
-import React, { FC } from 'react';
-import { useSelector } from 'react-redux';
-import Menu from '~/components/menu/Menu';
-import HistoryControls from '~/components/HistoryControls';
-import TimerAndMovesCount from '~/components/TimerAndMovesCount';
-import useActions from '~/hooks/useActions';
-import TimerControls from '~/components/TimerControls';
+import React, { FC } from "react";
+import { useSelector } from "react-redux";
+import Menu from "~/components/menu/Menu";
+import HistoryControls from "~/components/HistoryControls";
+import TimerAndMovesCount from "~/components/TimerAndMovesCount";
+import useActions from "~/hooks/useActions";
+import TimerControls from "~/components/TimerControls";
 import {
   selectIsStepForwardPossible,
   selectIsStepBackPossible,
   selectIsStopped,
   actions,
-} from '~/redux';
-import * as styles from './styles.scss';
+} from "~/redux";
+import * as styles from "./GameControlPanel.styles.module.scss";
 
 export const GameControlPanel: FC = () => {
   const is_stopped = useSelector(selectIsStopped);
@@ -36,7 +36,7 @@ export const GameControlPanel: FC = () => {
         is_step_back_possible={is_step_back_possible}
       />
       <TimerAndMovesCount />
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: "flex" }}>
         <TimerControls
           stopTimer={binded_actions.stopTimer}
           resumeTimer={binded_actions.resumeTimer}

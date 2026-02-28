@@ -1,7 +1,7 @@
-import React, { FC, useCallback } from 'react';
-import { FiPlay, FiPause } from 'react-icons/fi';
-import { actions } from '~/redux';
-import * as styles from './styles.scss';
+import React, { FC, useCallback } from "react";
+import { FiPlay, FiPause } from "react-icons/fi";
+import { actions } from "~/redux";
+import * as styles from "./TimerControls.styles.module.scss";
 
 interface Props {
   is_stopped: boolean;

@@ -1,5 +1,5 @@
-import React, { FC, useCallback } from 'react';
-import * as styles from './styles.scss';
+import React, { FC, useCallback } from "react";
+import * as styles from "./MenuItem.styles.module.scss";
 
 interface Props {
   title: string;

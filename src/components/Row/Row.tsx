@@ -1,8 +1,8 @@
-import React, { FC, useMemo } from 'react';
-import { Row as RowType } from '~/types';
-import useActions from '~/hooks/useActions';
-import { actions } from '~/redux';
-import Tile from '../Tile';
+import React, { type FC, useMemo } from "react";
+import type { Row as RowType } from "~/types";
+import useActions from "~/hooks/useActions";
+import { actions } from "~/redux";
+import Tile from "../Tile";
 
 interface Props {
   row: RowType;

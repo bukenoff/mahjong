@@ -1,8 +1,8 @@
-import React, { FC, useMemo } from 'react';
-import { useSelector } from 'react-redux';
-import { selectBoard } from '~/redux';
-import Layer from '../Layer';
-import * as styles from './styles.scss';
+import React, { FC, useMemo } from "react";
+import { useSelector } from "react-redux";
+import { selectBoard } from "~/redux";
+import Layer from "../Layer";
+import * as styles from "./Board.styles.module.scss";
 
 export const Board: FC = () => {
   const board = useSelector(selectBoard);

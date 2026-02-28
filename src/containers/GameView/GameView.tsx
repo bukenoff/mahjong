@@ -1,16 +1,9 @@
-import React, { FC, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { DynamicModuleLoader } from 'redux-dynamic-modules';
-import Board from '~/components/Board';
-import GameControlPanel from '~/containers/GameControlPanel';
-import { actions, selectIsStopped } from '~/redux';
-import { getBoardModule } from '~/redux/board/board.module';
-import { getGameModule } from '~/redux/game/game.module';
-import { getSelectedTilesModule } from '~/redux/selected-tiles/selected-tiles.module';
-import { getStepsModule } from '~/redux/steps/steps.module';
-import { getTilePairsResolvedCountModule } from '~/redux/tile-pairs-resolved-count/tile-pairs-resolved-count.module';
-import { getTimerModule } from '~/redux/timer/timer.module';
-import * as styles from './styles.scss';
+import React, { type FC, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Board from "~/components/Board";
+import GameControlPanel from "~/containers/GameControlPanel";
+import { actions, selectIsStopped } from "~/redux";
+import * as styles from "./GameView.styles.module.scss";
 
 export const GameView: FC = () => {
   const is_stopped = useSelector(selectIsStopped);
@@ -18,7 +11,7 @@ export const GameView: FC = () => {
 
   useEffect(() => {
     dispatch(actions.generateNewBoard());
-    dispatch(actions.gameStarted('johny'));
+    dispatch(actions.gameStarted("johny"));
   }, []);
 
   return (
@@ -28,18 +21,3 @@ export const GameView: FC = () => {
     </div>
   );
 };
-
-export const AsyncGameView: FC = () => (
-  <DynamicModuleLoader
-    modules={[
-      getBoardModule(),
-      getGameModule(),
-      getSelectedTilesModule(),
-      getStepsModule(),
-      getTilePairsResolvedCountModule(),
-      getTimerModule(),
-    ]}
-  >
-    <GameView />
-  </DynamicModuleLoader>
-);

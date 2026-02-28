@@ -1,10 +1,10 @@
-import React, { FC, useCallback, useMemo, memo } from 'react';
-import classNames from 'classnames';
-import { Tile as TileType } from '~/types';
-import { renderIcon, getTileBackground } from '~/logic/utils';
-import { TileIconStyles } from '~/styles/styles';
-import { actions } from '~/redux';
-import * as styles from './styles.scss';
+import React, { type FC, useCallback, useMemo, memo } from "react";
+import classNames from "classnames";
+import type { Tile as TileType } from "~/types";
+import { renderIcon, getTileBackground } from "~/logic/utils";
+import { TileIconStyles } from "~/styles/styles";
+import { actions } from "~/redux";
+import * as styles from "./Tile.styles.module.scss";
 
 interface Props {
   tile: TileType | null;
@@ -68,4 +68,4 @@ export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
   );
 });
 
-Tile.displayName = 'Tile';
+Tile.displayName = "Tile";

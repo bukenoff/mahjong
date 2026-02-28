@@ -10,17 +10,17 @@
   position: absolute;
   top: 31px;
   right: 0;
-  background-color: $cadet;
-  color: $white;
+  background-color: var(--cadet);
+  color: var(--white);
   width: 100px;
-  
+
   &:after {
     content: "";
-    width: 0; 
-    height: 0; 
+    width: 0;
+    height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-bottom: 8px solid $cadet;
+    border-bottom: 8px solid var(--cadet);
     position: absolute;
     top: -8px;
     left: 77px;

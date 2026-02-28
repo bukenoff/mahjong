@@ -1,14 +1,18 @@
-import { createSlice, PayloadAction, CaseReducer } from '@reduxjs/toolkit';
 import {
+  createSlice,
+  type CaseReducer,
+  type PayloadAction,
+} from "@reduxjs/toolkit";
+import type {
   BoardState,
   Tile,
   TileUpdate,
   TileCoordinates,
   TileCoordinatesPair,
   Board,
-} from '~/types';
+} from "../../types";
 
-const initial_state: BoardState = {};
+const initial_state = {} satisfies BoardState as BoardState;
 
 type BoardReducer<T = undefined> = T extends undefined
   ? (state: BoardState) => void
@@ -19,7 +23,7 @@ const board_slice = createSlice<
   {
     generateNewBoard: BoardReducer;
     tileUpdated: BoardReducer<{
-      coordinates: Tile['coordinates'];
+      coordinates: Tile["coordinates"];
       update: TileUpdate;
     }>;
     multipleTilesUpdated: BoardReducer<{
@@ -34,10 +38,12 @@ const board_slice = createSlice<
     boardShuffled: BoardReducer<Board>;
   }
 >({
-  name: 'board',
+  name: "board",
   initialState: initial_state,
   reducers: {
-    generateNewBoard() {},
+    generateNewBoard(state) {
+      return state;
+    },
     tileUpdated(state, action) {
       const { layer, row, col } = action.payload.coordinates;
       const { update } = action.payload;
@@ -52,6 +58,7 @@ const board_slice = createSlice<
         ...(state[layer][row][col] as Tile),
         ...update,
       };
+      return state;
     },
     multipleTilesUpdated(state, action) {
       const { coordinates, update } = action.payload;
@@ -81,11 +88,11 @@ const board_slice = createSlice<
 
         state[layer][row][col] = null;
       });
+      return state;
     },
     newBoardGenerated(state, action) {
-      const new_board = action.payload;
-
-      return new_board;
+      console.log("reduceer", state, action);
+      return action.payload;
     },
     multipleTilesRestored(state, action) {
       const tile_pair = action.payload;
@@ -99,8 +106,11 @@ const board_slice = createSlice<
 
         state[layer][row][col] = tile;
       });
+      return state;
     },
-    shuffleBoard() {},
+    shuffleBoard(state) {
+      return state;
+    },
     boardShuffled(state, action) {
       return action.payload;
     },

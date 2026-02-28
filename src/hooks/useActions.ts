@@ -1,6 +1,6 @@
-import { bindActionCreators, Dispatch } from 'redux';
-import { useDispatch } from 'react-redux';
-import { useMemo } from 'react';
+import { bindActionCreators, type Dispatch } from "redux";
+import { useDispatch } from "react-redux";
+import { useMemo } from "react";
 
 export function useActions(actions: any, deps: any = null) {
   const dispatch: Dispatch = useDispatch();
@@ -12,7 +12,7 @@ export function useActions(actions: any, deps: any = null) {
       }
       return bindActionCreators(actions, dispatch);
     },
-    deps ? [dispatch, ...deps] : [dispatch],
+    deps ? [dispatch, ...deps] : [dispatch]
   );
 }
 

@@ -1,11 +1,13 @@
-import { LAYERS_ROWS_SCHEMES, LayersRowsSchemeType } from '~/constants/rows';
+import {
+  LAYERS_ROWS_SCHEMES,
+  type LayersRowsSchemeType,
+} from "~/constants/rows";
 import {
   LAYERS_COUNT,
   SPECIAL_TILES,
   SPECIAL_TILES_UNBLOCKS,
   SPECIAL_TILES_STYLES,
-} from '~/constants/tiles';
-import { uuid } from 'uuidv4';
+} from "~/constants/tiles";
 import type {
   Row,
   Board,
@@ -13,15 +15,15 @@ import type {
   TileCoordinates,
   RowScheme,
   Tile,
-} from '~/types';
-import { TilesSymbols } from '~/types';
-import { shuffleArray, isEmptyObject } from './utils';
+} from "~/types";
+import { TilesSymbols } from "~/types";
+import { shuffleArray, isEmptyObject } from "./utils";
 
 export const getBlockedStatus = (
-  layer: TileCoordinates['layer'],
-  row: TileCoordinates['row'],
-  col: TileCoordinates['col'],
-  open_tiles_indexes: number[],
+  layer: TileCoordinates["layer"],
+  row: TileCoordinates["row"],
+  col: TileCoordinates["col"],
+  open_tiles_indexes: number[]
 ): boolean => {
   if (layer === 0 && row === 4) {
     return true;
@@ -35,17 +37,17 @@ export const getBlockedStatus = (
 };
 
 export const getSpecialStyles = (
-  layer: TileCoordinates['layer'],
-  row: TileCoordinates['row'],
-  col: TileCoordinates['col'],
+  layer: TileCoordinates["layer"],
+  row: TileCoordinates["row"],
+  col: TileCoordinates["col"]
 ) => {
   return SPECIAL_TILES_STYLES[layer][row][col];
 };
 
 export const hasSpecialStyles = (
-  layer: TileCoordinates['layer'],
-  row: TileCoordinates['row'],
-  col: TileCoordinates['col'],
+  layer: TileCoordinates["layer"],
+  row: TileCoordinates["row"],
+  col: TileCoordinates["col"]
 ): boolean => {
   if (!SPECIAL_TILES_STYLES[layer]) {
     return false;
@@ -63,9 +65,9 @@ export const hasSpecialStyles = (
 };
 
 export const getSpecialUnblocks = (
-  layer: TileCoordinates['layer'],
-  row: TileCoordinates['row'],
-  col: TileCoordinates['col'],
+  layer: TileCoordinates["layer"],
+  row: TileCoordinates["row"],
+  col: TileCoordinates["col"]
 ): TileCoordinates[] | null => {
   if (layer === 0 && row === 3 && col === 0) {
     return SPECIAL_TILES_UNBLOCKS[layer][row][col];
@@ -83,9 +85,9 @@ export const getSpecialUnblocks = (
 };
 
 export const isTileSpecial = (
-  layer: TileCoordinates['layer'],
-  row: TileCoordinates['row'],
-  col: TileCoordinates['col'],
+  layer: TileCoordinates["layer"],
+  row: TileCoordinates["row"],
+  col: TileCoordinates["col"]
 ): boolean => {
   if (!SPECIAL_TILES[layer]) {
     return false;
@@ -105,10 +107,10 @@ export const isTileSpecial = (
 // collects coordinates of tiles that get unblocked
 // if the tile with provided coordinates gets open
 export const getUnblocks = (
-  layer: TileCoordinates['layer'],
-  row: TileCoordinates['row'],
-  col: TileCoordinates['col'],
-  open_tiles_indexes: number[],
+  layer: TileCoordinates["layer"],
+  row: TileCoordinates["row"],
+  col: TileCoordinates["col"],
+  open_tiles_indexes: number[]
 ): TileCoordinates[] => {
   if (open_tiles_indexes.indexOf(col) === 0) {
     return [{ layer, row, col: col + 1 }];
@@ -132,11 +134,13 @@ export const getUnblocks = (
   ];
 };
 
+let id = 1;
+
 export const createRow = (
   row_scheme: RowScheme,
   row_index: number,
   layer_index: number,
-  tile_symbols: any,
+  tile_symbols: any
 ): Row => {
   const row: Row = {};
 
@@ -154,17 +158,17 @@ export const createRow = (
     const tile_with_special_styles = hasSpecialStyles(
       layer_index,
       row_index,
-      i,
+      i
     );
     const [icon] = tile_symbols.splice(tile_symbols.length - 1, 1);
 
     row[i] = {
-      id: uuid(),
+      id: id.toString(),
       is_blocked: getBlockedStatus(
         layer_index,
         row_index,
         i,
-        open_tiles_indexes,
+        open_tiles_indexes
       ),
       is_selected: false,
       coordinates: {
@@ -180,6 +184,7 @@ export const createRow = (
         ? getSpecialStyles(layer_index, row_index, i)
         : null,
     };
+    id++;
   });
 
   return row;
@@ -188,7 +193,7 @@ export const createRow = (
 export const createLayer = (
   layer_scheme: LayersRowsSchemeType[keyof LayersRowsSchemeType],
   layer_index: number,
-  tile_symbols: any,
+  tile_symbols: any
 ): Layer => {
   const rows: Layer = {};
 
@@ -234,15 +239,15 @@ export const createBoard = (): Board => {
 export const shuffleBoard = (
   board: Board,
   board_copy: Board,
-  all_tiles: string[],
+  all_tiles: string[]
 ) => {
   let start = 0;
   let end = 1;
 
   try {
     while (end < all_tiles.length) {
-      const [l1, r1, c1] = all_tiles[start].split('-');
-      const [l2, r2, c2] = all_tiles[end].split('-');
+      const [l1, r1, c1] = all_tiles[start].split("-");
+      const [l2, r2, c2] = all_tiles[end].split("-");
 
       const first_tile_copy = board_copy[+l1][+r1][+c1];
       const second_tile_copy = board_copy[+l2][+r2][+c2];
@@ -268,7 +273,7 @@ export const shuffleBoard = (
       end += 2;
     }
   } catch (err) {
-    console.log('ERROR', err);
+    console.log("ERROR", err);
   }
 
   return board_copy;

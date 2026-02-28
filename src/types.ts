@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties } from "react";
 
 export type BoardState = Board | null;
 
@@ -11,7 +11,6 @@ export interface State {
   steps: StepsState;
   tile_pairs_resolved_count: TilePairsResolvedCountState;
   scores: ScoresState;
-  router: any;
 }
 
 export type DynamicState<T extends keyof State> = Pick<State, T>;
@@ -79,47 +78,47 @@ export interface Board {
 }
 
 export enum TilesSymbols {
-  Gitlab = 'Gitlab',
-  Github = 'Github',
-  Heart = 'Heart',
-  YouTube = 'YouTube',
-  Book = 'Book',
-  AtSign = 'AtSign',
-  Camera = 'Camera',
-  Info = 'Info',
-  Meh = 'Meh',
-  Mic = 'Mic',
-  MicOff = 'MicOff',
-  Moon = 'Moon',
-  Truck = 'Truck',
-  User = 'User',
-  Watch = 'Watch',
-  ZoomIn = 'ZoomIn',
-  ZoomOut = 'ZoomOut',
-  Sun = 'Sun',
-  Sunrise = 'Sunrise',
-  Sunset = 'Sunset',
-  Share = 'Share',
-  Power = 'Power',
-  Mail = 'Mail',
-  Globe = 'Globe',
-  Headphones = 'Headphones',
-  Eye = 'Eye',
-  EyeOff = 'EyeOff',
-  Folder = 'Folder',
-  Dollar = 'Dollar',
-  Gift = 'Gift',
-  Music = 'Music',
-  PieChart = 'PieChart',
-  Settings = 'Settings',
-  Smile = 'Smile',
-  ThumbsUp = 'ThumbsUp',
-  ThumbsDown = 'ThumbsDown',
+  Gitlab = "Gitlab",
+  Github = "Github",
+  Heart = "Heart",
+  YouTube = "YouTube",
+  Book = "Book",
+  AtSign = "AtSign",
+  Camera = "Camera",
+  Info = "Info",
+  Meh = "Meh",
+  Mic = "Mic",
+  MicOff = "MicOff",
+  Moon = "Moon",
+  Truck = "Truck",
+  User = "User",
+  Watch = "Watch",
+  ZoomIn = "ZoomIn",
+  ZoomOut = "ZoomOut",
+  Sun = "Sun",
+  Sunrise = "Sunrise",
+  Sunset = "Sunset",
+  Share = "Share",
+  Power = "Power",
+  Mail = "Mail",
+  Globe = "Globe",
+  Headphones = "Headphones",
+  Eye = "Eye",
+  EyeOff = "EyeOff",
+  Folder = "Folder",
+  Dollar = "Dollar",
+  Gift = "Gift",
+  Music = "Music",
+  PieChart = "PieChart",
+  Settings = "Settings",
+  Smile = "Smile",
+  ThumbsUp = "ThumbsUp",
+  ThumbsDown = "ThumbsDown",
 }
 
-export type TileUpdate = Partial<Pick<Tile, 'is_selected' | 'is_blocked'>>;
+export type TileUpdate = Partial<Pick<Tile, "is_selected" | "is_blocked">>;
 
-export type TileCoordinatesPair = [Tile['coordinates'], Tile['coordinates']];
+export type TileCoordinatesPair = [Tile["coordinates"], Tile["coordinates"]];
 
 export interface RowScheme {
   [index: number]: boolean;

@@ -1,10 +1,14 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { createSlice, PayloadAction, CaseReducer } from '@reduxjs/toolkit';
-import { GameState } from '~/types';
+import {
+  createSlice,
+  type PayloadAction,
+  type CaseReducer,
+} from "@reduxjs/toolkit";
+import type { GameState } from "../../types";
 
 const initial_state: GameState = {
   is_over: true,
-  player_name: 'anonymous',
+  player_name: "anonymous",
   player_score: null,
 };
 
@@ -19,7 +23,7 @@ const game_slice = createSlice<
     gameStopped: GameReducer<number>;
   }
 >({
-  name: 'game',
+  name: "game",
   initialState: initial_state,
   reducers: {
     gameStarted(state, action) {

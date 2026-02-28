@@ -1,7 +1,11 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { createSlice, CaseReducer, PayloadAction } from '@reduxjs/toolkit';
-import { TilePairsResolvedCountState } from '~/types';
-import { actions } from '../';
+import {
+  createSlice,
+  type CaseReducer,
+  type PayloadAction,
+} from "@reduxjs/toolkit";
+import type { TilePairsResolvedCountState } from "~/types";
+import { actions } from "../";
 
 const initial_state: TilePairsResolvedCountState = 0;
 
@@ -16,7 +20,7 @@ const tiles_pairs_resolved_count_slice = createSlice<
     tilePairsResolvedCountDecremented: TilePairsResolvedCountReducer;
   }
 >({
-  name: 'tiles_pairs_resolved_count',
+  name: "tiles_pairs_resolved_count",
   initialState: initial_state,
   reducers: {
     tilePairsResolvedCountIncremented(state) {
@@ -28,7 +32,7 @@ const tiles_pairs_resolved_count_slice = createSlice<
   },
   extraReducers(builder) {
     return builder.addCase(actions.newBoardGenerated, (state) => {
-      state = 0;
+      return 0;
     });
   },
 });

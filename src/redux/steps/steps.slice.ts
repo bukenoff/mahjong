@@ -1,7 +1,11 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { createSlice, PayloadAction, CaseReducer } from '@reduxjs/toolkit';
-import { Tile, StepsState } from '~/types';
-import { board_actions } from '../board/board.slice';
+import {
+  createSlice,
+  type PayloadAction,
+  type CaseReducer,
+} from "@reduxjs/toolkit";
+import type { Tile, StepsState } from "../../types";
+import { board_actions } from "../board/board.slice";
 
 const initial_state: StepsState = {
   step_index: -1,
@@ -26,7 +30,7 @@ const steps_slice = createSlice<
     stepForwardTaken: StepsReducer;
   }
 >({
-  name: 'steps',
+  name: "steps",
   initialState: initial_state,
   reducers: {
     stepIndexIncremented(state) {
@@ -49,10 +53,18 @@ const steps_slice = createSlice<
     stepsMadeIncremented(state) {
       state.steps_made += 1;
     },
-    takeStepBack() {},
-    takeStepForward() {},
-    stepBackTaken() {},
-    stepForwardTaken() {},
+    takeStepBack(state) {
+      return state;
+    },
+    takeStepForward(state) {
+      return state;
+    },
+    stepBackTaken(state) {
+      return state;
+    },
+    stepForwardTaken(state) {
+      return state;
+    },
   },
   extraReducers(builder) {
     return builder.addCase(board_actions.newBoardGenerated, (state) => {
