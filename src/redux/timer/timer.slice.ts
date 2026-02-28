@@ -1,28 +1,13 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-import { createSlice, PayloadAction, CaseReducer } from '@reduxjs/toolkit';
-import { TimerState } from '~/types';
+import { createSlice } from "@reduxjs/toolkit";
+import type { TimerState } from "../../types";
 
-const initial_state: TimerState = {
+const initial_state = {
   is_stopped: false,
   stopped_at: null,
-};
+} as TimerState;
 
-type TimerReducer<T = undefined> = T extends undefined
-  ? (state: TimerState) => void
-  : CaseReducer<TimerState, PayloadAction<T>>;
-
-const timer_slice = createSlice<
-  TimerState,
-  {
-    timerResumed: TimerReducer;
-    timerStopped: TimerReducer<number>;
-    resetTimer: TimerReducer;
-    timerReset: TimerReducer;
-    stopTimer: TimerReducer;
-    resumeTimer: TimerReducer;
-  }
->({
-  name: 'timer',
+const timer_slice = createSlice({
+  name: "timer",
   initialState: initial_state,
   reducers: {
     timerResumed(state) {
@@ -35,10 +20,18 @@ const timer_slice = createSlice<
       state.is_stopped = true;
       state.stopped_at = seconds;
     },
-    resetTimer() {},
-    timerReset() {},
-    stopTimer() {},
-    resumeTimer() {},
+    resetTimer(state) {
+      return state;
+    },
+    timerReset(state) {
+      return state;
+    },
+    stopTimer(state) {
+      return state;
+    },
+    resumeTimer(state) {
+      return state;
+    },
   },
 });
 

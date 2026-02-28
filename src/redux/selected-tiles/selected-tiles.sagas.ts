@@ -1,12 +1,12 @@
-import { put, takeEvery, select, call, delay } from 'redux-saga/effects';
-import { getType } from '@reduxjs/toolkit';
-import {
+import { put, takeEvery, select, call, delay } from "redux-saga/effects";
+import type {
   Tile,
   TileUpdate,
   TileCoordinatesPair,
   TileCoordinates,
-} from '~/types';
-import { selectStack, selectTileFromBoard, actions } from '..';
+} from "../../types";
+
+import { selectStack, selectTileFromBoard, actions } from "..";
 
 function* unselectTiles(first_tile: Tile, second_tile: Tile) {
   const update: TileUpdate = {
@@ -43,7 +43,7 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
       selectTileFromBoard,
       layer,
       row,
-      col,
+      col
     );
 
     if (tile) {
@@ -56,7 +56,7 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
       actions.multipleTilesUpdated({
         coordinates: tiles_to_update_coordinates,
         update,
-      }),
+      })
     );
   }
 
@@ -79,7 +79,7 @@ function* handleSelectTile({ payload }: ReturnType<typeof actions.selectTile>) {
     actions.tileUpdated({
       coordinates: tile.coordinates,
       update: { is_selected: true },
-    }),
+    })
   );
 
   const stack: ReturnType<typeof selectStack> = yield select(selectStack);
@@ -99,6 +99,6 @@ function* handleSelectTile({ payload }: ReturnType<typeof actions.selectTile>) {
   }
 }
 
-export default function* selectedTileActionsFlow() {
-  yield takeEvery(getType(actions.selectTile), handleSelectTile);
+export default function* selectedTilesFlow() {
+  yield takeEvery(actions.selectTile, handleSelectTile);
 }

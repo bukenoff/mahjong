@@ -1,6 +1,6 @@
-import { TilesSymbols, TileCoordinates } from '~/types';
-import { ICONS_MAP } from '../constants/iconsMap';
-import { IconType } from 'react-icons/lib';
+import { type TilesSymbolsValue, type TileCoordinates } from "~/types";
+import { ICONS_MAP } from "../constants/iconsMap";
+import type { IconType } from "react-icons/lib";
 
 export const shuffleArray = <T>(array: T[]): T[] => {
   let currentIndex = array.length,
@@ -23,31 +23,31 @@ export const shuffleArray = <T>(array: T[]): T[] => {
 };
 
 export const isEmptyObject = (
-  object: Record<string | number, unknown>,
+  object: Record<string | number, unknown>
 ): boolean => {
   return Object.keys(object).length === 0 && object.constructor === Object;
 };
 
-export const renderIcon = (icon: TilesSymbols): IconType | 'no-icon' => {
-  return ICONS_MAP[icon] || 'no-icon';
+export const renderIcon = (icon: TilesSymbolsValue): IconType | "no-icon" => {
+  return ICONS_MAP[icon] || "no-icon";
 };
 
-export const getTileBackground = (layer: TileCoordinates['layer']): string => {
+export const getTileBackground = (layer: TileCoordinates["layer"]): string => {
   if (layer === 0) {
-    return '#FCFCFC';
+    return "#FCFCFC";
   }
 
   if (layer === 1) {
-    return '#EEF0F1';
+    return "#EEF0F1";
   }
 
   if (layer === 2) {
-    return '#DFE3E5';
+    return "#DFE3E5";
   }
 
   if (layer === 3) {
-    return '#D1D7DA';
+    return "#D1D7DA";
   }
 
-  return '#C2CACE';
+  return "#C2CACE";
 };

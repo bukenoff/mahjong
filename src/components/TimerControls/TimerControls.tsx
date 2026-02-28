@@ -1,12 +1,12 @@
-import React, { FC, useCallback } from 'react';
-import { FiPlay, FiPause } from 'react-icons/fi';
-import { actions } from '~/redux';
-import * as styles from './styles.scss';
+import { type FC } from "react";
+import { FiPlay, FiPause } from "react-icons/fi";
+
+import * as styles from "./TimerControls.styles.module.scss";
 
 interface Props {
   is_stopped: boolean;
-  stopTimer: typeof actions.stopTimer;
-  resumeTimer: typeof actions.resumeTimer;
+  stopTimer: VoidFunction;
+  resumeTimer: VoidFunction;
 }
 
 export const TimerControls: FC<Props> = ({
@@ -14,14 +14,14 @@ export const TimerControls: FC<Props> = ({
   stopTimer,
   resumeTimer,
 }) => {
-  const handleTogglePauseClick = useCallback(() => {
+  function handleTogglePauseClick() {
     if (is_stopped) {
       resumeTimer();
-      return null;
+      return;
     }
 
     stopTimer();
-  }, [is_stopped, resumeTimer, stopTimer]);
+  }
 
   return (
     <button

@@ -1,3 +1,3 @@
-import { State } from '~/types';
+import type { State } from "../../types";
 
 export const selectPlayerName = ({ game }: State) => game.player_name;

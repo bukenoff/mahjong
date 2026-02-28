@@ -1,28 +1,24 @@
-import React, { FC, useState, useCallback } from 'react';
-import { FiMenu } from 'react-icons/fi';
-import { useHistory } from 'react-router-dom';
-import { actions } from '~/redux';
-import MenuItem from '../MenuItem';
-import * as styles from './styles.scss';
+import { type FC, useState } from "react";
+import { FiMenu } from "react-icons/fi";
+
+import MenuItem from "../MenuItem";
+import * as styles from "./Menu.styles.module.scss";
 
 interface Props {
-  generateNewBoard: typeof actions.generateNewBoard;
-  shuffleBoard: typeof actions.shuffleBoard;
+  generateNewBoard: VoidFunction;
+  shuffleBoard: VoidFunction;
 }
 
 export const Menu: FC<Props> = ({ generateNewBoard, shuffleBoard }) => {
   const [is_menu_open, setMenuOpen] = useState(false);
-  const history = useHistory();
 
-  const redirectToScores = useCallback(() => history.push('/scores'), []);
-
-  const handleMenuToggleClick = useCallback(() => {
+  function handleMenuToggleClick() {
     setMenuOpen(!is_menu_open);
-  }, [setMenuOpen, is_menu_open]);
+  }
 
-  const closeMenu = useCallback(() => {
+  function closeMenu() {
     setMenuOpen(false);
-  }, [setMenuOpen]);
+  }
 
   return (
     <div className={styles.container} data-testid="menu-root">
@@ -39,11 +35,6 @@ export const Menu: FC<Props> = ({ generateNewBoard, shuffleBoard }) => {
           <MenuItem
             title="new game"
             clickHandler={generateNewBoard}
-            closeMenu={closeMenu}
-          />
-          <MenuItem
-            title="scores"
-            clickHandler={redirectToScores}
             closeMenu={closeMenu}
           />
           <MenuItem

@@ -1,6 +1,6 @@
-import React, { FC, useState, useEffect } from 'react';
-import * as styles from './styles.scss';
-import timerService from '~/services/TimerService';
+import { type FC, useState, useEffect } from "react";
+import * as styles from "./TimerAndMovesCount.styles.module.scss";
+import timerService from "~/services/TimerService";
 
 export const TimerAndMovesCount: FC = () => {
   const [time, setTime] = useState(timerService.seconds);
@@ -9,7 +9,7 @@ export const TimerAndMovesCount: FC = () => {
     timerService.setTime = setTime;
 
     return () => {
-      timerService.setTime = (arg) => {};
+      timerService.setTime = () => {};
     };
   }, [setTime]);
 

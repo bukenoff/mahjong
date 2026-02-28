@@ -1,25 +1,14 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-import { CaseReducer, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { SelectedTilesState, Tile } from '~/types';
-import { board_actions } from '../board/board.slice';
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-const initial_state: SelectedTilesState = {
+import type { SelectedTilesState, Tile } from "../../types";
+import { board_actions } from "../board/board.slice";
+
+const initial_state = {
   stack: [],
-};
+} as SelectedTilesState;
 
-type SelectedTilesReducer<T = undefined> = T extends undefined
-  ? (state: SelectedTilesState) => void
-  : CaseReducer<SelectedTilesState, PayloadAction<T>>;
-
-const selected_tiles_slice = createSlice<
-  SelectedTilesState,
-  {
-    tileAddedToStack: SelectedTilesReducer<Tile>;
-    stackCleared: SelectedTilesReducer;
-    selectTile: SelectedTilesReducer<Tile>;
-  }
->({
-  name: 'selected_tiles',
+const selected_tiles_slice = createSlice({
+  name: "selected_tiles",
   initialState: initial_state,
   reducers: {
     tileAddedToStack(state, action) {
@@ -30,7 +19,10 @@ const selected_tiles_slice = createSlice<
     stackCleared(state) {
       state.stack = [];
     },
-    selectTile() {},
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    selectTile(state, _: PayloadAction<Tile>) {
+      return state;
+    },
   },
   extraReducers(builder) {
     return builder.addCase(board_actions.boardShuffled, (state) => {

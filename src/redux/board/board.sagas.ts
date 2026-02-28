@@ -1,16 +1,15 @@
-import { put, select, takeEvery, call } from 'redux-saga/effects';
-import { getType } from '@reduxjs/toolkit';
-import cloneDeep from 'lodash.clonedeep';
+import { put, select, call, takeLatest } from "redux-saga/effects";
+import cloneDeep from "lodash.clonedeep";
 import {
   collectUnresolvedTilesCoordinates,
   createBoard,
   shuffleBoard,
-} from '~/logic/board';
-import type { Board } from '~/types';
-import { actions, selectBoard } from '../';
+} from "~/logic/board";
+import type { Board } from "~/types";
+import { actions, selectBoard } from "../";
 
 export function* handleGenerateNewBoard() {
-  const new_board = createBoard();
+  const new_board: Board = yield call(createBoard);
 
   yield put(actions.newBoardGenerated(new_board));
   yield put(actions.resetTimer());
@@ -25,13 +24,13 @@ export function* handleShuffleBoard() {
     shuffleBoard,
     board,
     cloneDeep(board),
-    all_tiles,
+    all_tiles
   );
 
   yield put(actions.boardShuffled(shuffled_copy));
 }
 
 export default function* boardFlow() {
-  yield takeEvery(getType(actions.generateNewBoard), handleGenerateNewBoard);
-  yield takeEvery(getType(actions.shuffleBoard), handleShuffleBoard);
+  yield takeLatest(actions.generateNewBoard, handleGenerateNewBoard);
+  yield takeLatest(actions.shuffleBoard, handleShuffleBoard);
 }

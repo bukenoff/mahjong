@@ -1,32 +1,16 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-import { createSlice, PayloadAction, CaseReducer } from '@reduxjs/toolkit';
-import { Tile, StepsState } from '~/types';
-import { board_actions } from '../board/board.slice';
+import { createSlice } from "@reduxjs/toolkit";
 
-const initial_state: StepsState = {
+import type { StepsState } from "../../types";
+import { board_actions } from "../board/board.slice";
+
+const initial_state = {
   step_index: -1,
   steps_stack: [],
   steps_made: 0,
-};
+} as StepsState;
 
-type StepsReducer<T = undefined> = T extends undefined
-  ? (state: StepsState) => void
-  : CaseReducer<StepsState, PayloadAction<T>>;
-
-const steps_slice = createSlice<
-  StepsState,
-  {
-    stepIndexIncremented: StepsReducer;
-    stepIndexDecremented: StepsReducer;
-    stepAddedToStack: StepsReducer<[Tile, Tile]>;
-    stepsMadeIncremented: StepsReducer;
-    takeStepBack: StepsReducer;
-    takeStepForward: StepsReducer;
-    stepBackTaken: StepsReducer;
-    stepForwardTaken: StepsReducer;
-  }
->({
-  name: 'steps',
+const steps_slice = createSlice({
+  name: "steps",
   initialState: initial_state,
   reducers: {
     stepIndexIncremented(state) {
@@ -49,10 +33,18 @@ const steps_slice = createSlice<
     stepsMadeIncremented(state) {
       state.steps_made += 1;
     },
-    takeStepBack() {},
-    takeStepForward() {},
-    stepBackTaken() {},
-    stepForwardTaken() {},
+    takeStepBack(state) {
+      return state;
+    },
+    takeStepForward(state) {
+      return state;
+    },
+    stepBackTaken(state) {
+      return state;
+    },
+    stepForwardTaken(state) {
+      return state;
+    },
   },
   extraReducers(builder) {
     return builder.addCase(board_actions.newBoardGenerated, (state) => {

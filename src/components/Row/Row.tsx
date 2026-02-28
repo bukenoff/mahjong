@@ -1,19 +1,23 @@
-import React, { FC, useMemo } from 'react';
-import { Row as RowType } from '~/types';
-import useActions from '~/hooks/useActions';
-import { actions } from '~/redux';
-import Tile from '../Tile';
+import { type FC } from "react";
+import { useDispatch } from "react-redux";
+
+import type { Row as RowType, Tile as TileType } from "~/types";
+import { actions } from "~/redux";
+
+import Tile from "../Tile";
 
 interface Props {
   row: RowType;
 }
 
 export const Row: FC<Props> = ({ row }) => {
-  const tileList = useMemo(() => {
-    return Object.keys(row);
-  }, [row]);
+  const dispatch = useDispatch();
 
-  const selectTile = useActions(actions.selectTile, null);
+  function selectTile(tile: TileType) {
+    dispatch(actions.selectTile(tile));
+  }
+
+  const tileList = Object.keys(row);
 
   return (
     <>

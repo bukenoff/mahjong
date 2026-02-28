@@ -1,4 +1,4 @@
-import { State, ScoresState } from '~/types';
+import type { State, ScoresState } from "../../types";
 
-export const selectPlayers = ({ scores }: State): ScoresState['players'] =>
+export const selectPlayers = ({ scores }: State): ScoresState["players"] =>
   scores.players;

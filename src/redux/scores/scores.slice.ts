@@ -1,21 +1,13 @@
-import { CaseReducer, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Player, ScoresState } from '~/types';
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-const initial_state: ScoresState = {
+import type { Player, ScoresState } from "../../types";
+
+const initial_state = {
   players: [],
-};
+} as ScoresState;
 
-type ScoresReducer<T = undefined> = T extends undefined
-  ? (state: ScoresState) => void
-  : CaseReducer<ScoresState, PayloadAction<T>>;
-
-const scores_slice = createSlice<
-  ScoresState,
-  {
-    scoreAdded: ScoresReducer<Player>;
-  }
->({
-  name: 'scores',
+const scores_slice = createSlice({
+  name: "scores",
   initialState: initial_state,
   reducers: {
     scoreAdded(state, action: PayloadAction<Player>) {
@@ -26,7 +18,5 @@ const scores_slice = createSlice<
   },
 });
 
-export const {
-  actions: scores_actions,
-  reducer: scores_reducer,
-} = scores_slice;
+export const { actions: scores_actions, reducer: scores_reducer } =
+  scores_slice;

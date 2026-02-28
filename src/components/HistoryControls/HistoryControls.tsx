@@ -1,13 +1,13 @@
-import React, { FC } from 'react';
-import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
-import { actions } from '~/redux';
-import * as styles from './styles.scss';
+import { type FC } from "react";
+import { FiArrowLeft, FiArrowRight } from "react-icons/fi";
+
+import * as styles from "./HistoryControl.styles.module.scss";
 
 interface Props {
   is_step_forward_possible: boolean;
   is_step_back_possible: boolean;
-  takeStepBack: typeof actions.takeStepBack;
-  takeStepForward: typeof actions.takeStepForward;
+  takeStepBack: VoidFunction;
+  takeStepForward: VoidFunction;
 }
 
 export const HistoryControls: FC<Props> = ({

@@ -1,5 +1,5 @@
-import { CSSProperties } from 'react';
-import { TileCoordinates } from '~/types';
+import type { CSSProperties } from "react";
+import type { TileCoordinates } from "~/types";
 
 export const ICON_SYMBOL_REPEAT_COUNT = 4;
 
@@ -77,14 +77,14 @@ export interface SpecialStylesMap {
 export const SPECIAL_TILES_STYLES: SpecialStylesMap = {
   0: {
     3: {
-      0: { transform: 'translate(0, 32px)' },
-      13: { transform: 'translate(0, 32px)' },
-      14: { transform: 'translate(0, 32px)' },
+      0: { transform: "translate(0, 32px)" },
+      13: { transform: "translate(0, 32px)" },
+      14: { transform: "translate(0, 32px)" },
     },
   },
   4: {
     3: {
-      6: { transform: 'translate(20px, 32px)' },
+      6: { transform: "translate(20px, 32px)" },
     },
   },
 };

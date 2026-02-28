@@ -1,44 +1,30 @@
-import { createSlice, PayloadAction, CaseReducer } from '@reduxjs/toolkit';
-import {
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { Draft } from "immer";
+import type {
   BoardState,
   Tile,
   TileUpdate,
   TileCoordinates,
   TileCoordinatesPair,
   Board,
-} from '~/types';
+} from "../../types";
 
-const initial_state: BoardState = {};
+const initial_state = null as BoardState;
 
-type BoardReducer<T = undefined> = T extends undefined
-  ? (state: BoardState) => void
-  : CaseReducer<BoardState, PayloadAction<T>>;
-
-const board_slice = createSlice<
-  BoardState,
-  {
-    generateNewBoard: BoardReducer;
-    tileUpdated: BoardReducer<{
-      coordinates: Tile['coordinates'];
-      update: TileUpdate;
-    }>;
-    multipleTilesUpdated: BoardReducer<{
-      coordinates: TileCoordinates[];
-      update: TileUpdate;
-    }>;
-
-    twoTilesRemoved: BoardReducer<TileCoordinatesPair>;
-    newBoardGenerated: BoardReducer<Board>;
-    multipleTilesRestored: BoardReducer<[Tile, Tile]>;
-    shuffleBoard: BoardReducer;
-    boardShuffled: BoardReducer<Board>;
-  }
->({
-  name: 'board',
+const board_slice = createSlice({
+  name: "board",
   initialState: initial_state,
   reducers: {
-    generateNewBoard() {},
-    tileUpdated(state, action) {
+    generateNewBoard(state: Draft<BoardState>) {
+      return state;
+    },
+    tileUpdated(
+      state: Draft<BoardState>,
+      action: PayloadAction<{
+        coordinates: Tile["coordinates"];
+        update: TileUpdate;
+      }>
+    ) {
       const { layer, row, col } = action.payload.coordinates;
       const { update } = action.payload;
 
@@ -53,10 +39,16 @@ const board_slice = createSlice<
         ...update,
       };
     },
-    multipleTilesUpdated(state, action) {
+    multipleTilesUpdated(
+      state: Draft<BoardState>,
+      action: PayloadAction<{
+        coordinates: TileCoordinates[];
+        update: TileUpdate;
+      }>
+    ) {
       const { coordinates, update } = action.payload;
 
-      coordinates.forEach(({ layer, row, col }) => {
+      for (const { layer, row, col } of coordinates) {
         if (!state) return state;
 
         if (!state[layer]?.[row]?.[col]) {
@@ -67,12 +59,15 @@ const board_slice = createSlice<
           ...(state[layer][row][col] as Tile),
           ...update,
         };
-      });
+      }
     },
-    twoTilesRemoved(state, action) {
+    twoTilesRemoved(
+      state: Draft<BoardState>,
+      action: PayloadAction<TileCoordinatesPair>
+    ) {
       const coordinates = action.payload;
 
-      coordinates.forEach(({ layer, row, col }) => {
+      for (const { layer, row, col } of coordinates) {
         if (!state) return state;
 
         if (!state[layer]?.[row]?.[col]) {
@@ -80,28 +75,31 @@ const board_slice = createSlice<
         }
 
         state[layer][row][col] = null;
-      });
+      }
     },
-    newBoardGenerated(state, action) {
-      const new_board = action.payload;
-
-      return new_board;
+    newBoardGenerated(_state: Draft<BoardState>, action: PayloadAction<Board>) {
+      return action.payload;
     },
-    multipleTilesRestored(state, action) {
+    multipleTilesRestored(
+      state: Draft<BoardState>,
+      action: PayloadAction<[Tile, Tile]>
+    ) {
       const tile_pair = action.payload;
 
       if (!state) return state;
 
-      tile_pair.forEach((tile) => {
+      for (const tile of tile_pair) {
         const {
           coordinates: { layer, row, col },
         } = tile;
 
         state[layer][row][col] = tile;
-      });
+      }
     },
-    shuffleBoard() {},
-    boardShuffled(state, action) {
+    shuffleBoard(state: Draft<BoardState>) {
+      return state;
+    },
+    boardShuffled(_state: Draft<BoardState>, action: PayloadAction<Board>) {
       return action.payload;
     },
   },

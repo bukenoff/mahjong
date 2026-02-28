@@ -1,5 +1,5 @@
-import React, { FC, useCallback } from 'react';
-import * as styles from './styles.scss';
+import { type FC } from "react";
+import * as styles from "./MenuItem.styles.module.scss";
 
 interface Props {
   title: string;
@@ -8,10 +8,10 @@ interface Props {
 }
 
 export const MenuItem: FC<Props> = ({ title, clickHandler, closeMenu }) => {
-  const handleClick = useCallback(() => {
+  function handleClick() {
     clickHandler();
     closeMenu();
-  }, [clickHandler, closeMenu]);
+  }
 
   return (
     <li className={styles.container} onClick={handleClick}>
