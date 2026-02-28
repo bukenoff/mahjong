@@ -1,13 +1,12 @@
 import { type FC, useState } from "react";
 import { FiMenu } from "react-icons/fi";
 
-import { actions } from "../../../redux";
 import MenuItem from "../MenuItem";
 import * as styles from "./Menu.styles.module.scss";
 
 interface Props {
-  generateNewBoard: typeof actions.generateNewBoard;
-  shuffleBoard: typeof actions.shuffleBoard;
+  generateNewBoard: VoidFunction;
+  shuffleBoard: VoidFunction;
 }
 
 export const Menu: FC<Props> = ({ generateNewBoard, shuffleBoard }) => {

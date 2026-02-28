@@ -1,14 +1,15 @@
 import React, { type FC, memo } from "react";
 import classNames from "classnames";
+
 import type { Tile as TileType } from "~/types";
 import { renderIcon, getTileBackground } from "~/logic/utils";
 import { TileIconStyles } from "~/styles/styles";
-import { actions } from "~/redux";
+
 import * as styles from "./Tile.styles.module.scss";
 
 interface Props {
   tile: TileType | null;
-  selectTile: typeof actions.selectTile;
+  selectTile: (tile: TileType) => void;
 }
 
 export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
