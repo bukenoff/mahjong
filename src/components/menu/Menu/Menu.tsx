@@ -23,6 +23,7 @@ export const Menu: FC<Props> = ({ generateNewBoard, shuffleBoard }) => {
   return (
     <div className={styles.container} data-testid="menu-root">
       <button
+        aria-label="toggle-menu"
         className={styles.toggle_button}
         onClick={handleMenuToggleClick}
         type="button"

@@ -25,6 +25,7 @@ export const TimerControls: FC<Props> = ({
 
   return (
     <button
+      aria-label="toggle-pause"
       className={styles.container}
       onClick={handleTogglePauseClick}
       type="button"

@@ -45,6 +45,7 @@ export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
 
   return (
     <button
+      aria-label={`tile-${icon}`}
       style={tileStyles}
       className={classNames(styles.container, {
         [styles.is_selected]: is_selected,

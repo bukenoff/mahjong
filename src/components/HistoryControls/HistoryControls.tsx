@@ -16,25 +16,24 @@ export const HistoryControls: FC<Props> = ({
   takeStepBack,
   takeStepForward,
 }) => {
-  const onBackClick = () => takeStepBack()
-  const onForwardClick = () => takeStepForward()
-
   return (
     <div className={styles.container} data-testid="history_controls_root">
       <button
+        aria-label="navigate-history-back"
         className={styles.history_navigate_button}
         type="button"
         disabled={!is_step_back_possible}
-        onClick={onBackClick}
+        onClick={takeStepBack}
         data-testid="step_back_button"
       >
         <FiArrowLeft />
       </button>
       <button
+        aria-label="navigate-history-forward"
         className={styles.history_navigate_button}
         type="button"
         disabled={!is_step_forward_possible}
-        onClick={onForwardClick}
+        onClick={takeStepForward}
         data-testid="step_forward_button"
       >
         <FiArrowRight />
