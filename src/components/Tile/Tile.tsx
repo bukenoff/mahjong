@@ -1,4 +1,4 @@
-import React, { type FC, memo } from 'react'
+import React, { type CSSProperties, type FC, memo } from 'react'
 import classNames from 'classnames'
 
 import type { Tile as TileType } from '~/types'
@@ -33,11 +33,13 @@ export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
 
   const tileBackgroundColor = getTileBackground(coordinates.layer)
 
-  const tileStyles = {
+  const tileStyles: CSSProperties = {
     gridColumn: `${coordinates.col + 1}`,
     gridRow: `${coordinates.row + 1}`,
     backgroundColor: tileBackgroundColor,
-    zIndex: coordinates.layer,
+    zIndex: (coordinates.layer + 1) * 30 - coordinates.col,
+    bottom: coordinates.layer * 7,
+    left: coordinates.layer * 7,
     ...special_styles,
   }
 
@@ -51,7 +53,6 @@ export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
       onClick={handleTileClick}
       data-testid="tile"
     >
-      <span className={styles.layer_badge}>{coordinates.layer}</span>
       {React.createElement(renderIcon(icon), TileIconStyles)}
     </button>
   )

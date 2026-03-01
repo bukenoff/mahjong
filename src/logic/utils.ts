@@ -32,22 +32,8 @@ export const renderIcon = (icon: TilesSymbolsValue): IconType | 'no-icon' => {
   return ICONS_MAP[icon] || 'no-icon'
 }
 
+const TILE_BG_COLORS = ['#FCFCFC', '#EEF0F1', '#DFE3E5', '#D1D7DA', '#C2CACE']
+
 export const getTileBackground = (layer: TileCoordinates['layer']): string => {
-  if (layer === 0) {
-    return '#FCFCFC'
-  }
-
-  if (layer === 1) {
-    return '#EEF0F1'
-  }
-
-  if (layer === 2) {
-    return '#DFE3E5'
-  }
-
-  if (layer === 3) {
-    return '#D1D7DA'
-  }
-
-  return '#C2CACE'
+  return TILE_BG_COLORS[layer]
 }
