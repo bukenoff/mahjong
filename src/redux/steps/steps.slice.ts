@@ -47,11 +47,16 @@ const steps_slice = createSlice({
     },
   },
   extraReducers(builder) {
-    return builder.addCase(board_actions.newBoardGenerated, (state) => {
-      state.step_index = -1
-      state.steps_stack = []
-      state.steps_made = 0
-    })
+    return builder
+      .addCase(board_actions.newBoardGenerated, (state) => {
+        state.step_index = -1
+        state.steps_stack = []
+        state.steps_made = 0
+      })
+      .addCase(board_actions.boardShuffled, (state) => {
+        state.step_index = -1
+        state.steps_stack = []
+      })
   },
 })
 
