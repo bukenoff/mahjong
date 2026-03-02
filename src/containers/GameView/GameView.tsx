@@ -13,7 +13,7 @@ export const GameView: FC = () => {
 
   useEffect(() => {
     dispatch(actions.generateNewBoard())
-    dispatch(actions.gameStarted('johny'))
+    dispatch(actions.gameStarted())
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
