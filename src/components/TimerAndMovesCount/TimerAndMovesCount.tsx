@@ -1,6 +1,9 @@
 import { type FC, useState, useEffect } from 'react'
-import * as styles from './TimerAndMovesCount.styles.module.scss'
+
 import timerService from '~/services/TimerService'
+import { formatTime } from '~/logic/utils'
+
+import * as styles from './TimerAndMovesCount.styles.module.scss'
 
 export const TimerAndMovesCount: FC = () => {
   const [time, setTime] = useState(timerService.seconds)
@@ -16,7 +19,7 @@ export const TimerAndMovesCount: FC = () => {
   return (
     <div className={styles.container}>
       <div>Moves left: -</div>
-      <div>Time: {time}</div>
+      <div>Time: {formatTime(time)}</div>
     </div>
   )
 }
