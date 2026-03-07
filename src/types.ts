@@ -1,6 +1,8 @@
 import type { CSSProperties } from 'react'
 
-export type BoardState = Board | null
+export type BoardState = {
+  value: Board | null
+}
 
 export interface State {
   board: BoardState

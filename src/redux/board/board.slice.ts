@@ -9,7 +9,7 @@ import type {
   Board,
 } from '../../types'
 
-const initial_state = null as BoardState
+const initial_state = { value: null } as BoardState
 
 const board_slice = createSlice({
   name: 'board',
@@ -28,14 +28,14 @@ const board_slice = createSlice({
       const { layer, row, col } = action.payload.coordinates
       const { update } = action.payload
 
-      if (!state) return state
+      if (!state.value) return state
 
-      if (!state[layer] && !state[layer]?.[row]?.[col]) {
+      if (!state.value[layer] && !state.value[layer]?.[row]?.[col]) {
         return state
       }
 
-      state[layer][row][col] = {
-        ...(state[layer][row][col] as Tile),
+      state.value[layer][row][col] = {
+        ...(state.value[layer][row][col] as Tile),
         ...update,
       }
     },
@@ -49,14 +49,14 @@ const board_slice = createSlice({
       const { coordinates, update } = action.payload
 
       for (const { layer, row, col } of coordinates) {
-        if (!state) return state
+        if (!state.value) return state
 
-        if (!state[layer]?.[row]?.[col]) {
+        if (!state.value[layer]?.[row]?.[col]) {
           return state
         }
 
-        state[layer][row][col] = {
-          ...(state[layer][row][col] as Tile),
+        state.value[layer][row][col] = {
+          ...(state.value[layer][row][col] as Tile),
           ...update,
         }
       }
@@ -68,17 +68,17 @@ const board_slice = createSlice({
       const coordinates = action.payload
 
       for (const { layer, row, col } of coordinates) {
-        if (!state) return state
+        if (!state.value) return state
 
-        if (!state[layer]?.[row]?.[col]) {
+        if (!state.value[layer]?.[row]?.[col]) {
           return state
         }
 
-        state[layer][row][col] = null
+        state.value[layer][row][col] = null
       }
     },
-    newBoardGenerated(_state: Draft<BoardState>, action: PayloadAction<Board>) {
-      return action.payload
+    newBoardGenerated(state: Draft<BoardState>, action: PayloadAction<Board>) {
+      state.value = action.payload
     },
     multipleTilesRestored(
       state: Draft<BoardState>,
@@ -86,21 +86,21 @@ const board_slice = createSlice({
     ) {
       const tile_pair = action.payload
 
-      if (!state) return state
+      if (!state.value) return state
 
       for (const tile of tile_pair) {
         const {
           coordinates: { layer, row, col },
         } = tile
 
-        state[layer][row][col] = tile
+        state.value[layer][row][col] = tile
       }
     },
     shuffleBoard(state: Draft<BoardState>) {
       return state
     },
-    boardShuffled(_state: Draft<BoardState>, action: PayloadAction<Board>) {
-      return action.payload
+    boardShuffled(state: Draft<BoardState>, action: PayloadAction<Board>) {
+      state.value = action.payload
     },
   },
 })

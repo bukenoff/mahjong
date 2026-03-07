@@ -1,6 +1,6 @@
 import { board_reducer } from '../board.slice'
 import { board_actions } from '../board.slice'
-import type { Tile, Board } from '../../../types'
+import type { Tile, Board, BoardState } from '../../../types'
 
 describe('Board slice', () => {
   it('reducer should be defined', () => {
@@ -9,12 +9,16 @@ describe('Board slice', () => {
 
   it('should update tile', () => {
     const initial_state = {
-      0: { 1: { 2: { is_selected: false } as Tile } },
-    } as Board
+      value: {
+        0: { 1: { 2: { is_selected: false } as Tile } },
+      },
+    } as BoardState
 
     const result_state = {
-      0: { 1: { 2: { is_selected: true } as Tile } },
-    } as Board
+      value: {
+        0: { 1: { 2: { is_selected: true } as Tile } },
+      },
+    } as BoardState
 
     const tile_updated_action = board_actions.tileUpdated({
       coordinates: { layer: 0, row: 1, col: 2 },
@@ -28,14 +32,18 @@ describe('Board slice', () => {
 
   it('should update multiple tiles', () => {
     const initial_state = {
-      0: { 1: { 2: { is_selected: false } as Tile } },
-      1: { 2: { 4: { is_selected: false } as Tile } },
-    } as Board
+      value: {
+        0: { 1: { 2: { is_selected: false } as Tile } },
+        1: { 2: { 4: { is_selected: false } as Tile } },
+      },
+    } as BoardState
 
     const result_state = {
-      0: { 1: { 2: { is_selected: true } as Tile } },
-      1: { 2: { 4: { is_selected: true } as Tile } },
-    } as Board
+      value: {
+        0: { 1: { 2: { is_selected: true } as Tile } },
+        1: { 2: { 4: { is_selected: true } as Tile } },
+      },
+    } as BoardState
 
     const multiple_tiles_updated_action = board_actions.multipleTilesUpdated({
       coordinates: [
@@ -52,14 +60,18 @@ describe('Board slice', () => {
 
   it('should remove two tiles', () => {
     const initial_state = {
-      0: { 1: { 2: { is_selected: false } as Tile } },
-      1: { 2: { 4: { is_selected: false } as Tile } },
-    } as Board
+      value: {
+        0: { 1: { 2: { is_selected: false } as Tile } },
+        1: { 2: { 4: { is_selected: false } as Tile } },
+      },
+    } as BoardState
 
     const result_state = {
-      0: { 1: { 2: null } },
-      1: { 2: { 4: null } },
-    } as Board
+      value: {
+        0: { 1: { 2: null } },
+        1: { 2: { 4: null } },
+      },
+    } as BoardState
 
     const two_tiles_removed_action = board_actions.twoTilesRemoved([
       { layer: 0, row: 1, col: 2 },
@@ -72,8 +84,8 @@ describe('Board slice', () => {
   })
 
   it('should update state to new board', () => {
-    const initial_state = 'i am board' as unknown as Board
-    const result_state = 'now I am board' as unknown as Board
+    const initial_state = { value: 'i am board' } as unknown as BoardState
+    const result_state = { value: 'now I am board' } as unknown as BoardState
 
     const new_board_action = board_actions.newBoardGenerated(
       'now I am board' as unknown as Board

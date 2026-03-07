@@ -1,6 +1,7 @@
 import type { TileCoordinates, Tile, State } from '~/types'
 
-export const selectBoard = ({ board }: State): State['board'] => board
+export const selectBoard = ({ board }: State): State['board']['value'] =>
+  board.value
 
 export const selectTileFromBoard = (
   state: State,
@@ -10,13 +11,13 @@ export const selectTileFromBoard = (
 ): Tile | null => {
   if (
     !state ||
-    !state.board ||
-    !state.board[layer] ||
-    !state.board[layer][row] ||
-    !state.board[layer][row][col]
+    !state.board.value ||
+    !state.board.value[layer] ||
+    !state.board.value[layer][row] ||
+    !state.board.value[layer][row][col]
   ) {
     return null
   }
 
-  return state.board[layer][row][col]
+  return state.board.value[layer][row][col]
 }
