@@ -24,7 +24,7 @@ export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
   } = tile
 
   function handleTileClick() {
-    if (is_selected || is_blocked || !tile) {
+    if (is_blocked || !tile) {
       return null
     }
 

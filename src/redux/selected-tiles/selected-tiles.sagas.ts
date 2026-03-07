@@ -73,15 +73,29 @@ function* resolveTiles(first_tile: Tile, second_tile: Tile) {
 
 function* handleSelectTile({ payload }: ReturnType<typeof actions.selectTile>) {
   const tile = payload
+  const stack: ReturnType<typeof selectStack> = yield select(selectStack)
 
-  yield put(actions.tileAddedToStack(tile))
+  const tile_is_added = stack.find((current) => current.id === tile.id)
+  let is_selected = false
+
+  if (tile_is_added) {
+    yield put(actions.tileRemovedFromStack(tile))
+  } else {
+    yield put(actions.tileAddedToStack(tile))
+    is_selected = true
+  }
+
   yield put(
     actions.tileUpdated({
       coordinates: tile.coordinates,
-      update: { is_selected: true },
+      update: { is_selected },
     })
   )
 
+  yield call(resolveStack)
+}
+
+function* resolveStack() {
   const stack: ReturnType<typeof selectStack> = yield select(selectStack)
 
   if (stack.length === 2) {

@@ -16,6 +16,15 @@ const selected_tiles_slice = createSlice({
 
       state.stack.push(tile)
     },
+    tileRemovedFromStack(state, action) {
+      const tile = action.payload
+
+      const tileIndex = state.stack.findIndex(
+        (current) => current.id === tile.id
+      )
+      state.stack.splice(tileIndex, 1)
+    },
+
     stackCleared(state) {
       state.stack = []
     },
