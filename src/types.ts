@@ -49,6 +49,7 @@ export type ProcessingState = boolean
 
 export interface SelectedTilesState {
   stack: Tile[]
+  tiles_to_remove: string[]
 }
 
 export interface TileCoordinates {

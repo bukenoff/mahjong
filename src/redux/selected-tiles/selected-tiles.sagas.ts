@@ -9,6 +9,8 @@ import type {
 import { selectStack, selectTileFromBoard, actions } from '..'
 
 function* unselectTiles(first_tile: Tile, second_tile: Tile) {
+  yield delay(500)
+
   const update: TileUpdate = {
     is_selected: false,
   }
@@ -22,6 +24,10 @@ function* unselectTiles(first_tile: Tile, second_tile: Tile) {
 }
 
 function* resolveTiles(first_tile: Tile, second_tile: Tile) {
+  yield delay(150)
+  yield put(actions.setTilesToRemove([first_tile.id, second_tile.id]))
+  yield delay(500)
+
   const update: TileUpdate = {
     is_blocked: false,
   }
@@ -100,8 +106,6 @@ function* resolveStack() {
 
   if (stack.length === 2) {
     const [first_tile, second_tile] = stack
-
-    yield delay(500)
 
     if (first_tile.icon === second_tile.icon) {
       yield call(resolveTiles, first_tile, second_tile)

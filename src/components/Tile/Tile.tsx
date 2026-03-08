@@ -10,9 +10,10 @@ import * as styles from './Tile.styles.module.scss'
 interface Props {
   tile: TileType | null
   selectTile: (tile: TileType) => void
+  is_removed: boolean
 }
 
-export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
+export const Tile: FC<Props> = memo(({ tile, selectTile, is_removed }) => {
   if (!tile) return null
 
   const {
@@ -50,6 +51,7 @@ export const Tile: FC<Props> = memo(({ tile, selectTile }) => {
       className={classNames(styles.container, {
         [styles.is_selected]: is_selected,
         [styles.is_blocked]: is_blocked,
+        [styles.is_removed]: is_removed,
       })}
       onClick={handleTileClick}
       data-testid="tile"

@@ -1,8 +1,8 @@
 import { type FC } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import type { Row as RowType, Tile as TileType } from '~/types'
-import { actions } from '~/redux'
+import { actions, selectTilesToRemove } from '~/redux'
 
 import Tile from '../Tile'
 
@@ -12,6 +12,7 @@ interface Props {
 
 export const Row: FC<Props> = ({ row }) => {
   const dispatch = useDispatch()
+  const tiles_to_remove = useSelector(selectTilesToRemove)
 
   function selectTile(tile: TileType) {
     dispatch(actions.selectTile(tile))
@@ -22,11 +23,19 @@ export const Row: FC<Props> = ({ row }) => {
   return (
     <>
       {tileList.map((r, index) => {
-        if (!row[+r]) {
+        const tile = row[+r]
+        if (!tile) {
           return null
         }
 
-        return <Tile key={index} tile={row[+r]} selectTile={selectTile} />
+        return (
+          <Tile
+            key={index}
+            tile={tile}
+            selectTile={selectTile}
+            is_removed={tiles_to_remove.includes(tile.id)}
+          />
+        )
       })}
     </>
   )
