@@ -24,9 +24,11 @@ test('renders without crash', () => {
             col: 2,
           },
         ],
+
         special_styles: null,
       }}
       selectTile={jest.fn as (tile: TileType) => void}
+      is_removed={false}
     />
   )
   const tileElement = getByTestId('tile')
