@@ -14,4 +14,5 @@ module.exports = {
       },
     ],
   },
+  testPathIgnorePatterns: ['<rootDir>/tests/'],
 }
