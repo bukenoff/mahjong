@@ -6,7 +6,7 @@ import GameView from './containers/GameView'
 
 const App: FC = () => (
   <Provider store={store}>
-    <main>
+    <main id="mahjong">
       <GameView />
     </main>
   </Provider>
