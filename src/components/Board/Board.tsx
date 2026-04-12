@@ -14,7 +14,7 @@ export const Board: FC = () => {
   if (!board || !layers) return null
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="board">
       {layers.map((layer) => (
         <Layer key={layer} layer={board[+layer]} />
       ))}
